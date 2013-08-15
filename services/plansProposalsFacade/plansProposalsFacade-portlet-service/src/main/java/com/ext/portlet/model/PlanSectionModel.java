@@ -103,6 +103,20 @@ public interface PlanSectionModel extends BaseModel<PlanSection> {
     public void setContent(String content);
 
     /**
+     * Returns the referenced ID of this plan section.
+     *
+     * @return the referenced ID of this plan section
+     */
+    public long getReferencedId();
+
+    /**
+     * Sets the referenced ID of this plan section.
+     *
+     * @param referencedId the referenced ID of this plan section
+     */
+    public void setReferencedId(long referencedId);
+
+    /**
      * Returns the created of this plan section.
      *
      * @return the created of this plan section

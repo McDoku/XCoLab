@@ -231,4 +231,14 @@ public interface PlanSectionDefinitionLocalService
         com.ext.portlet.model.PlanSectionDefinition psd)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.ext.portlet.PlanSectionDefinitionType getSectionType(
+        com.ext.portlet.model.PlanSectionDefinition definition);
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<com.ext.portlet.model.Contest> getContestsWithProposals(
+        com.ext.portlet.model.PlanSectionDefinition psd)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
 }

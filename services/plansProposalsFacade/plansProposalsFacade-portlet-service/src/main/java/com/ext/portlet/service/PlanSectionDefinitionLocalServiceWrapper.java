@@ -258,6 +258,18 @@ public class PlanSectionDefinitionLocalServiceWrapper
         return _planSectionDefinitionLocalService.getFocusArea(psd);
     }
 
+    public com.ext.portlet.PlanSectionDefinitionType getSectionType(
+        com.ext.portlet.model.PlanSectionDefinition definition) {
+        return _planSectionDefinitionLocalService.getSectionType(definition);
+    }
+
+    public java.util.List<com.ext.portlet.model.Contest> getContestsWithProposals(
+        com.ext.portlet.model.PlanSectionDefinition psd)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _planSectionDefinitionLocalService.getContestsWithProposals(psd);
+    }
+
     /**
      * @deprecated Renamed to {@link #getWrappedService}
      */

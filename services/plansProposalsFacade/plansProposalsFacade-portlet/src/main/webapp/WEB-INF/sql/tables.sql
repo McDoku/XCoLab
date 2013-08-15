@@ -477,6 +477,7 @@ create table xcolab_PlanSection (
 	planSectionDefinitionId LONG,
 	planId LONG,
 	content TEXT null,
+	referencedId LONG,
 	created DATE null,
 	version LONG,
 	planVersion LONG,
@@ -485,6 +486,7 @@ create table xcolab_PlanSection (
 
 create table xcolab_PlanSectionDefinition (
 	id_ LONG not null primary key,
+	type_ VARCHAR(75) null,
 	adminTitle VARCHAR(1024) null,
 	title VARCHAR(1024) null,
 	defaultText TEXT null,
@@ -492,6 +494,14 @@ create table xcolab_PlanSectionDefinition (
 	characterLimit INTEGER,
 	focusAreaId LONG,
 	locked BOOLEAN
+);
+
+create table xcolab_PlanSectionDefinitionListItem (
+	id_ LONG not null primary key,
+	sectionDefinitionId LONG,
+	type_ VARCHAR(75) null,
+	referencedId LONG,
+	data_ VARCHAR(500) null
 );
 
 create table xcolab_PlanSectionPlanMap (

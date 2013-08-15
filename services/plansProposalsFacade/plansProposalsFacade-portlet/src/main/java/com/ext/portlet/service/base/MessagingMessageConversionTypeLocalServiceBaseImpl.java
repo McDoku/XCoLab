@@ -101,6 +101,7 @@ import com.ext.portlet.service.PlanPropertyFilterLocalService;
 import com.ext.portlet.service.PlanPropertyFilterService;
 import com.ext.portlet.service.PlanRelatedLocalService;
 import com.ext.portlet.service.PlanRelatedService;
+import com.ext.portlet.service.PlanSectionDefinitionListItemService;
 import com.ext.portlet.service.PlanSectionDefinitionLocalService;
 import com.ext.portlet.service.PlanSectionDefinitionService;
 import com.ext.portlet.service.PlanSectionLocalService;
@@ -178,6 +179,7 @@ import com.ext.portlet.service.persistence.PlanPositionPersistence;
 import com.ext.portlet.service.persistence.PlanPositionsPersistence;
 import com.ext.portlet.service.persistence.PlanPropertyFilterPersistence;
 import com.ext.portlet.service.persistence.PlanRelatedPersistence;
+import com.ext.portlet.service.persistence.PlanSectionDefinitionListItemPersistence;
 import com.ext.portlet.service.persistence.PlanSectionDefinitionPersistence;
 import com.ext.portlet.service.persistence.PlanSectionPersistence;
 import com.ext.portlet.service.persistence.PlanSectionPlanMapPersistence;
@@ -551,6 +553,10 @@ public abstract class MessagingMessageConversionTypeLocalServiceBaseImpl
     protected PlanSectionDefinitionService planSectionDefinitionService;
     @BeanReference(type = PlanSectionDefinitionPersistence.class)
     protected PlanSectionDefinitionPersistence planSectionDefinitionPersistence;
+    @BeanReference(type = PlanSectionDefinitionListItemService.class)
+    protected PlanSectionDefinitionListItemService planSectionDefinitionListItemService;
+    @BeanReference(type = PlanSectionDefinitionListItemPersistence.class)
+    protected PlanSectionDefinitionListItemPersistence planSectionDefinitionListItemPersistence;
     @BeanReference(type = PlanSectionPlanMapLocalService.class)
     protected PlanSectionPlanMapLocalService planSectionPlanMapLocalService;
     @BeanReference(type = PlanSectionPlanMapService.class)
@@ -3848,6 +3854,44 @@ public abstract class MessagingMessageConversionTypeLocalServiceBaseImpl
     public void setPlanSectionDefinitionPersistence(
         PlanSectionDefinitionPersistence planSectionDefinitionPersistence) {
         this.planSectionDefinitionPersistence = planSectionDefinitionPersistence;
+    }
+
+    /**
+     * Returns the plan section definition list item remote service.
+     *
+     * @return the plan section definition list item remote service
+     */
+    public PlanSectionDefinitionListItemService getPlanSectionDefinitionListItemService() {
+        return planSectionDefinitionListItemService;
+    }
+
+    /**
+     * Sets the plan section definition list item remote service.
+     *
+     * @param planSectionDefinitionListItemService the plan section definition list item remote service
+     */
+    public void setPlanSectionDefinitionListItemService(
+        PlanSectionDefinitionListItemService planSectionDefinitionListItemService) {
+        this.planSectionDefinitionListItemService = planSectionDefinitionListItemService;
+    }
+
+    /**
+     * Returns the plan section definition list item persistence.
+     *
+     * @return the plan section definition list item persistence
+     */
+    public PlanSectionDefinitionListItemPersistence getPlanSectionDefinitionListItemPersistence() {
+        return planSectionDefinitionListItemPersistence;
+    }
+
+    /**
+     * Sets the plan section definition list item persistence.
+     *
+     * @param planSectionDefinitionListItemPersistence the plan section definition list item persistence
+     */
+    public void setPlanSectionDefinitionListItemPersistence(
+        PlanSectionDefinitionListItemPersistence planSectionDefinitionListItemPersistence) {
+        this.planSectionDefinitionListItemPersistence = planSectionDefinitionListItemPersistence;
     }
 
     /**

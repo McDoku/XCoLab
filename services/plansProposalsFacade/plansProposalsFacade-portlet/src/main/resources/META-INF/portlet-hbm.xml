@@ -54,6 +54,7 @@
 	<import class="com.ext.portlet.model.PlanRelated" />
 	<import class="com.ext.portlet.model.PlanSection" />
 	<import class="com.ext.portlet.model.PlanSectionDefinition" />
+	<import class="com.ext.portlet.model.PlanSectionDefinitionListItem" />
 	<import class="com.ext.portlet.model.PlanSectionPlanMap" />
 	<import class="com.ext.portlet.model.PlansFilter" />
 	<import class="com.ext.portlet.model.PlansFilterPosition" />
@@ -638,6 +639,7 @@
 		<property name="planSectionDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="planId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="referencedId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="created" type="org.hibernate.type.TimestampType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="planVersion" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -648,6 +650,7 @@
 		<id name="id" column="id_" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
 		<property name="adminTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="defaultText" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -655,6 +658,16 @@
 		<property name="characterLimit" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="focusAreaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="locked" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.ext.portlet.model.impl.PlanSectionDefinitionListItemImpl" table="xcolab_PlanSectionDefinitionListItem">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="sectionDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
+		<property name="referencedId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="data" type="com.liferay.portal.dao.orm.hibernate.StringType" column="data_" />
 	</class>
 	<class name="com.ext.portlet.model.impl.PlanSectionPlanMapImpl" table="xcolab_PlanSectionPlanMap">
 		<cache usage="read-write" />

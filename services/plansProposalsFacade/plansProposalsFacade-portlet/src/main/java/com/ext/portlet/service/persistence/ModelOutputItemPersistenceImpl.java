@@ -54,6 +54,7 @@ import com.ext.portlet.service.persistence.PlanPositionPersistence;
 import com.ext.portlet.service.persistence.PlanPositionsPersistence;
 import com.ext.portlet.service.persistence.PlanPropertyFilterPersistence;
 import com.ext.portlet.service.persistence.PlanRelatedPersistence;
+import com.ext.portlet.service.persistence.PlanSectionDefinitionListItemPersistence;
 import com.ext.portlet.service.persistence.PlanSectionDefinitionPersistence;
 import com.ext.portlet.service.persistence.PlanSectionPersistence;
 import com.ext.portlet.service.persistence.PlanSectionPlanMapPersistence;
@@ -280,6 +281,8 @@ public class ModelOutputItemPersistenceImpl extends BasePersistenceImpl<ModelOut
     protected PlanSectionPersistence planSectionPersistence;
     @BeanReference(type = PlanSectionDefinitionPersistence.class)
     protected PlanSectionDefinitionPersistence planSectionDefinitionPersistence;
+    @BeanReference(type = PlanSectionDefinitionListItemPersistence.class)
+    protected PlanSectionDefinitionListItemPersistence planSectionDefinitionListItemPersistence;
     @BeanReference(type = PlanSectionPlanMapPersistence.class)
     protected PlanSectionPlanMapPersistence planSectionPlanMapPersistence;
     @BeanReference(type = PlansFilterPersistence.class)

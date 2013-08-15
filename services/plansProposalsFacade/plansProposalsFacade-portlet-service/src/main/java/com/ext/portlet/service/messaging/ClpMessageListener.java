@@ -101,6 +101,7 @@ import com.ext.portlet.service.PlanPropertyFilterLocalServiceUtil;
 import com.ext.portlet.service.PlanPropertyFilterServiceUtil;
 import com.ext.portlet.service.PlanRelatedLocalServiceUtil;
 import com.ext.portlet.service.PlanRelatedServiceUtil;
+import com.ext.portlet.service.PlanSectionDefinitionListItemServiceUtil;
 import com.ext.portlet.service.PlanSectionDefinitionLocalServiceUtil;
 import com.ext.portlet.service.PlanSectionDefinitionServiceUtil;
 import com.ext.portlet.service.PlanSectionLocalServiceUtil;
@@ -300,6 +301,8 @@ public class ClpMessageListener extends BaseMessageListener {
             PlanSectionDefinitionLocalServiceUtil.clearService();
 
             PlanSectionDefinitionServiceUtil.clearService();
+
+            PlanSectionDefinitionListItemServiceUtil.clearService();
             PlanSectionPlanMapLocalServiceUtil.clearService();
 
             PlanSectionPlanMapServiceUtil.clearService();

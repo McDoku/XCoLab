@@ -27,6 +27,8 @@ public class PlanSectionDefinitionLocalServiceClp
     private MethodKey _setBeanIdentifierMethodKey16;
     private MethodKey _storeMethodKey17;
     private MethodKey _getFocusAreaMethodKey18;
+    private MethodKey _getSectionTypeMethodKey19;
+    private MethodKey _getContestsWithProposalsMethodKey20;
 
     public PlanSectionDefinitionLocalServiceClp(
         ClassLoaderProxy classLoaderProxy) {
@@ -99,6 +101,14 @@ public class PlanSectionDefinitionLocalServiceClp
 
         _getFocusAreaMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getFocusArea",
+                com.ext.portlet.model.PlanSectionDefinition.class);
+
+        _getSectionTypeMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+                "getSectionType",
+                com.ext.portlet.model.PlanSectionDefinition.class);
+
+        _getContestsWithProposalsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+                "getContestsWithProposals",
                 com.ext.portlet.model.PlanSectionDefinition.class);
     }
 
@@ -582,6 +592,58 @@ public class PlanSectionDefinitionLocalServiceClp
         }
 
         return (com.ext.portlet.model.FocusArea) ClpSerializer.translateOutput(returnObj);
+    }
+
+    public com.ext.portlet.PlanSectionDefinitionType getSectionType(
+        com.ext.portlet.model.PlanSectionDefinition definition) {
+        Object returnObj = null;
+
+        MethodHandler methodHandler = new MethodHandler(_getSectionTypeMethodKey19,
+                ClpSerializer.translateInput(definition));
+
+        try {
+            returnObj = _classLoaderProxy.invoke(methodHandler);
+        } catch (Throwable t) {
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (com.ext.portlet.PlanSectionDefinitionType) ClpSerializer.translateOutput(returnObj);
+    }
+
+    public java.util.List<com.ext.portlet.model.Contest> getContestsWithProposals(
+        com.ext.portlet.model.PlanSectionDefinition psd)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        MethodHandler methodHandler = new MethodHandler(_getContestsWithProposalsMethodKey20,
+                ClpSerializer.translateInput(psd));
+
+        try {
+            returnObj = _classLoaderProxy.invoke(methodHandler);
+        } catch (Throwable t) {
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.util.List<com.ext.portlet.model.Contest>) ClpSerializer.translateOutput(returnObj);
     }
 
     public ClassLoaderProxy getClassLoaderProxy() {

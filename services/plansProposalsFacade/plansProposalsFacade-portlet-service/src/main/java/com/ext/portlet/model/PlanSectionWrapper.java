@@ -118,6 +118,24 @@ public class PlanSectionWrapper implements PlanSection,
     }
 
     /**
+    * Returns the referenced ID of this plan section.
+    *
+    * @return the referenced ID of this plan section
+    */
+    public long getReferencedId() {
+        return _planSection.getReferencedId();
+    }
+
+    /**
+    * Sets the referenced ID of this plan section.
+    *
+    * @param referencedId the referenced ID of this plan section
+    */
+    public void setReferencedId(long referencedId) {
+        _planSection.setReferencedId(referencedId);
+    }
+
+    /**
     * Returns the created of this plan section.
     *
     * @return the created of this plan section

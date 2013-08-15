@@ -20,6 +20,7 @@ public class PlanSectionClp extends BaseModelImpl<PlanSection>
     private long _planSectionDefinitionId;
     private long _planId;
     private String _content;
+    private long _referencedId;
     private Date _created;
     private long _version;
     private long _planVersion;
@@ -84,6 +85,14 @@ public class PlanSectionClp extends BaseModelImpl<PlanSection>
         _content = content;
     }
 
+    public long getReferencedId() {
+        return _referencedId;
+    }
+
+    public void setReferencedId(long referencedId) {
+        _referencedId = referencedId;
+    }
+
     public Date getCreated() {
         return _created;
     }
@@ -138,6 +147,7 @@ public class PlanSectionClp extends BaseModelImpl<PlanSection>
         clone.setPlanSectionDefinitionId(getPlanSectionDefinitionId());
         clone.setPlanId(getPlanId());
         clone.setContent(getContent());
+        clone.setReferencedId(getReferencedId());
         clone.setCreated(getCreated());
         clone.setVersion(getVersion());
         clone.setPlanVersion(getPlanVersion());
@@ -196,7 +206,7 @@ public class PlanSectionClp extends BaseModelImpl<PlanSection>
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(17);
+        StringBundler sb = new StringBundler(19);
 
         sb.append("{id=");
         sb.append(getId());
@@ -206,6 +216,8 @@ public class PlanSectionClp extends BaseModelImpl<PlanSection>
         sb.append(getPlanId());
         sb.append(", content=");
         sb.append(getContent());
+        sb.append(", referencedId=");
+        sb.append(getReferencedId());
         sb.append(", created=");
         sb.append(getCreated());
         sb.append(", version=");
@@ -220,7 +232,7 @@ public class PlanSectionClp extends BaseModelImpl<PlanSection>
     }
 
     public String toXmlString() {
-        StringBundler sb = new StringBundler(28);
+        StringBundler sb = new StringBundler(31);
 
         sb.append("<model><model-name>");
         sb.append("com.ext.portlet.model.PlanSection");
@@ -241,6 +253,10 @@ public class PlanSectionClp extends BaseModelImpl<PlanSection>
         sb.append(
             "<column><column-name>content</column-name><column-value><![CDATA[");
         sb.append(getContent());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>referencedId</column-name><column-value><![CDATA[");
+        sb.append(getReferencedId());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>created</column-name><column-value><![CDATA[");

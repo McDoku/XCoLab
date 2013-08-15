@@ -1,7 +1,16 @@
 package com.ext.portlet.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.ext.portlet.PlanSectionDefinitionType;
+import com.ext.portlet.model.Contest;
 import com.ext.portlet.model.FocusArea;
 import com.ext.portlet.model.PlanSectionDefinition;
+import com.ext.portlet.model.PlanSectionDefinitionListItem;
+import com.ext.portlet.service.ContestLocalServiceUtil;
 import com.ext.portlet.service.FocusAreaLocalServiceUtil;
 import com.ext.portlet.service.PlanSectionDefinitionLocalServiceUtil;
 import com.ext.portlet.service.base.PlanSectionDefinitionLocalServiceBaseImpl;
@@ -49,5 +58,22 @@ public class PlanSectionDefinitionLocalServiceImpl
             return FocusAreaLocalServiceUtil.getFocusArea(psd.getFocusAreaId());
         }
         return null;
+    }
+    
+    public PlanSectionDefinitionType getSectionType(PlanSectionDefinition definition) {
+        if (StringUtils.isBlank(definition.getType())) 
+            return PlanSectionDefinitionType.TEXT;
+        return PlanSectionDefinitionType.valueOf(definition.getType());
+    }
+    
+    
+    public List<Contest> getContestsWithProposals(PlanSectionDefinition psd) throws SystemException, PortalException {
+        if (! (getSectionType(psd) == PlanSectionDefinitionType.PROPOSAL_REFERENCE)) return new ArrayList<>();
+        List<Contest> ret = new ArrayList<>();
+        for (PlanSectionDefinitionListItem item: planSectionDefinitionListItemPersistence.findByPlanSectionDefinitionIdType(psd.getId(), PlanSectionDefinitionType.PROPOSAL_REFERENCE.name())) {
+            ret.add(ContestLocalServiceUtil.getContest(item.getReferencedId()));
+        }
+        
+        return ret;
     }
 }

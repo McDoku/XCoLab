@@ -433,6 +433,7 @@
     
     <entity name="PlanSectionDefinition" local-service="true">
         <column name="id" type="long" primary="true" />
+        <column name="type" type="String" />
         <column name="adminTitle" type="String" />
         <column name="title" type="String" />
         <column name="defaultText" type="String" />
@@ -442,11 +443,29 @@
         <column name="locked" type="boolean" />
     </entity>
     
+    <entity name="PlanSectionDefinitionListItem">
+        <column name="id" type="long" primary="true" />
+        <column name="sectionDefinitionId" type="long" />
+        <column name="type" type="String" />
+        <column name="referencedId" type="long" />
+        <column name="data" type="String" />
+        
+        <order by="desc">
+            <order-column name="id" />
+        </order>
+        
+        <finder name="PlanSectionDefinitionIdType" return-type="Collection">
+            <finder-column name="sectionDefinitionId" />
+            <finder-column name="type" />
+        </finder>
+    </entity>
+    
     <entity name="PlanSection" local-service="true">
         <column name="id" type="long" primary="true" />
         <column name="planSectionDefinitionId" type="long"  />
         <column name="planId" type="long" />
         <column name="content" type="String" />
+        <column name="referencedId" type="long" />
         <column name="created" type="Date" />
         
         <column name="version" type="long" />

@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
+import javax.faces.model.SelectItem;
 
 import org.xcolab.portlets.plansadmin.wrappers.PlanSectionDefinitionWrapper;
 
+import com.ext.portlet.PlanSectionDefinitionType;
+import com.ext.portlet.model.Contest;
 import com.ext.portlet.model.PlanSectionDefinition;
 import com.ext.portlet.service.PlanSectionDefinitionLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -47,6 +50,16 @@ public class PlanSectionDefinitionsAdmin implements Serializable {
 
     public PlanSectionDefinitionWrapper getEdited() {
         return edited;
+    }
+    
+    public List<SelectItem> getPlanSectionDefinitionTypes() {
+        List<SelectItem> ret = new ArrayList<>();
+        
+        for (PlanSectionDefinitionType type: PlanSectionDefinitionType.values()) {
+            ret.add(new SelectItem(type.name(), type.name()));
+        }
+        
+        return ret;
     }
     
 

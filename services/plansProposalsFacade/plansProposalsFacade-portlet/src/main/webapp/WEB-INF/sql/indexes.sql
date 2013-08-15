@@ -125,6 +125,8 @@ create index IX_EBB4128D on xcolab_PlanRelated (relatedPlanId);
 create index IX_8D33E176 on xcolab_PlanSection (planId, planSectionDefinitionId);
 create index IX_21590829 on xcolab_PlanSection (planId, planSectionDefinitionId, planVersion);
 
+create index IX_D0FA5122 on xcolab_PlanSectionDefinitionListItem (sectionDefinitionId, type_);
+
 create index IX_9411AFEC on xcolab_PlanSectionPlanMap (relatedPlanId);
 create index IX_C8499DDD on xcolab_PlanSectionPlanMap (sectionId);
 

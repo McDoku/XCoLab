@@ -58,26 +58,46 @@
            <ice:outputLabel value="Title" />
            <ice:inputText value="#{planSectionDefinitionsAdmin.edited.definition.title}" styleClass="inputWide"  />
            
-           <ice:outputLabel value="Default text" />
-           <ice:inputTextarea value="#{planSectionDefinitionsAdmin.edited.definition.defaultText}" styleClass="defaultText" />
-           
            <ice:outputLabel value="Help text" />
            <ice:inputTextarea value="#{planSectionDefinitionsAdmin.edited.definition.helpText}" styleClass="defaultText" />
            
-           
-           <ice:outputLabel value="Characters limit (set to 0 to be unlimited)" />
-           <ice:inputText value="#{planSectionDefinitionsAdmin.edited.definition.characterLimit}" />
-           
-           <ice:outputLabel value="Focus area" />
-           <ice:selectOneMenu valueChangeListener="#{planSectionDefinitionsAdmin.edited.focusAreaChange}" value="#{planSectionDefinitionsAdmin.edited.focusAreaId}" >
-             <f:selectItems value="#{planSectionDefinitionsAdmin.edited.availableFocusAreas}" />
+           <ice:outputLabel value="Section type" />
+           <ice:selectOneMenu value="#{planSectionDefinitionsAdmin.edited.type}" partialSubmit="true" >
+             <f:selectItems value="#{planSectionDefinitionsAdmin.planSectionDefinitionTypes}" />
            </ice:selectOneMenu>
            
+           <!-- Text related configuration -->
+		   	<ice:outputLabel value="Default text" rendered="#{planSectionDefinitionsAdmin.edited.type == 'TEXT'}" />
+           	<ice:inputTextarea value="#{planSectionDefinitionsAdmin.edited.definition.defaultText}" styleClass="defaultText" rendered="#{planSectionDefinitionsAdmin.edited.type == 'TEXT'}" />
            
-           <ice:outputLabel value="Locked" />
-           <ice:selectBooleanCheckbox value="#{planSectionDefinitionsAdmin.edited.definition.locked}" />
+           
+           	<ice:outputLabel value="Characters limit (set to 0 to be unlimited)" rendered="#{planSectionDefinitionsAdmin.edited.type == 'TEXT'}" />
+           	<ice:inputText value="#{planSectionDefinitionsAdmin.edited.definition.characterLimit}" rendered="#{planSectionDefinitionsAdmin.edited.type == 'TEXT'}" />
+           
+	        <ice:outputLabel value="Focus area" rendered="#{planSectionDefinitionsAdmin.edited.type == 'TEXT'}"  />
+    	    <ice:selectOneMenu valueChangeListener="#{planSectionDefinitionsAdmin.edited.focusAreaChange}" value="#{planSectionDefinitionsAdmin.edited.focusAreaId}" rendered="#{planSectionDefinitionsAdmin.edited.type == 'TEXT'}" >
+        		<f:selectItems value="#{planSectionDefinitionsAdmin.edited.availableFocusAreas}" rendered="#{planSectionDefinitionsAdmin.edited.type == 'TEXT'}" />
+            </ice:selectOneMenu>
+           
+           
+           	<ice:outputLabel value="Locked" rendered="#{planSectionDefinitionsAdmin.edited.type == 'TEXT'}" />
+           	<ice:selectBooleanCheckbox value="#{planSectionDefinitionsAdmin.edited.definition.locked}" rendered="#{planSectionDefinitionsAdmin.edited.type == 'TEXT'}" />
            
            <!-- <ice:inputTextarea value="#{planSectionDefinitionsAdmin.edited.definition.defaultText}" styleClass="defaultText" />-->
+           
+           
+           <!-- Proposal reference configuration -->
+           <ice:outputLabel value="Contests from which proposals can be choosen" rendered="#{planSectionDefinitionsAdmin.edited.type == 'PROPOSAL_REFERENCE'}" />
+           <ice:panelGroup  rendered="#{planSectionDefinitionsAdmin.edited.type == 'PROPOSAL_REFERENCE'}">
+           		<ice:commandButton>
+           			
+           		</ice:commandButton>
+           		<ice:panelSeries value="#{planSectionDefinitionsAdmin.edited.contests}" var="contest">
+        			<li>#{contest}</li>
+           		</ice:panelSeries>
+           </ice:panelSeries>
+           
+           
            
            <ice:outputText />
            <ice:commandButton value="Save" action="#{planSectionDefinitionsAdmin.edited.save}" />

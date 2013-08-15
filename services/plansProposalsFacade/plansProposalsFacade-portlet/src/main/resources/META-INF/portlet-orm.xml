@@ -750,6 +750,7 @@
 			<basic name="planSectionDefinitionId" />
 			<basic name="planId" />
 			<basic name="content" />
+			<basic name="referencedId" />
 			<basic name="created">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -765,6 +766,9 @@
 			<id name="id">
 				<column name="ID_" />
 			</id>
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
 			<basic name="adminTitle" />
 			<basic name="title" />
 			<basic name="defaultText" />
@@ -772,6 +776,23 @@
 			<basic name="characterLimit" />
 			<basic name="focusAreaId" />
 			<basic name="locked" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ext.portlet.model.impl.PlanSectionDefinitionListItemModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="sectionDefinitionId" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
+			<basic name="referencedId" />
+			<basic name="data">
+				<column name="DATA_" />
+			</basic>
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>
@@ -1133,6 +1154,10 @@
 	</entity>
 	<entity class="com.ext.portlet.model.impl.PlanSectionDefinitionImpl" name="PlanSectionDefinition">
 		<table name="xcolab_PlanSectionDefinition" />
+		<attributes />
+	</entity>
+	<entity class="com.ext.portlet.model.impl.PlanSectionDefinitionListItemImpl" name="PlanSectionDefinitionListItem">
+		<table name="xcolab_PlanSectionDefinitionListItem" />
 		<attributes />
 	</entity>
 	<entity class="com.ext.portlet.model.impl.PlanSectionPlanMapImpl" name="PlanSectionPlanMap">
