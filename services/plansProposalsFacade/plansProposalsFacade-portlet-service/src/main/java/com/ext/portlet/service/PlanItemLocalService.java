@@ -785,6 +785,14 @@ public interface PlanItemLocalService extends PersistedModelLocalService {
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
+    public void setSectionReferencedId(com.ext.portlet.model.PlanItem pi,
+        com.ext.portlet.model.PlanSectionDefinition psd,
+        java.lang.Long referenceId,
+        java.util.List<java.lang.Long> referencedPlans,
+        java.lang.Long updateAuthorId)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
+
     public void setSectionContent(com.ext.portlet.model.PlanItem pi,
         com.ext.portlet.model.PlanSectionDefinition psd,
         java.lang.String content,

@@ -1,0 +1,14 @@
+<f:view 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:collab="http://climatecollaboratorium.org/facelets"
+    xmlns:ice="http://www.icesoft.com/icefaces/component"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:addthis="http://www.addthis.com/help/api-spec" >
+    <f:subview rendered="#{empty section.referencedPlan}">
+		Proposal not set yet.
+	</f:subview>
+	<f:subview rendered="#{not empty section.referencedPlan}">
+		<collab:planLink planId="#{section.referencedPlan.planId}" contestId="#{section.referencedPlan.contestPK}" 
+				text="#{section.referencedPlan.name}" />
+	</f:subview>
+</f:view>

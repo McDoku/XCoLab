@@ -134,20 +134,21 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
     private MethodKey _removeAttributeMethodKey124;
     private MethodKey _getPlanTemplateMethodKey125;
     private MethodKey _getPlanSectionsMethodKey126;
-    private MethodKey _setSectionContentMethodKey127;
-    private MethodKey _getAllPlanSectionsMethodKey128;
-    private MethodKey _getRibbonMethodKey129;
-    private MethodKey _setTeamMethodKey130;
-    private MethodKey _getTeamMethodKey131;
-    private MethodKey _revertToMethodKey132;
-    private MethodKey _getTagsMethodKey133;
-    private MethodKey _setTagsMethodKey134;
-    private MethodKey _getTagsHoverMethodKey135;
-    private MethodKey _setTagsHoverMethodKey136;
-    private MethodKey _getTagsOrderMethodKey137;
-    private MethodKey _setTagsOrderMethodKey138;
-    private MethodKey _promotePlansMethodKey139;
+    private MethodKey _setSectionReferencedIdMethodKey127;
+    private MethodKey _setSectionContentMethodKey128;
+    private MethodKey _getAllPlanSectionsMethodKey129;
+    private MethodKey _getRibbonMethodKey130;
+    private MethodKey _setTeamMethodKey131;
+    private MethodKey _getTeamMethodKey132;
+    private MethodKey _revertToMethodKey133;
+    private MethodKey _getTagsMethodKey134;
+    private MethodKey _setTagsMethodKey135;
+    private MethodKey _getTagsHoverMethodKey136;
+    private MethodKey _setTagsHoverMethodKey137;
+    private MethodKey _getTagsOrderMethodKey138;
+    private MethodKey _setTagsOrderMethodKey139;
     private MethodKey _promotePlansMethodKey140;
+    private MethodKey _promotePlansMethodKey141;
 
     public PlanItemLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
         _classLoaderProxy = classLoaderProxy;
@@ -606,54 +607,59 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         _getPlanSectionsMethodKey126 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getPlanSections", com.ext.portlet.model.PlanItem.class);
 
-        _setSectionContentMethodKey127 = new MethodKey(_classLoaderProxy.getClassName(),
+        _setSectionReferencedIdMethodKey127 = new MethodKey(_classLoaderProxy.getClassName(),
+                "setSectionReferencedId", com.ext.portlet.model.PlanItem.class,
+                com.ext.portlet.model.PlanSectionDefinition.class,
+                java.lang.Long.class, java.util.List.class, java.lang.Long.class);
+
+        _setSectionContentMethodKey128 = new MethodKey(_classLoaderProxy.getClassName(),
                 "setSectionContent", com.ext.portlet.model.PlanItem.class,
                 com.ext.portlet.model.PlanSectionDefinition.class,
                 java.lang.String.class, java.util.List.class,
                 java.lang.Long.class);
 
-        _getAllPlanSectionsMethodKey128 = new MethodKey(_classLoaderProxy.getClassName(),
+        _getAllPlanSectionsMethodKey129 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getAllPlanSections", com.ext.portlet.model.PlanItem.class,
                 com.ext.portlet.model.PlanSectionDefinition.class);
 
-        _getRibbonMethodKey129 = new MethodKey(_classLoaderProxy.getClassName(),
+        _getRibbonMethodKey130 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getRibbon", com.ext.portlet.model.PlanItem.class);
 
-        _setTeamMethodKey130 = new MethodKey(_classLoaderProxy.getClassName(),
+        _setTeamMethodKey131 = new MethodKey(_classLoaderProxy.getClassName(),
                 "setTeam", com.ext.portlet.model.PlanItem.class,
                 java.lang.String.class);
 
-        _getTeamMethodKey131 = new MethodKey(_classLoaderProxy.getClassName(),
+        _getTeamMethodKey132 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getTeam", com.ext.portlet.model.PlanItem.class);
 
-        _revertToMethodKey132 = new MethodKey(_classLoaderProxy.getClassName(),
+        _revertToMethodKey133 = new MethodKey(_classLoaderProxy.getClassName(),
                 "revertTo", com.ext.portlet.model.PlanItem.class,
                 java.lang.Long.class);
 
-        _getTagsMethodKey133 = new MethodKey(_classLoaderProxy.getClassName(),
+        _getTagsMethodKey134 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getTags", com.ext.portlet.model.PlanItem.class);
 
-        _setTagsMethodKey134 = new MethodKey(_classLoaderProxy.getClassName(),
+        _setTagsMethodKey135 = new MethodKey(_classLoaderProxy.getClassName(),
                 "setTags", com.ext.portlet.model.PlanItem.class,
                 java.lang.String.class);
 
-        _getTagsHoverMethodKey135 = new MethodKey(_classLoaderProxy.getClassName(),
+        _getTagsHoverMethodKey136 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getTagsHover", com.ext.portlet.model.PlanItem.class);
 
-        _setTagsHoverMethodKey136 = new MethodKey(_classLoaderProxy.getClassName(),
+        _setTagsHoverMethodKey137 = new MethodKey(_classLoaderProxy.getClassName(),
                 "setTagsHover", com.ext.portlet.model.PlanItem.class,
                 java.lang.String.class);
 
-        _getTagsOrderMethodKey137 = new MethodKey(_classLoaderProxy.getClassName(),
+        _getTagsOrderMethodKey138 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getTagsOrder", com.ext.portlet.model.PlanItem.class);
 
-        _setTagsOrderMethodKey138 = new MethodKey(_classLoaderProxy.getClassName(),
+        _setTagsOrderMethodKey139 = new MethodKey(_classLoaderProxy.getClassName(),
                 "setTagsOrder", com.ext.portlet.model.PlanItem.class, int.class);
 
-        _promotePlansMethodKey139 = new MethodKey(_classLoaderProxy.getClassName(),
+        _promotePlansMethodKey140 = new MethodKey(_classLoaderProxy.getClassName(),
                 "promotePlans", long.class, long.class);
 
-        _promotePlansMethodKey140 = new MethodKey(_classLoaderProxy.getClassName(),
+        _promotePlansMethodKey141 = new MethodKey(_classLoaderProxy.getClassName(),
                 "promotePlans", java.util.List.class, long.class);
     }
 
@@ -4116,6 +4122,40 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         return (java.util.List<com.ext.portlet.model.PlanSection>) ClpSerializer.translateOutput(returnObj);
     }
 
+    public void setSectionReferencedId(com.ext.portlet.model.PlanItem pi,
+        com.ext.portlet.model.PlanSectionDefinition psd,
+        java.lang.Long referenceId,
+        java.util.List<java.lang.Long> referencedPlans,
+        java.lang.Long updateAuthorId)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        MethodHandler methodHandler = new MethodHandler(_setSectionReferencedIdMethodKey127,
+                ClpSerializer.translateInput(pi),
+                ClpSerializer.translateInput(psd),
+                ClpSerializer.translateInput(referenceId),
+                ClpSerializer.translateInput(referencedPlans),
+                ClpSerializer.translateInput(updateAuthorId));
+
+        try {
+            _classLoaderProxy.invoke(methodHandler);
+        } catch (Throwable t) {
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+    }
+
     public void setSectionContent(com.ext.portlet.model.PlanItem pi,
         com.ext.portlet.model.PlanSectionDefinition psd,
         java.lang.String content,
@@ -4123,7 +4163,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         java.lang.Long updateAuthorId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_setSectionContentMethodKey127,
+        MethodHandler methodHandler = new MethodHandler(_setSectionContentMethodKey128,
                 ClpSerializer.translateInput(pi),
                 ClpSerializer.translateInput(psd),
                 ClpSerializer.translateInput(content),
@@ -4156,7 +4196,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getAllPlanSectionsMethodKey128,
+        MethodHandler methodHandler = new MethodHandler(_getAllPlanSectionsMethodKey129,
                 ClpSerializer.translateInput(pi),
                 ClpSerializer.translateInput(psd));
 
@@ -4182,7 +4222,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getRibbonMethodKey129,
+        MethodHandler methodHandler = new MethodHandler(_getRibbonMethodKey130,
                 ClpSerializer.translateInput(pi));
 
         try {
@@ -4205,7 +4245,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
 
     public void setTeam(com.ext.portlet.model.PlanItem pi, java.lang.String team)
         throws com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_setTeamMethodKey130,
+        MethodHandler methodHandler = new MethodHandler(_setTeamMethodKey131,
                 ClpSerializer.translateInput(pi),
                 ClpSerializer.translateInput(team));
 
@@ -4229,7 +4269,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getTeamMethodKey131,
+        MethodHandler methodHandler = new MethodHandler(_getTeamMethodKey132,
                 ClpSerializer.translateInput(pi));
 
         try {
@@ -4254,7 +4294,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         java.lang.Long updateAuthorId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_revertToMethodKey132,
+        MethodHandler methodHandler = new MethodHandler(_revertToMethodKey133,
                 ClpSerializer.translateInput(pi),
                 ClpSerializer.translateInput(updateAuthorId));
 
@@ -4282,7 +4322,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getTagsMethodKey133,
+        MethodHandler methodHandler = new MethodHandler(_getTagsMethodKey134,
                 ClpSerializer.translateInput(pi));
 
         try {
@@ -4305,7 +4345,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
 
     public void setTags(com.ext.portlet.model.PlanItem pi, java.lang.String tags)
         throws com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_setTagsMethodKey134,
+        MethodHandler methodHandler = new MethodHandler(_setTagsMethodKey135,
                 ClpSerializer.translateInput(pi),
                 ClpSerializer.translateInput(tags));
 
@@ -4329,7 +4369,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getTagsHoverMethodKey135,
+        MethodHandler methodHandler = new MethodHandler(_getTagsHoverMethodKey136,
                 ClpSerializer.translateInput(pi));
 
         try {
@@ -4353,7 +4393,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
     public void setTagsHover(com.ext.portlet.model.PlanItem pi,
         java.lang.String tagsHover)
         throws com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_setTagsHoverMethodKey136,
+        MethodHandler methodHandler = new MethodHandler(_setTagsHoverMethodKey137,
                 ClpSerializer.translateInput(pi),
                 ClpSerializer.translateInput(tagsHover));
 
@@ -4377,7 +4417,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getTagsOrderMethodKey137,
+        MethodHandler methodHandler = new MethodHandler(_getTagsOrderMethodKey138,
                 ClpSerializer.translateInput(pi));
 
         try {
@@ -4400,7 +4440,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
 
     public void setTagsOrder(com.ext.portlet.model.PlanItem pi, int tagsOrder)
         throws com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_setTagsOrderMethodKey138,
+        MethodHandler methodHandler = new MethodHandler(_setTagsOrderMethodKey139,
                 ClpSerializer.translateInput(pi), tagsOrder);
 
         try {
@@ -4422,7 +4462,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
     public void promotePlans(long sourcePhasePk, long destPhasePk)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_promotePlansMethodKey139,
+        MethodHandler methodHandler = new MethodHandler(_promotePlansMethodKey140,
                 sourcePhasePk, destPhasePk);
 
         try {
@@ -4450,7 +4490,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         long destPhasePk)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_promotePlansMethodKey140,
+        MethodHandler methodHandler = new MethodHandler(_promotePlansMethodKey141,
                 ClpSerializer.translateInput(plansToBeCopied), destPhasePk);
 
         try {

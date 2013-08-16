@@ -99,14 +99,15 @@
 		<f:subview rendered="#{proposal.plan.hasSections}">
 			<ice:panelSeries var="section" value="#{proposal.plan.sections}">
 				<h3>#{section.definition.title}</h3>
-				<p>
-					<ice:outputText value="#{section.section.content}" escape="false" />
-				</p>
+				<f:subview rendered="#{section.type == 'TEXT'}">
+					<ui:include src="./sections/section_TEXT.xhtml" />
+				</f:subview>
+				<f:subview rendered="#{section.type == 'PROPOSAL_REFERENCE'}">
+					<ui:include src="./sections/section_PROPOSAL_REFERENCE.xhtml" />
+				</f:subview>
 				<f:subview rendered="#{not section.last}">
 					<div class="div2"></div>
 				</f:subview>
-
-
 			</ice:panelSeries>
 
 		</f:subview>

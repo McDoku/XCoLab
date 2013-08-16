@@ -676,7 +676,7 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 					.getPlanType(ContestPhaseLocalServiceUtil.getContest(phase));
 		}
 
-		if (sortColumn != null || sortColumn.trim().length() > 0) {
+		if (sortColumn != null && sortColumn.trim().length() > 0) {
 			final int directionModifier = sortDirection.equals("DESC") ? -1 : 1;
 			Collections.sort(plans, new Comparator<PlanItem>() {
 
@@ -1844,6 +1844,23 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 		}
 
 		return null;
+	}
+	public void setSectionReferencedId(PlanItem pi, PlanSectionDefinition psd,
+            Long referenceId, List<Long> referencedPlans, Long updateAuthorId)
+            throws SystemException, PortalException {
+
+        newVersion(pi, UpdateType.PLAN_SECTION_UPDATED, updateAuthorId);
+        PlanSection ps = PlanSectionLocalServiceUtil
+                .createNewVersionForPlanSectionDefinition(pi, psd, false);
+        ps.setUpdateAuthorId(updateAuthorId);
+        ps.setReferencedId(referenceId);
+
+        for (Long planId : referencedPlans) {
+            PlanSectionLocalServiceUtil.addPlanReference(ps, planId);
+        }
+
+        PlanSectionLocalServiceUtil.store(ps);
+	    
 	}
 
 	public void setSectionContent(PlanItem pi, PlanSectionDefinition psd,

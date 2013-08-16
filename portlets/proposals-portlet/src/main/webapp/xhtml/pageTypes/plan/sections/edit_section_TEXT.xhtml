@@ -1,0 +1,46 @@
+<f:view 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:collab="http://climatecollaboratorium.org/facelets"
+    xmlns:ice="http://www.icesoft.com/icefaces/component"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:addthis="http://www.addthis.com/help/api-spec" >
+		<ice:panelGroup rendered="#{not section.definition.locked}">
+                  <ice:panelGroup styleClass="addpropbox q3">
+                    <label>
+                        <strong>#{section.definition.title}</strong> 
+                        <a href="javascript:;" class="helpTrigger"><img src="/climatecolab-theme/images/icon-addprop-question.png" width="15" height="15" /></a><br />
+                        <f:subview rendered="#{section.definition.characterLimit gt 0}">
+                            #{section.definition.characterLimit} characters
+                        </f:subview>
+                         
+                    </label>
+                    <div class="addprophelp">#{section.definition.helpText}</div>
+                    <div class="addpropInputContainer">
+                        <ice:inputTextarea value="#{section.section.content}" cols="54" rows="7" styleClass="rte" style="display: block;"/>
+                        <f:subview rendered="#{section.definition.characterLimit gt 0}">
+                            <div class="inputLimitContainer">
+                                <span class="limit_characterCount"></span>/&#160;<span class="limit_charactersMax">#{section.definition.characterLimit}</span> characters
+                            </div>
+                        </f:subview>
+                        <div style="display: none">
+                            <textarea class="originalValue">#{section.originalContent}</textarea>
+                        </div>
+                    </div>
+                  </ice:panelGroup>
+                </ice:panelGroup>
+                <ice:panelGroup rendered="#{section.definition.locked}">
+                  <div class="addpropbox q3">
+                    <label>
+                        <strong>#{section.definition.title}</strong> 
+                        <a href="javascript:;" class="helpTrigger"><img src="/climatecolab-theme/images/icon-addprop-question.png" width="15" height="15" /></a><br />
+                             
+                    </label>
+                    <div class="addprophelp">#{section.definition.helpText}</div>
+                    <div class="addpropInputContainer">
+                        #{section.section.content}
+                        
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </ice:panelGroup>
+</f:view>

@@ -33,6 +33,7 @@ import org.icefaces.ace.component.fileentry.FileEntryResults;
 
 import com.ext.portlet.NoSuchPlanPositionsException;
 import com.ext.portlet.PlanStatus;
+import com.ext.portlet.model.Contest;
 import com.ext.portlet.model.ContestPhase;
 import com.ext.portlet.model.DiscussionCategoryGroup;
 import com.ext.portlet.model.PlanAttribute;
@@ -251,6 +252,12 @@ public class PlanItemWrapper implements Serializable {
         }
     }
 
+    public PlanItemWrapper(PlanItem plan) throws SystemException {
+        wrapped = plan;
+        name = PlanItemLocalServiceUtil.getName(plan);
+        description = PlanItemLocalServiceUtil.getDescription(plan);
+    }
+
     public SelectItem[] getAllPlanModes() {
         return openOrClosed;
     }
@@ -441,6 +448,10 @@ public class PlanItemWrapper implements Serializable {
 
     public Long getContestPhaseId() throws SystemException, PortalException {
         return PlanItemLocalServiceUtil.getContestPhase(wrapped).getContestPhasePK();
+    }
+    
+    public Long getContestPK() throws PortalException, SystemException {
+        return PlanItemLocalServiceUtil.getContest(wrapped).getContestPK();
     }
 
     public ContestPhaseWrapper getContestPhase() throws PortalException, SystemException {
