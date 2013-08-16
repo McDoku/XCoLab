@@ -270,6 +270,18 @@ public class PlanSectionDefinitionLocalServiceWrapper
         return _planSectionDefinitionLocalService.getContestsWithProposals(psd);
     }
 
+    public void addContest(com.ext.portlet.model.PlanSectionDefinition psd,
+        java.lang.Long contestId)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        _planSectionDefinitionLocalService.addContest(psd, contestId);
+    }
+
+    public void removeContest(com.ext.portlet.model.PlanSectionDefinition psd,
+        java.lang.Long contestId)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        _planSectionDefinitionLocalService.removeContest(psd, contestId);
+    }
+
     /**
      * @deprecated Renamed to {@link #getWrappedService}
      */

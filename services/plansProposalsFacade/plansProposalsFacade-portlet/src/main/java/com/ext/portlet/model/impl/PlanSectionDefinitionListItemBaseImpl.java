@@ -1,6 +1,9 @@
 package com.ext.portlet.model.impl;
 
 import com.ext.portlet.model.PlanSectionDefinitionListItem;
+import com.ext.portlet.service.PlanSectionDefinitionListItemLocalServiceUtil;
+
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The extended model base implementation for the PlanSectionDefinitionListItem service. Represents a row in the &quot;xcolab_PlanSectionDefinitionListItem&quot; database table, with each column mapped to a property of this class.
@@ -22,4 +25,11 @@ public abstract class PlanSectionDefinitionListItemBaseImpl
      *
      * Never modify or reference this class directly. All methods that expect a plan section definition list item model instance should use the {@link PlanSectionDefinitionListItem} interface instead.
      */
+    public void persist() throws SystemException {
+        if (this.isNew()) {
+            PlanSectionDefinitionListItemLocalServiceUtil.addPlanSectionDefinitionListItem(this);
+        } else {
+            PlanSectionDefinitionListItemLocalServiceUtil.updatePlanSectionDefinitionListItem(this);
+        }
+    }
 }

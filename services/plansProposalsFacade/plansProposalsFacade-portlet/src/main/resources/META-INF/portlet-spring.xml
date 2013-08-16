@@ -483,6 +483,10 @@
 		<property name="service" ref="com.ext.portlet.service.PlanSectionDefinitionService" />
 	</bean>
 	<bean id="com.ext.portlet.service.persistence.PlanSectionDefinitionPersistence" class="com.ext.portlet.service.persistence.PlanSectionDefinitionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.service.PlanSectionDefinitionListItemLocalService" class="com.ext.portlet.service.impl.PlanSectionDefinitionListItemLocalServiceImpl" />
+	<bean id="com.ext.portlet.service.PlanSectionDefinitionListItemLocalServiceUtil" class="com.ext.portlet.service.PlanSectionDefinitionListItemLocalServiceUtil">
+		<property name="service" ref="com.ext.portlet.service.PlanSectionDefinitionListItemLocalService" />
+	</bean>
 	<bean id="com.ext.portlet.service.PlanSectionDefinitionListItemService" class="com.ext.portlet.service.impl.PlanSectionDefinitionListItemServiceImpl" />
 	<bean id="com.ext.portlet.service.PlanSectionDefinitionListItemServiceUtil" class="com.ext.portlet.service.PlanSectionDefinitionListItemServiceUtil">
 		<property name="service" ref="com.ext.portlet.service.PlanSectionDefinitionListItemService" />

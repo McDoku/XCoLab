@@ -5,50 +5,45 @@ import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.MethodKey;
 
 
-public class PlanSectionDefinitionLocalServiceClp
-    implements PlanSectionDefinitionLocalService {
+public class PlanSectionDefinitionListItemLocalServiceClp
+    implements PlanSectionDefinitionListItemLocalService {
     private ClassLoaderProxy _classLoaderProxy;
-    private MethodKey _addPlanSectionDefinitionMethodKey0;
-    private MethodKey _createPlanSectionDefinitionMethodKey1;
-    private MethodKey _deletePlanSectionDefinitionMethodKey2;
-    private MethodKey _deletePlanSectionDefinitionMethodKey3;
+    private MethodKey _addPlanSectionDefinitionListItemMethodKey0;
+    private MethodKey _createPlanSectionDefinitionListItemMethodKey1;
+    private MethodKey _deletePlanSectionDefinitionListItemMethodKey2;
+    private MethodKey _deletePlanSectionDefinitionListItemMethodKey3;
     private MethodKey _dynamicQueryMethodKey4;
     private MethodKey _dynamicQueryMethodKey5;
     private MethodKey _dynamicQueryMethodKey6;
     private MethodKey _dynamicQueryCountMethodKey7;
-    private MethodKey _fetchPlanSectionDefinitionMethodKey8;
-    private MethodKey _getPlanSectionDefinitionMethodKey9;
+    private MethodKey _fetchPlanSectionDefinitionListItemMethodKey8;
+    private MethodKey _getPlanSectionDefinitionListItemMethodKey9;
     private MethodKey _getPersistedModelMethodKey10;
-    private MethodKey _getPlanSectionDefinitionsMethodKey11;
-    private MethodKey _getPlanSectionDefinitionsCountMethodKey12;
-    private MethodKey _updatePlanSectionDefinitionMethodKey13;
-    private MethodKey _updatePlanSectionDefinitionMethodKey14;
+    private MethodKey _getPlanSectionDefinitionListItemsMethodKey11;
+    private MethodKey _getPlanSectionDefinitionListItemsCountMethodKey12;
+    private MethodKey _updatePlanSectionDefinitionListItemMethodKey13;
+    private MethodKey _updatePlanSectionDefinitionListItemMethodKey14;
     private MethodKey _getBeanIdentifierMethodKey15;
     private MethodKey _setBeanIdentifierMethodKey16;
     private MethodKey _storeMethodKey17;
-    private MethodKey _getFocusAreaMethodKey18;
-    private MethodKey _getSectionTypeMethodKey19;
-    private MethodKey _getContestsWithProposalsMethodKey20;
-    private MethodKey _addContestMethodKey21;
-    private MethodKey _removeContestMethodKey22;
 
-    public PlanSectionDefinitionLocalServiceClp(
+    public PlanSectionDefinitionListItemLocalServiceClp(
         ClassLoaderProxy classLoaderProxy) {
         _classLoaderProxy = classLoaderProxy;
 
-        _addPlanSectionDefinitionMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-                "addPlanSectionDefinition",
-                com.ext.portlet.model.PlanSectionDefinition.class);
+        _addPlanSectionDefinitionListItemMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+                "addPlanSectionDefinitionListItem",
+                com.ext.portlet.model.PlanSectionDefinitionListItem.class);
 
-        _createPlanSectionDefinitionMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-                "createPlanSectionDefinition", long.class);
+        _createPlanSectionDefinitionListItemMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+                "createPlanSectionDefinitionListItem", long.class);
 
-        _deletePlanSectionDefinitionMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-                "deletePlanSectionDefinition", long.class);
+        _deletePlanSectionDefinitionListItemMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+                "deletePlanSectionDefinitionListItem", long.class);
 
-        _deletePlanSectionDefinitionMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-                "deletePlanSectionDefinition",
-                com.ext.portlet.model.PlanSectionDefinition.class);
+        _deletePlanSectionDefinitionListItemMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+                "deletePlanSectionDefinitionListItem",
+                com.ext.portlet.model.PlanSectionDefinitionListItem.class);
 
         _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
                 "dynamicQuery",
@@ -69,28 +64,29 @@ public class PlanSectionDefinitionLocalServiceClp
                 "dynamicQueryCount",
                 com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-        _fetchPlanSectionDefinitionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-                "fetchPlanSectionDefinition", long.class);
+        _fetchPlanSectionDefinitionListItemMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+                "fetchPlanSectionDefinitionListItem", long.class);
 
-        _getPlanSectionDefinitionMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-                "getPlanSectionDefinition", long.class);
+        _getPlanSectionDefinitionListItemMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+                "getPlanSectionDefinitionListItem", long.class);
 
         _getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getPersistedModel", java.io.Serializable.class);
 
-        _getPlanSectionDefinitionsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-                "getPlanSectionDefinitions", int.class, int.class);
+        _getPlanSectionDefinitionListItemsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+                "getPlanSectionDefinitionListItems", int.class, int.class);
 
-        _getPlanSectionDefinitionsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-                "getPlanSectionDefinitionsCount");
+        _getPlanSectionDefinitionListItemsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+                "getPlanSectionDefinitionListItemsCount");
 
-        _updatePlanSectionDefinitionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-                "updatePlanSectionDefinition",
-                com.ext.portlet.model.PlanSectionDefinition.class);
+        _updatePlanSectionDefinitionListItemMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+                "updatePlanSectionDefinitionListItem",
+                com.ext.portlet.model.PlanSectionDefinitionListItem.class);
 
-        _updatePlanSectionDefinitionMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-                "updatePlanSectionDefinition",
-                com.ext.portlet.model.PlanSectionDefinition.class, boolean.class);
+        _updatePlanSectionDefinitionListItemMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+                "updatePlanSectionDefinitionListItem",
+                com.ext.portlet.model.PlanSectionDefinitionListItem.class,
+                boolean.class);
 
         _getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getBeanIdentifier");
@@ -99,38 +95,17 @@ public class PlanSectionDefinitionLocalServiceClp
                 "setBeanIdentifier", java.lang.String.class);
 
         _storeMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-                "store", com.ext.portlet.model.PlanSectionDefinition.class);
-
-        _getFocusAreaMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-                "getFocusArea",
-                com.ext.portlet.model.PlanSectionDefinition.class);
-
-        _getSectionTypeMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-                "getSectionType",
-                com.ext.portlet.model.PlanSectionDefinition.class);
-
-        _getContestsWithProposalsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-                "getContestsWithProposals",
-                com.ext.portlet.model.PlanSectionDefinition.class);
-
-        _addContestMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-                "addContest",
-                com.ext.portlet.model.PlanSectionDefinition.class,
-                java.lang.Long.class);
-
-        _removeContestMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-                "removeContest",
-                com.ext.portlet.model.PlanSectionDefinition.class,
-                java.lang.Long.class);
+                "store",
+                com.ext.portlet.model.PlanSectionDefinitionListItem.class);
     }
 
-    public com.ext.portlet.model.PlanSectionDefinition addPlanSectionDefinition(
-        com.ext.portlet.model.PlanSectionDefinition planSectionDefinition)
+    public com.ext.portlet.model.PlanSectionDefinitionListItem addPlanSectionDefinitionListItem(
+        com.ext.portlet.model.PlanSectionDefinitionListItem planSectionDefinitionListItem)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_addPlanSectionDefinitionMethodKey0,
-                ClpSerializer.translateInput(planSectionDefinition));
+        MethodHandler methodHandler = new MethodHandler(_addPlanSectionDefinitionListItemMethodKey0,
+                ClpSerializer.translateInput(planSectionDefinitionListItem));
 
         try {
             returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -147,14 +122,14 @@ public class PlanSectionDefinitionLocalServiceClp
             }
         }
 
-        return (com.ext.portlet.model.PlanSectionDefinition) ClpSerializer.translateOutput(returnObj);
+        return (com.ext.portlet.model.PlanSectionDefinitionListItem) ClpSerializer.translateOutput(returnObj);
     }
 
-    public com.ext.portlet.model.PlanSectionDefinition createPlanSectionDefinition(
+    public com.ext.portlet.model.PlanSectionDefinitionListItem createPlanSectionDefinitionListItem(
         long id) {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_createPlanSectionDefinitionMethodKey1,
+        MethodHandler methodHandler = new MethodHandler(_createPlanSectionDefinitionListItemMethodKey1,
                 id);
 
         try {
@@ -168,13 +143,13 @@ public class PlanSectionDefinitionLocalServiceClp
             }
         }
 
-        return (com.ext.portlet.model.PlanSectionDefinition) ClpSerializer.translateOutput(returnObj);
+        return (com.ext.portlet.model.PlanSectionDefinitionListItem) ClpSerializer.translateOutput(returnObj);
     }
 
-    public void deletePlanSectionDefinition(long id)
+    public void deletePlanSectionDefinitionListItem(long id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_deletePlanSectionDefinitionMethodKey2,
+        MethodHandler methodHandler = new MethodHandler(_deletePlanSectionDefinitionListItemMethodKey2,
                 id);
 
         try {
@@ -197,11 +172,11 @@ public class PlanSectionDefinitionLocalServiceClp
         }
     }
 
-    public void deletePlanSectionDefinition(
-        com.ext.portlet.model.PlanSectionDefinition planSectionDefinition)
+    public void deletePlanSectionDefinitionListItem(
+        com.ext.portlet.model.PlanSectionDefinitionListItem planSectionDefinitionListItem)
         throws com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_deletePlanSectionDefinitionMethodKey3,
-                ClpSerializer.translateInput(planSectionDefinition));
+        MethodHandler methodHandler = new MethodHandler(_deletePlanSectionDefinitionListItemMethodKey3,
+                ClpSerializer.translateInput(planSectionDefinitionListItem));
 
         try {
             _classLoaderProxy.invoke(methodHandler);
@@ -329,11 +304,11 @@ public class PlanSectionDefinitionLocalServiceClp
         return ((Long) returnObj).longValue();
     }
 
-    public com.ext.portlet.model.PlanSectionDefinition fetchPlanSectionDefinition(
+    public com.ext.portlet.model.PlanSectionDefinitionListItem fetchPlanSectionDefinitionListItem(
         long id) throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_fetchPlanSectionDefinitionMethodKey8,
+        MethodHandler methodHandler = new MethodHandler(_fetchPlanSectionDefinitionListItemMethodKey8,
                 id);
 
         try {
@@ -351,16 +326,16 @@ public class PlanSectionDefinitionLocalServiceClp
             }
         }
 
-        return (com.ext.portlet.model.PlanSectionDefinition) ClpSerializer.translateOutput(returnObj);
+        return (com.ext.portlet.model.PlanSectionDefinitionListItem) ClpSerializer.translateOutput(returnObj);
     }
 
-    public com.ext.portlet.model.PlanSectionDefinition getPlanSectionDefinition(
+    public com.ext.portlet.model.PlanSectionDefinitionListItem getPlanSectionDefinitionListItem(
         long id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getPlanSectionDefinitionMethodKey9,
+        MethodHandler methodHandler = new MethodHandler(_getPlanSectionDefinitionListItemMethodKey9,
                 id);
 
         try {
@@ -382,7 +357,7 @@ public class PlanSectionDefinitionLocalServiceClp
             }
         }
 
-        return (com.ext.portlet.model.PlanSectionDefinition) ClpSerializer.translateOutput(returnObj);
+        return (com.ext.portlet.model.PlanSectionDefinitionListItem) ClpSerializer.translateOutput(returnObj);
     }
 
     public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -416,12 +391,12 @@ public class PlanSectionDefinitionLocalServiceClp
         return (com.liferay.portal.model.PersistedModel) ClpSerializer.translateOutput(returnObj);
     }
 
-    public java.util.List<com.ext.portlet.model.PlanSectionDefinition> getPlanSectionDefinitions(
+    public java.util.List<com.ext.portlet.model.PlanSectionDefinitionListItem> getPlanSectionDefinitionListItems(
         int start, int end)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getPlanSectionDefinitionsMethodKey11,
+        MethodHandler methodHandler = new MethodHandler(_getPlanSectionDefinitionListItemsMethodKey11,
                 start, end);
 
         try {
@@ -439,14 +414,14 @@ public class PlanSectionDefinitionLocalServiceClp
             }
         }
 
-        return (java.util.List<com.ext.portlet.model.PlanSectionDefinition>) ClpSerializer.translateOutput(returnObj);
+        return (java.util.List<com.ext.portlet.model.PlanSectionDefinitionListItem>) ClpSerializer.translateOutput(returnObj);
     }
 
-    public int getPlanSectionDefinitionsCount()
+    public int getPlanSectionDefinitionListItemsCount()
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getPlanSectionDefinitionsCountMethodKey12);
+        MethodHandler methodHandler = new MethodHandler(_getPlanSectionDefinitionListItemsCountMethodKey12);
 
         try {
             returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -466,13 +441,13 @@ public class PlanSectionDefinitionLocalServiceClp
         return ((Integer) returnObj).intValue();
     }
 
-    public com.ext.portlet.model.PlanSectionDefinition updatePlanSectionDefinition(
-        com.ext.portlet.model.PlanSectionDefinition planSectionDefinition)
+    public com.ext.portlet.model.PlanSectionDefinitionListItem updatePlanSectionDefinitionListItem(
+        com.ext.portlet.model.PlanSectionDefinitionListItem planSectionDefinitionListItem)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_updatePlanSectionDefinitionMethodKey13,
-                ClpSerializer.translateInput(planSectionDefinition));
+        MethodHandler methodHandler = new MethodHandler(_updatePlanSectionDefinitionListItemMethodKey13,
+                ClpSerializer.translateInput(planSectionDefinitionListItem));
 
         try {
             returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -489,17 +464,18 @@ public class PlanSectionDefinitionLocalServiceClp
             }
         }
 
-        return (com.ext.portlet.model.PlanSectionDefinition) ClpSerializer.translateOutput(returnObj);
+        return (com.ext.portlet.model.PlanSectionDefinitionListItem) ClpSerializer.translateOutput(returnObj);
     }
 
-    public com.ext.portlet.model.PlanSectionDefinition updatePlanSectionDefinition(
-        com.ext.portlet.model.PlanSectionDefinition planSectionDefinition,
+    public com.ext.portlet.model.PlanSectionDefinitionListItem updatePlanSectionDefinitionListItem(
+        com.ext.portlet.model.PlanSectionDefinitionListItem planSectionDefinitionListItem,
         boolean merge)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_updatePlanSectionDefinitionMethodKey14,
-                ClpSerializer.translateInput(planSectionDefinition), merge);
+        MethodHandler methodHandler = new MethodHandler(_updatePlanSectionDefinitionListItemMethodKey14,
+                ClpSerializer.translateInput(planSectionDefinitionListItem),
+                merge);
 
         try {
             returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -516,7 +492,7 @@ public class PlanSectionDefinitionLocalServiceClp
             }
         }
 
-        return (com.ext.portlet.model.PlanSectionDefinition) ClpSerializer.translateOutput(returnObj);
+        return (com.ext.portlet.model.PlanSectionDefinitionListItem) ClpSerializer.translateOutput(returnObj);
     }
 
     public java.lang.String getBeanIdentifier() {
@@ -554,139 +530,10 @@ public class PlanSectionDefinitionLocalServiceClp
         }
     }
 
-    public void store(com.ext.portlet.model.PlanSectionDefinition psd)
+    public void store(com.ext.portlet.model.PlanSectionDefinitionListItem psd)
         throws com.liferay.portal.kernel.exception.SystemException {
         MethodHandler methodHandler = new MethodHandler(_storeMethodKey17,
                 ClpSerializer.translateInput(psd));
-
-        try {
-            _classLoaderProxy.invoke(methodHandler);
-        } catch (Throwable t) {
-            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-                throw (com.liferay.portal.kernel.exception.SystemException) t;
-            }
-
-            if (t instanceof RuntimeException) {
-                throw (RuntimeException) t;
-            } else {
-                throw new RuntimeException(t.getClass().getName() +
-                    " is not a valid exception");
-            }
-        }
-    }
-
-    public com.ext.portlet.model.FocusArea getFocusArea(
-        com.ext.portlet.model.PlanSectionDefinition psd)
-        throws com.liferay.portal.kernel.exception.PortalException,
-            com.liferay.portal.kernel.exception.SystemException {
-        Object returnObj = null;
-
-        MethodHandler methodHandler = new MethodHandler(_getFocusAreaMethodKey18,
-                ClpSerializer.translateInput(psd));
-
-        try {
-            returnObj = _classLoaderProxy.invoke(methodHandler);
-        } catch (Throwable t) {
-            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-                throw (com.liferay.portal.kernel.exception.PortalException) t;
-            }
-
-            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-                throw (com.liferay.portal.kernel.exception.SystemException) t;
-            }
-
-            if (t instanceof RuntimeException) {
-                throw (RuntimeException) t;
-            } else {
-                throw new RuntimeException(t.getClass().getName() +
-                    " is not a valid exception");
-            }
-        }
-
-        return (com.ext.portlet.model.FocusArea) ClpSerializer.translateOutput(returnObj);
-    }
-
-    public com.ext.portlet.PlanSectionDefinitionType getSectionType(
-        com.ext.portlet.model.PlanSectionDefinition definition) {
-        Object returnObj = null;
-
-        MethodHandler methodHandler = new MethodHandler(_getSectionTypeMethodKey19,
-                ClpSerializer.translateInput(definition));
-
-        try {
-            returnObj = _classLoaderProxy.invoke(methodHandler);
-        } catch (Throwable t) {
-            if (t instanceof RuntimeException) {
-                throw (RuntimeException) t;
-            } else {
-                throw new RuntimeException(t.getClass().getName() +
-                    " is not a valid exception");
-            }
-        }
-
-        return (com.ext.portlet.PlanSectionDefinitionType) ClpSerializer.translateOutput(returnObj);
-    }
-
-    public java.util.List<com.ext.portlet.model.Contest> getContestsWithProposals(
-        com.ext.portlet.model.PlanSectionDefinition psd)
-        throws com.liferay.portal.kernel.exception.PortalException,
-            com.liferay.portal.kernel.exception.SystemException {
-        Object returnObj = null;
-
-        MethodHandler methodHandler = new MethodHandler(_getContestsWithProposalsMethodKey20,
-                ClpSerializer.translateInput(psd));
-
-        try {
-            returnObj = _classLoaderProxy.invoke(methodHandler);
-        } catch (Throwable t) {
-            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-                throw (com.liferay.portal.kernel.exception.PortalException) t;
-            }
-
-            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-                throw (com.liferay.portal.kernel.exception.SystemException) t;
-            }
-
-            if (t instanceof RuntimeException) {
-                throw (RuntimeException) t;
-            } else {
-                throw new RuntimeException(t.getClass().getName() +
-                    " is not a valid exception");
-            }
-        }
-
-        return (java.util.List<com.ext.portlet.model.Contest>) ClpSerializer.translateOutput(returnObj);
-    }
-
-    public void addContest(com.ext.portlet.model.PlanSectionDefinition psd,
-        java.lang.Long contestId)
-        throws com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_addContestMethodKey21,
-                ClpSerializer.translateInput(psd),
-                ClpSerializer.translateInput(contestId));
-
-        try {
-            _classLoaderProxy.invoke(methodHandler);
-        } catch (Throwable t) {
-            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-                throw (com.liferay.portal.kernel.exception.SystemException) t;
-            }
-
-            if (t instanceof RuntimeException) {
-                throw (RuntimeException) t;
-            } else {
-                throw new RuntimeException(t.getClass().getName() +
-                    " is not a valid exception");
-            }
-        }
-    }
-
-    public void removeContest(com.ext.portlet.model.PlanSectionDefinition psd,
-        java.lang.Long contestId)
-        throws com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_removeContestMethodKey22,
-                ClpSerializer.translateInput(psd),
-                ClpSerializer.translateInput(contestId));
 
         try {
             _classLoaderProxy.invoke(methodHandler);

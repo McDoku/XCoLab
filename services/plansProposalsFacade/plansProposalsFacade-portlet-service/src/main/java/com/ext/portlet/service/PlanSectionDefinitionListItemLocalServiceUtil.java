@@ -6,74 +6,76 @@ import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
- * The utility for the plan section definition local service. This utility wraps {@link com.ext.portlet.service.impl.PlanSectionDefinitionLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ * The utility for the plan section definition list item local service. This utility wraps {@link com.ext.portlet.service.impl.PlanSectionDefinitionListItemLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see PlanSectionDefinitionLocalService
- * @see com.ext.portlet.service.base.PlanSectionDefinitionLocalServiceBaseImpl
- * @see com.ext.portlet.service.impl.PlanSectionDefinitionLocalServiceImpl
+ * @see PlanSectionDefinitionListItemLocalService
+ * @see com.ext.portlet.service.base.PlanSectionDefinitionListItemLocalServiceBaseImpl
+ * @see com.ext.portlet.service.impl.PlanSectionDefinitionListItemLocalServiceImpl
  * @generated
  */
-public class PlanSectionDefinitionLocalServiceUtil {
-    private static PlanSectionDefinitionLocalService _service;
+public class PlanSectionDefinitionListItemLocalServiceUtil {
+    private static PlanSectionDefinitionListItemLocalService _service;
 
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify this class directly. Add custom service methods to {@link com.ext.portlet.service.impl.PlanSectionDefinitionLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+     * Never modify this class directly. Add custom service methods to {@link com.ext.portlet.service.impl.PlanSectionDefinitionListItemLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
      */
 
     /**
-    * Adds the plan section definition to the database. Also notifies the appropriate model listeners.
+    * Adds the plan section definition list item to the database. Also notifies the appropriate model listeners.
     *
-    * @param planSectionDefinition the plan section definition
-    * @return the plan section definition that was added
+    * @param planSectionDefinitionListItem the plan section definition list item
+    * @return the plan section definition list item that was added
     * @throws SystemException if a system exception occurred
     */
-    public static com.ext.portlet.model.PlanSectionDefinition addPlanSectionDefinition(
-        com.ext.portlet.model.PlanSectionDefinition planSectionDefinition)
+    public static com.ext.portlet.model.PlanSectionDefinitionListItem addPlanSectionDefinitionListItem(
+        com.ext.portlet.model.PlanSectionDefinitionListItem planSectionDefinitionListItem)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getService().addPlanSectionDefinition(planSectionDefinition);
+        return getService()
+                   .addPlanSectionDefinitionListItem(planSectionDefinitionListItem);
     }
 
     /**
-    * Creates a new plan section definition with the primary key. Does not add the plan section definition to the database.
+    * Creates a new plan section definition list item with the primary key. Does not add the plan section definition list item to the database.
     *
-    * @param id the primary key for the new plan section definition
-    * @return the new plan section definition
+    * @param id the primary key for the new plan section definition list item
+    * @return the new plan section definition list item
     */
-    public static com.ext.portlet.model.PlanSectionDefinition createPlanSectionDefinition(
+    public static com.ext.portlet.model.PlanSectionDefinitionListItem createPlanSectionDefinitionListItem(
         long id) {
-        return getService().createPlanSectionDefinition(id);
+        return getService().createPlanSectionDefinitionListItem(id);
     }
 
     /**
-    * Deletes the plan section definition with the primary key from the database. Also notifies the appropriate model listeners.
+    * Deletes the plan section definition list item with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param id the primary key of the plan section definition
-    * @throws PortalException if a plan section definition with the primary key could not be found
+    * @param id the primary key of the plan section definition list item
+    * @throws PortalException if a plan section definition list item with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static void deletePlanSectionDefinition(long id)
+    public static void deletePlanSectionDefinitionListItem(long id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        getService().deletePlanSectionDefinition(id);
+        getService().deletePlanSectionDefinitionListItem(id);
     }
 
     /**
-    * Deletes the plan section definition from the database. Also notifies the appropriate model listeners.
+    * Deletes the plan section definition list item from the database. Also notifies the appropriate model listeners.
     *
-    * @param planSectionDefinition the plan section definition
+    * @param planSectionDefinitionListItem the plan section definition list item
     * @throws SystemException if a system exception occurred
     */
-    public static void deletePlanSectionDefinition(
-        com.ext.portlet.model.PlanSectionDefinition planSectionDefinition)
+    public static void deletePlanSectionDefinitionListItem(
+        com.ext.portlet.model.PlanSectionDefinitionListItem planSectionDefinitionListItem)
         throws com.liferay.portal.kernel.exception.SystemException {
-        getService().deletePlanSectionDefinition(planSectionDefinition);
+        getService()
+            .deletePlanSectionDefinitionListItem(planSectionDefinitionListItem);
     }
 
     /**
@@ -147,24 +149,24 @@ public class PlanSectionDefinitionLocalServiceUtil {
         return getService().dynamicQueryCount(dynamicQuery);
     }
 
-    public static com.ext.portlet.model.PlanSectionDefinition fetchPlanSectionDefinition(
+    public static com.ext.portlet.model.PlanSectionDefinitionListItem fetchPlanSectionDefinitionListItem(
         long id) throws com.liferay.portal.kernel.exception.SystemException {
-        return getService().fetchPlanSectionDefinition(id);
+        return getService().fetchPlanSectionDefinitionListItem(id);
     }
 
     /**
-    * Returns the plan section definition with the primary key.
+    * Returns the plan section definition list item with the primary key.
     *
-    * @param id the primary key of the plan section definition
-    * @return the plan section definition
-    * @throws PortalException if a plan section definition with the primary key could not be found
+    * @param id the primary key of the plan section definition list item
+    * @return the plan section definition list item
+    * @throws PortalException if a plan section definition list item with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static com.ext.portlet.model.PlanSectionDefinition getPlanSectionDefinition(
+    public static com.ext.portlet.model.PlanSectionDefinitionListItem getPlanSectionDefinitionListItem(
         long id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        return getService().getPlanSectionDefinition(id);
+        return getService().getPlanSectionDefinitionListItem(id);
     }
 
     public static com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -175,61 +177,63 @@ public class PlanSectionDefinitionLocalServiceUtil {
     }
 
     /**
-    * Returns a range of all the plan section definitions.
+    * Returns a range of all the plan section definition list items.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
     * </p>
     *
-    * @param start the lower bound of the range of plan section definitions
-    * @param end the upper bound of the range of plan section definitions (not inclusive)
-    * @return the range of plan section definitions
+    * @param start the lower bound of the range of plan section definition list items
+    * @param end the upper bound of the range of plan section definition list items (not inclusive)
+    * @return the range of plan section definition list items
     * @throws SystemException if a system exception occurred
     */
-    public static java.util.List<com.ext.portlet.model.PlanSectionDefinition> getPlanSectionDefinitions(
+    public static java.util.List<com.ext.portlet.model.PlanSectionDefinitionListItem> getPlanSectionDefinitionListItems(
         int start, int end)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getService().getPlanSectionDefinitions(start, end);
+        return getService().getPlanSectionDefinitionListItems(start, end);
     }
 
     /**
-    * Returns the number of plan section definitions.
+    * Returns the number of plan section definition list items.
     *
-    * @return the number of plan section definitions
+    * @return the number of plan section definition list items
     * @throws SystemException if a system exception occurred
     */
-    public static int getPlanSectionDefinitionsCount()
+    public static int getPlanSectionDefinitionListItemsCount()
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getService().getPlanSectionDefinitionsCount();
+        return getService().getPlanSectionDefinitionListItemsCount();
     }
 
     /**
-    * Updates the plan section definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+    * Updates the plan section definition list item in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
     *
-    * @param planSectionDefinition the plan section definition
-    * @return the plan section definition that was updated
+    * @param planSectionDefinitionListItem the plan section definition list item
+    * @return the plan section definition list item that was updated
     * @throws SystemException if a system exception occurred
     */
-    public static com.ext.portlet.model.PlanSectionDefinition updatePlanSectionDefinition(
-        com.ext.portlet.model.PlanSectionDefinition planSectionDefinition)
+    public static com.ext.portlet.model.PlanSectionDefinitionListItem updatePlanSectionDefinitionListItem(
+        com.ext.portlet.model.PlanSectionDefinitionListItem planSectionDefinitionListItem)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getService().updatePlanSectionDefinition(planSectionDefinition);
+        return getService()
+                   .updatePlanSectionDefinitionListItem(planSectionDefinitionListItem);
     }
 
     /**
-    * Updates the plan section definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+    * Updates the plan section definition list item in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
     *
-    * @param planSectionDefinition the plan section definition
-    * @param merge whether to merge the plan section definition with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-    * @return the plan section definition that was updated
+    * @param planSectionDefinitionListItem the plan section definition list item
+    * @param merge whether to merge the plan section definition list item with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
+    * @return the plan section definition list item that was updated
     * @throws SystemException if a system exception occurred
     */
-    public static com.ext.portlet.model.PlanSectionDefinition updatePlanSectionDefinition(
-        com.ext.portlet.model.PlanSectionDefinition planSectionDefinition,
+    public static com.ext.portlet.model.PlanSectionDefinitionListItem updatePlanSectionDefinitionListItem(
+        com.ext.portlet.model.PlanSectionDefinitionListItem planSectionDefinitionListItem,
         boolean merge)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getService()
-                   .updatePlanSectionDefinition(planSectionDefinition, merge);
+                   .updatePlanSectionDefinitionListItem(planSectionDefinitionListItem,
+            merge);
     }
 
     /**
@@ -250,78 +254,46 @@ public class PlanSectionDefinitionLocalServiceUtil {
         getService().setBeanIdentifier(beanIdentifier);
     }
 
-    public static void store(com.ext.portlet.model.PlanSectionDefinition psd)
+    public static void store(
+        com.ext.portlet.model.PlanSectionDefinitionListItem psd)
         throws com.liferay.portal.kernel.exception.SystemException {
         getService().store(psd);
-    }
-
-    public static com.ext.portlet.model.FocusArea getFocusArea(
-        com.ext.portlet.model.PlanSectionDefinition psd)
-        throws com.liferay.portal.kernel.exception.PortalException,
-            com.liferay.portal.kernel.exception.SystemException {
-        return getService().getFocusArea(psd);
-    }
-
-    public static com.ext.portlet.PlanSectionDefinitionType getSectionType(
-        com.ext.portlet.model.PlanSectionDefinition definition) {
-        return getService().getSectionType(definition);
-    }
-
-    public static java.util.List<com.ext.portlet.model.Contest> getContestsWithProposals(
-        com.ext.portlet.model.PlanSectionDefinition psd)
-        throws com.liferay.portal.kernel.exception.PortalException,
-            com.liferay.portal.kernel.exception.SystemException {
-        return getService().getContestsWithProposals(psd);
-    }
-
-    public static void addContest(
-        com.ext.portlet.model.PlanSectionDefinition psd,
-        java.lang.Long contestId)
-        throws com.liferay.portal.kernel.exception.SystemException {
-        getService().addContest(psd, contestId);
-    }
-
-    public static void removeContest(
-        com.ext.portlet.model.PlanSectionDefinition psd,
-        java.lang.Long contestId)
-        throws com.liferay.portal.kernel.exception.SystemException {
-        getService().removeContest(psd, contestId);
     }
 
     public static void clearService() {
         _service = null;
     }
 
-    public static PlanSectionDefinitionLocalService getService() {
+    public static PlanSectionDefinitionListItemLocalService getService() {
         if (_service == null) {
             Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-                    PlanSectionDefinitionLocalService.class.getName());
+                    PlanSectionDefinitionListItemLocalService.class.getName());
             ClassLoader portletClassLoader = (ClassLoader) PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
                     "portletClassLoader");
 
             ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-                    PlanSectionDefinitionLocalService.class.getName(),
+                    PlanSectionDefinitionListItemLocalService.class.getName(),
                     portletClassLoader);
 
-            _service = new PlanSectionDefinitionLocalServiceClp(classLoaderProxy);
+            _service = new PlanSectionDefinitionListItemLocalServiceClp(classLoaderProxy);
 
             ClpSerializer.setClassLoader(portletClassLoader);
 
-            ReferenceRegistry.registerReference(PlanSectionDefinitionLocalServiceUtil.class,
+            ReferenceRegistry.registerReference(PlanSectionDefinitionListItemLocalServiceUtil.class,
                 "_service");
-            MethodCache.remove(PlanSectionDefinitionLocalService.class);
+            MethodCache.remove(PlanSectionDefinitionListItemLocalService.class);
         }
 
         return _service;
     }
 
-    public void setService(PlanSectionDefinitionLocalService service) {
-        MethodCache.remove(PlanSectionDefinitionLocalService.class);
+    public void setService(PlanSectionDefinitionListItemLocalService service) {
+        MethodCache.remove(PlanSectionDefinitionListItemLocalService.class);
 
         _service = service;
 
-        ReferenceRegistry.registerReference(PlanSectionDefinitionLocalServiceUtil.class,
+        ReferenceRegistry.registerReference(PlanSectionDefinitionListItemLocalServiceUtil.class,
             "_service");
-        MethodCache.remove(PlanSectionDefinitionLocalService.class);
+        MethodCache.remove(PlanSectionDefinitionListItemLocalService.class);
     }
 }

@@ -12,6 +12,7 @@ import org.xcolab.portlets.plansadmin.wrappers.PlanSectionDefinitionWrapper;
 import com.ext.portlet.PlanSectionDefinitionType;
 import com.ext.portlet.model.Contest;
 import com.ext.portlet.model.PlanSectionDefinition;
+import com.ext.portlet.service.ContestLocalServiceUtil;
 import com.ext.portlet.service.PlanSectionDefinitionLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 
@@ -62,7 +63,17 @@ public class PlanSectionDefinitionsAdmin implements Serializable {
         return ret;
     }
     
-
+    
+    public List<SelectItem> getAllContestsForSelect() throws SystemException {
+        List<SelectItem> ret = new ArrayList<>();
+        
+        ret.add(new SelectItem("", "-- choose --"));
+        for (Contest c: ContestLocalServiceUtil.getContests(0, Integer.MAX_VALUE)) {
+            ret.add(new SelectItem(c.getContestPK(), c.getContestShortName()));
+        }
+        
+        return ret;
+    }
     
 
 }

@@ -89,13 +89,26 @@
            <!-- Proposal reference configuration -->
            <ice:outputLabel value="Contests from which proposals can be choosen" rendered="#{planSectionDefinitionsAdmin.edited.type == 'PROPOSAL_REFERENCE'}" />
            <ice:panelGroup  rendered="#{planSectionDefinitionsAdmin.edited.type == 'PROPOSAL_REFERENCE'}">
-           		<ice:commandButton>
-           			
-           		</ice:commandButton>
-           		<ice:panelSeries value="#{planSectionDefinitionsAdmin.edited.contests}" var="contest">
-        			<li>#{contest}</li>
-           		</ice:panelSeries>
-           </ice:panelSeries>
+           		<ice:selectOneMenu id="availableContestsList" value="#{planSectionDefinitionsAdmin.edited.contestToAdd}">
+           			<f:selectItems value="#{planSectionDefinitionsAdmin.allContestsForSelect}" />
+           		</ice:selectOneMenu>
+           		
+           		<ice:commandButton value="Add" actionListener="#{planSectionDefinitionsAdmin.edited.addContest}" />
+           		
+           		<ice:dataTable value="#{planSectionDefinitionsAdmin.edited.contests}" var="contest">
+        			<ice:column>
+        				#{contest.contestPK} - #{contest.contestShortName}
+        			</ice:column>
+        			<ice:column>
+        				<ice:commandButton value="Remove" actionListener="#{planSectionDefinitionsAdmin.edited.removeContest}">
+        					<f:attribute name="contestId" value="#{contest.contestPK}" />
+        				</ice:commandButton>
+        			</ice:column> 
+        			
+        			
+           		</ice:dataTable>
+           		
+           </ice:panelGroup>
            
            
            

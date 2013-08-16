@@ -9,7 +9,6 @@ import java.util.Set;
 import com.ext.portlet.model.Contest;
 import com.ext.portlet.model.PlanFan;
 import com.ext.portlet.model.PlanItem;
-import com.ext.portlet.service.ContestPhaseLocalServiceUtil;
 import com.ext.portlet.service.PlanItemLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;

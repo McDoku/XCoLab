@@ -101,6 +101,7 @@ import com.ext.portlet.service.PlanPropertyFilterLocalService;
 import com.ext.portlet.service.PlanPropertyFilterService;
 import com.ext.portlet.service.PlanRelatedLocalService;
 import com.ext.portlet.service.PlanRelatedService;
+import com.ext.portlet.service.PlanSectionDefinitionListItemLocalService;
 import com.ext.portlet.service.PlanSectionDefinitionListItemService;
 import com.ext.portlet.service.PlanSectionDefinitionLocalService;
 import com.ext.portlet.service.PlanSectionDefinitionService;
@@ -539,6 +540,8 @@ public abstract class MessagingMessageServiceBaseImpl extends PrincipalBean
     protected PlanSectionDefinitionService planSectionDefinitionService;
     @BeanReference(type = PlanSectionDefinitionPersistence.class)
     protected PlanSectionDefinitionPersistence planSectionDefinitionPersistence;
+    @BeanReference(type = PlanSectionDefinitionListItemLocalService.class)
+    protected PlanSectionDefinitionListItemLocalService planSectionDefinitionListItemLocalService;
     @BeanReference(type = PlanSectionDefinitionListItemService.class)
     protected PlanSectionDefinitionListItemService planSectionDefinitionListItemService;
     @BeanReference(type = PlanSectionDefinitionListItemPersistence.class)
@@ -3589,6 +3592,25 @@ public abstract class MessagingMessageServiceBaseImpl extends PrincipalBean
     public void setPlanSectionDefinitionPersistence(
         PlanSectionDefinitionPersistence planSectionDefinitionPersistence) {
         this.planSectionDefinitionPersistence = planSectionDefinitionPersistence;
+    }
+
+    /**
+     * Returns the plan section definition list item local service.
+     *
+     * @return the plan section definition list item local service
+     */
+    public PlanSectionDefinitionListItemLocalService getPlanSectionDefinitionListItemLocalService() {
+        return planSectionDefinitionListItemLocalService;
+    }
+
+    /**
+     * Sets the plan section definition list item local service.
+     *
+     * @param planSectionDefinitionListItemLocalService the plan section definition list item local service
+     */
+    public void setPlanSectionDefinitionListItemLocalService(
+        PlanSectionDefinitionListItemLocalService planSectionDefinitionListItemLocalService) {
+        this.planSectionDefinitionListItemLocalService = planSectionDefinitionListItemLocalService;
     }
 
     /**

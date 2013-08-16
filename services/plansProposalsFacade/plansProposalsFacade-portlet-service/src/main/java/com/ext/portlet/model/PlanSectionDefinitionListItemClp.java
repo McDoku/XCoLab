@@ -1,6 +1,9 @@
 package com.ext.portlet.model;
 
+import com.ext.portlet.service.PlanSectionDefinitionListItemLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
@@ -82,6 +85,14 @@ public class PlanSectionDefinitionListItemClp extends BaseModelImpl<PlanSectionD
 
     public void setData(String data) {
         _data = data;
+    }
+
+    public void persist() throws SystemException {
+        if (this.isNew()) {
+            PlanSectionDefinitionListItemLocalServiceUtil.addPlanSectionDefinitionListItem(this);
+        } else {
+            PlanSectionDefinitionListItemLocalServiceUtil.updatePlanSectionDefinitionListItem(this);
+        }
     }
 
     @Override

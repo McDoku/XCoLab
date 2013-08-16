@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.component.UIComponent;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
@@ -13,7 +15,6 @@ import com.ext.portlet.PlanSectionDefinitionType;
 import com.ext.portlet.model.Contest;
 import com.ext.portlet.model.FocusArea;
 import com.ext.portlet.model.PlanSectionDefinition;
-import com.ext.portlet.service.ContestLocalServiceUtil;
 import com.ext.portlet.service.FocusAreaLocalServiceUtil;
 import com.ext.portlet.service.PlanSectionDefinitionLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -26,6 +27,7 @@ public class PlanSectionDefinitionWrapper implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private PlanSectionDefinition definition;
+	private Long contestToAdd = null;
 
     public PlanSectionDefinitionWrapper(PlanSectionDefinition definition) {
         this.definition = definition;
@@ -85,7 +87,6 @@ public class PlanSectionDefinitionWrapper implements Serializable {
     }
     
     public String getAdminTitle() {
-        
         return definition.getAdminTitle();
     }
     
@@ -97,13 +98,30 @@ public class PlanSectionDefinitionWrapper implements Serializable {
         return PlanSectionDefinitionLocalServiceUtil.getContestsWithProposals(definition);
     }
     
-    public List<SelectItem> getAllContestsForSelect() throws SystemException {
-        List<SelectItem> ret = new ArrayList<>();
-        
-        for (Contest c: ContestLocalServiceUtil.getContests(0, Integer.MAX_VALUE)) {
-            ret.add(new SelectItem(c.getContestPK(), c.getContestShortName()));
-        }
-        
-        return ret;
+    
+    public Long getContestToAdd() {
+        return contestToAdd;
     }
+
+    public void setContestToAdd(Long contestToAdd) {
+        this.contestToAdd = contestToAdd;
+    }
+    
+    public void addContest(ActionEvent e) throws SystemException {
+        if (contestToAdd != null) 
+            PlanSectionDefinitionLocalServiceUtil.addContest(definition, contestToAdd);
+        
+    }
+    
+    public void removeContest(ActionEvent e) throws SystemException {
+        Object contestIdObj = e.getComponent().getAttributes().get("contestId");
+        if (contestIdObj == null) return;
+        
+        Long contestId = (Long) contestIdObj;
+
+        PlanSectionDefinitionLocalServiceUtil.removeContest(definition, contestId);
+        
+    }
+
+
 }

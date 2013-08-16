@@ -1,5 +1,7 @@
 package com.ext.portlet.model;
 
+import com.liferay.portal.model.PersistedModel;
+
 /**
  * The extended model interface for the PlanSectionDefinitionListItem service. Represents a row in the &quot;xcolab_PlanSectionDefinitionListItem&quot; database table, with each column mapped to a property of this class.
  *
@@ -10,7 +12,7 @@ package com.ext.portlet.model;
  * @generated
  */
 public interface PlanSectionDefinitionListItem
-    extends PlanSectionDefinitionListItemModel {
+    extends PlanSectionDefinitionListItemModel, PersistedModel {
     /*
      * NOTE FOR DEVELOPERS:
      *

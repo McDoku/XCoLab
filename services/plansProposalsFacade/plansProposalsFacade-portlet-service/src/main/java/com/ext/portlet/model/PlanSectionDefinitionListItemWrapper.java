@@ -206,6 +206,11 @@ public class PlanSectionDefinitionListItemWrapper
         return _planSectionDefinitionListItem.toXmlString();
     }
 
+    public void persist()
+        throws com.liferay.portal.kernel.exception.SystemException {
+        _planSectionDefinitionListItem.persist();
+    }
+
     /**
      * @deprecated Renamed to {@link #getWrappedModel}
      */

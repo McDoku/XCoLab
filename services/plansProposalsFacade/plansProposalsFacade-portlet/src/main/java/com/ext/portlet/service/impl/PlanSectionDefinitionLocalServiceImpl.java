@@ -12,6 +12,7 @@ import com.ext.portlet.model.PlanSectionDefinition;
 import com.ext.portlet.model.PlanSectionDefinitionListItem;
 import com.ext.portlet.service.ContestLocalServiceUtil;
 import com.ext.portlet.service.FocusAreaLocalServiceUtil;
+import com.ext.portlet.service.PlanSectionDefinitionListItemLocalServiceUtil;
 import com.ext.portlet.service.PlanSectionDefinitionLocalServiceUtil;
 import com.ext.portlet.service.base.PlanSectionDefinitionLocalServiceBaseImpl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
@@ -75,5 +76,34 @@ public class PlanSectionDefinitionLocalServiceImpl
         }
         
         return ret;
+    }
+    
+    public void addContest(PlanSectionDefinition psd, Long contestId) throws SystemException {
+        if (contestId == null) return;
+        boolean found = false;
+        
+        for (PlanSectionDefinitionListItem item: planSectionDefinitionListItemPersistence.findByPlanSectionDefinitionIdType(psd.getId(), PlanSectionDefinitionType.PROPOSAL_REFERENCE.name())) {
+            if (item.getReferencedId() == contestId) found = true;
+        }
+        if (! found) {
+           PlanSectionDefinitionListItem item = PlanSectionDefinitionListItemLocalServiceUtil.createPlanSectionDefinitionListItem(0);
+           item.setType(PlanSectionDefinitionType.PROPOSAL_REFERENCE.name());
+           item.setReferencedId(contestId);
+           item.setSectionDefinitionId(psd.getId());
+           
+           PlanSectionDefinitionListItemLocalServiceUtil.store(item);
+           
+        }
+    }
+    
+    public void removeContest(PlanSectionDefinition psd, Long contestId) throws SystemException {
+        if (contestId == null) return;
+        
+        for (PlanSectionDefinitionListItem item: planSectionDefinitionListItemPersistence.findByPlanSectionDefinitionIdType(psd.getId(), PlanSectionDefinitionType.PROPOSAL_REFERENCE.name())) {
+            if (item.getReferencedId() == contestId) {
+                PlanSectionDefinitionListItemLocalServiceUtil.deletePlanSectionDefinitionListItem(item);
+                return;
+            }
+        }
     }
 }
