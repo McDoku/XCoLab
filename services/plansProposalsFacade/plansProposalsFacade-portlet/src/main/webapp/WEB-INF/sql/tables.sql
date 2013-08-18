@@ -532,6 +532,13 @@ create table xcolab_PlanTemplateSection (
 	primary key (planTemplateId, planSectionId)
 );
 
+create table xcolab_PlanToPlan (
+	fromPlanId LONG not null,
+	toPlanId LONG not null,
+	referenceCount INTEGER,
+	primary key (fromPlanId, toPlanId)
+);
+
 create table xcolab_PlanType (
 	planTypeId LONG not null primary key,
 	name VARCHAR(75) null,

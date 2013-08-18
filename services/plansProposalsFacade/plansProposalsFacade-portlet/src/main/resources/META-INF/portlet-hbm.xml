@@ -62,6 +62,7 @@
 	<import class="com.ext.portlet.model.PlanTeamHistory" />
 	<import class="com.ext.portlet.model.PlanTemplate" />
 	<import class="com.ext.portlet.model.PlanTemplateSection" />
+	<import class="com.ext.portlet.model.PlanToPlan" />
 	<import class="com.ext.portlet.model.PlanType" />
 	<import class="com.ext.portlet.model.PlanTypeAttribute" />
 	<import class="com.ext.portlet.model.PlanTypeColumn" />
@@ -744,6 +745,14 @@
 			<key-property name="planSectionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		</composite-id>
 		<property name="weight" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.ext.portlet.model.impl.PlanToPlanImpl" table="xcolab_PlanToPlan">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.ext.portlet.service.persistence.PlanToPlanPK">
+			<key-property name="fromPlanId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="toPlanId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="referenceCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.ext.portlet.model.impl.PlanTypeImpl" table="xcolab_PlanType">
 		<cache usage="read-write" />

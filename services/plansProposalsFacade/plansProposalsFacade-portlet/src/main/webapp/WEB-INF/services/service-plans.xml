@@ -494,6 +494,27 @@
         
     </entity>
     
+    <entity name="PlanToPlan" local-service="true">
+    	<column name="fromPlanId" type="long" primary="true" />
+    	<column name="toPlanId" type="long" primary="true" />
+    	<column name="referenceCount" type="int" />
+    	
+    	<finder name="FromPlanId" return-type="Collection">
+    		<finder-column name="fromPlanId" />
+    	</finder>
+    	
+    	
+    	<finder name="ToPlanId" return-type="Collection">
+    		<finder-column name="toPlanId" />
+    	</finder>
+    	
+    	
+    	<finder name="FromPlanIdToPlanId" return-type="PlanToPlan">
+    		<finder-column name="fromPlanId" />
+    		<finder-column name="toPlanId" />
+    	</finder>
+    	
+    </entity>
     
     
     <entity name="PlanSectionPlanMap" local-service="true">

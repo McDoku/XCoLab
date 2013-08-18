@@ -57,6 +57,7 @@ import com.ext.portlet.model.PlanSectionPlanMapClp;
 import com.ext.portlet.model.PlanTeamHistoryClp;
 import com.ext.portlet.model.PlanTemplateClp;
 import com.ext.portlet.model.PlanTemplateSectionClp;
+import com.ext.portlet.model.PlanToPlanClp;
 import com.ext.portlet.model.PlanTypeAttributeClp;
 import com.ext.portlet.model.PlanTypeClp;
 import com.ext.portlet.model.PlanTypeColumnClp;
@@ -392,6 +393,10 @@ public class ClpSerializer {
 
         if (oldModelClassName.equals(PlanTemplateSectionClp.class.getName())) {
             return translateInputPlanTemplateSection(oldModel);
+        }
+
+        if (oldModelClassName.equals(PlanToPlanClp.class.getName())) {
+            return translateInputPlanToPlan(oldModel);
         }
 
         if (oldModelClassName.equals(PlanTypeClp.class.getName())) {
@@ -4716,6 +4721,54 @@ public class ClpSerializer {
         return oldModel;
     }
 
+    public static Object translateInputPlanToPlan(BaseModel<?> oldModel) {
+        PlanToPlanClp oldCplModel = (PlanToPlanClp) oldModel;
+
+        Thread currentThread = Thread.currentThread();
+
+        ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+        try {
+            currentThread.setContextClassLoader(_classLoader);
+
+            try {
+                Class<?> newModelClass = Class.forName("com.ext.portlet.model.impl.PlanToPlanImpl",
+                        true, _classLoader);
+
+                Object newModel = newModelClass.newInstance();
+
+                Method method0 = newModelClass.getMethod("setFromPlanId",
+                        new Class[] { Long.TYPE });
+
+                Long value0 = new Long(oldCplModel.getFromPlanId());
+
+                method0.invoke(newModel, value0);
+
+                Method method1 = newModelClass.getMethod("setToPlanId",
+                        new Class[] { Long.TYPE });
+
+                Long value1 = new Long(oldCplModel.getToPlanId());
+
+                method1.invoke(newModel, value1);
+
+                Method method2 = newModelClass.getMethod("setReferenceCount",
+                        new Class[] { Integer.TYPE });
+
+                Integer value2 = new Integer(oldCplModel.getReferenceCount());
+
+                method2.invoke(newModel, value2);
+
+                return newModel;
+            } catch (Exception e) {
+                _log.error(e, e);
+            }
+        } finally {
+            currentThread.setContextClassLoader(contextClassLoader);
+        }
+
+        return oldModel;
+    }
+
     public static Object translateInputPlanType(BaseModel<?> oldModel) {
         PlanTypeClp oldCplModel = (PlanTypeClp) oldModel;
 
@@ -5284,6 +5337,11 @@ public class ClpSerializer {
         if (oldModelClassName.equals(
                     "com.ext.portlet.model.impl.PlanTemplateSectionImpl")) {
             return translateOutputPlanTemplateSection(oldModel);
+        }
+
+        if (oldModelClassName.equals(
+                    "com.ext.portlet.model.impl.PlanToPlanImpl")) {
+            return translateOutputPlanToPlan(oldModel);
         }
 
         if (oldModelClassName.equals("com.ext.portlet.model.impl.PlanTypeImpl")) {
@@ -9256,6 +9314,49 @@ public class ClpSerializer {
                         (Object[]) null);
 
                 newModel.setWeight(value2);
+
+                return newModel;
+            } catch (Exception e) {
+                _log.error(e, e);
+            }
+        } finally {
+            currentThread.setContextClassLoader(contextClassLoader);
+        }
+
+        return oldModel;
+    }
+
+    public static Object translateOutputPlanToPlan(BaseModel<?> oldModel) {
+        Thread currentThread = Thread.currentThread();
+
+        ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+        try {
+            currentThread.setContextClassLoader(_classLoader);
+
+            try {
+                PlanToPlanClp newModel = new PlanToPlanClp();
+
+                Class<?> oldModelClass = oldModel.getClass();
+
+                Method method0 = oldModelClass.getMethod("getFromPlanId");
+
+                Long value0 = (Long) method0.invoke(oldModel, (Object[]) null);
+
+                newModel.setFromPlanId(value0);
+
+                Method method1 = oldModelClass.getMethod("getToPlanId");
+
+                Long value1 = (Long) method1.invoke(oldModel, (Object[]) null);
+
+                newModel.setToPlanId(value1);
+
+                Method method2 = oldModelClass.getMethod("getReferenceCount");
+
+                Integer value2 = (Integer) method2.invoke(oldModel,
+                        (Object[]) null);
+
+                newModel.setReferenceCount(value2);
 
                 return newModel;
             } catch (Exception e) {

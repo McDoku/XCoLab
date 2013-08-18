@@ -238,9 +238,6 @@ public class PlanItemLocalServiceWrapper implements PlanItemLocalService,
         _planItemLocalService.setBeanIdentifier(beanIdentifier);
     }
 
-    /**
-    * Default forum category description.
-    */
     public com.ext.portlet.model.PlanItem createPlan(
         com.ext.portlet.model.ContestPhase phase, java.lang.Long authorId)
         throws com.liferay.portal.kernel.exception.PortalException,
@@ -1070,6 +1067,18 @@ public class PlanItemLocalServiceWrapper implements PlanItemLocalService,
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         _planItemLocalService.promotePlans(plansToBeCopied, destPhasePk);
+    }
+
+    /**
+    * Updates plan to plan references for given plan
+    *
+    * @param plan plan for which references should be refreshed
+    * @throws PortalException
+    */
+    public void updatePlanToPlanReferences(com.ext.portlet.model.PlanItem plan)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        _planItemLocalService.updatePlanToPlanReferences(plan);
     }
 
     /**

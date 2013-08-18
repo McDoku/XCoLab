@@ -135,6 +135,10 @@ create index IX_84A1FEF0 on xcolab_PlanTeamHistory (planId, userId);
 
 create index IX_32F8E764 on xcolab_PlanTemplateSection (planTemplateId);
 
+create index IX_932655AB on xcolab_PlanToPlan (fromPlanId);
+create index IX_90E2D39E on xcolab_PlanToPlan (fromPlanId, toPlanId);
+create index IX_4E61D23C on xcolab_PlanToPlan (toPlanId);
+
 create index IX_EC7AD748 on xcolab_PlanType (isDefault);
 
 create index IX_F5C3FCBC on xcolab_PlanTypeAttribute (planTypeId, attributeName);

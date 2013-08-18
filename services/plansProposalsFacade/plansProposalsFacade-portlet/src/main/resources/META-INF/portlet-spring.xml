@@ -555,6 +555,15 @@
 		<property name="service" ref="com.ext.portlet.service.PlanTemplateSectionService" />
 	</bean>
 	<bean id="com.ext.portlet.service.persistence.PlanTemplateSectionPersistence" class="com.ext.portlet.service.persistence.PlanTemplateSectionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.service.PlanToPlanLocalService" class="com.ext.portlet.service.impl.PlanToPlanLocalServiceImpl" />
+	<bean id="com.ext.portlet.service.PlanToPlanLocalServiceUtil" class="com.ext.portlet.service.PlanToPlanLocalServiceUtil">
+		<property name="service" ref="com.ext.portlet.service.PlanToPlanLocalService" />
+	</bean>
+	<bean id="com.ext.portlet.service.PlanToPlanService" class="com.ext.portlet.service.impl.PlanToPlanServiceImpl" />
+	<bean id="com.ext.portlet.service.PlanToPlanServiceUtil" class="com.ext.portlet.service.PlanToPlanServiceUtil">
+		<property name="service" ref="com.ext.portlet.service.PlanToPlanService" />
+	</bean>
+	<bean id="com.ext.portlet.service.persistence.PlanToPlanPersistence" class="com.ext.portlet.service.persistence.PlanToPlanPersistenceImpl" parent="basePersistence" />
 	<bean id="com.ext.portlet.service.PlanTypeLocalService" class="com.ext.portlet.service.impl.PlanTypeLocalServiceImpl" />
 	<bean id="com.ext.portlet.service.PlanTypeLocalServiceUtil" class="com.ext.portlet.service.PlanTypeLocalServiceUtil">
 		<property name="service" ref="com.ext.portlet.service.PlanTypeLocalService" />

@@ -898,6 +898,16 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.ext.portlet.model.impl.PlanToPlanModelImpl">
+		<id-class class="com.ext.portlet.service.persistence.PlanToPlanPK" />
+		<attributes>
+			<id name="fromPlanId" />
+			<id name="toPlanId" />
+			<basic name="referenceCount" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.ext.portlet.model.impl.PlanTypeModelImpl">
 		<attributes>
 			<id name="planTypeId" />
@@ -1186,6 +1196,10 @@
 	</entity>
 	<entity class="com.ext.portlet.model.impl.PlanTemplateSectionImpl" name="PlanTemplateSection">
 		<table name="xcolab_PlanTemplateSection" />
+		<attributes />
+	</entity>
+	<entity class="com.ext.portlet.model.impl.PlanToPlanImpl" name="PlanToPlan">
+		<table name="xcolab_PlanToPlan" />
 		<attributes />
 	</entity>
 	<entity class="com.ext.portlet.model.impl.PlanTypeImpl" name="PlanType">

@@ -115,6 +115,8 @@ import com.ext.portlet.service.PlanTemplateLocalService;
 import com.ext.portlet.service.PlanTemplateSectionLocalService;
 import com.ext.portlet.service.PlanTemplateSectionService;
 import com.ext.portlet.service.PlanTemplateService;
+import com.ext.portlet.service.PlanToPlanLocalService;
+import com.ext.portlet.service.PlanToPlanService;
 import com.ext.portlet.service.PlanTypeAttributeLocalService;
 import com.ext.portlet.service.PlanTypeAttributeService;
 import com.ext.portlet.service.PlanTypeColumnLocalService;
@@ -187,6 +189,7 @@ import com.ext.portlet.service.persistence.PlanSectionPlanMapPersistence;
 import com.ext.portlet.service.persistence.PlanTeamHistoryPersistence;
 import com.ext.portlet.service.persistence.PlanTemplatePersistence;
 import com.ext.portlet.service.persistence.PlanTemplateSectionPersistence;
+import com.ext.portlet.service.persistence.PlanToPlanPersistence;
 import com.ext.portlet.service.persistence.PlanTypeAttributePersistence;
 import com.ext.portlet.service.persistence.PlanTypeColumnPersistence;
 import com.ext.portlet.service.persistence.PlanTypePersistence;
@@ -602,6 +605,12 @@ public abstract class EmailListLocalServiceBaseImpl
     protected PlanTemplateSectionService planTemplateSectionService;
     @BeanReference(type = PlanTemplateSectionPersistence.class)
     protected PlanTemplateSectionPersistence planTemplateSectionPersistence;
+    @BeanReference(type = PlanToPlanLocalService.class)
+    protected PlanToPlanLocalService planToPlanLocalService;
+    @BeanReference(type = PlanToPlanService.class)
+    protected PlanToPlanService planToPlanService;
+    @BeanReference(type = PlanToPlanPersistence.class)
+    protected PlanToPlanPersistence planToPlanPersistence;
     @BeanReference(type = PlanTypeLocalService.class)
     protected PlanTypeLocalService planTypeLocalService;
     @BeanReference(type = PlanTypeService.class)
@@ -4300,6 +4309,62 @@ public abstract class EmailListLocalServiceBaseImpl
     public void setPlanTemplateSectionPersistence(
         PlanTemplateSectionPersistence planTemplateSectionPersistence) {
         this.planTemplateSectionPersistence = planTemplateSectionPersistence;
+    }
+
+    /**
+     * Returns the plan to plan local service.
+     *
+     * @return the plan to plan local service
+     */
+    public PlanToPlanLocalService getPlanToPlanLocalService() {
+        return planToPlanLocalService;
+    }
+
+    /**
+     * Sets the plan to plan local service.
+     *
+     * @param planToPlanLocalService the plan to plan local service
+     */
+    public void setPlanToPlanLocalService(
+        PlanToPlanLocalService planToPlanLocalService) {
+        this.planToPlanLocalService = planToPlanLocalService;
+    }
+
+    /**
+     * Returns the plan to plan remote service.
+     *
+     * @return the plan to plan remote service
+     */
+    public PlanToPlanService getPlanToPlanService() {
+        return planToPlanService;
+    }
+
+    /**
+     * Sets the plan to plan remote service.
+     *
+     * @param planToPlanService the plan to plan remote service
+     */
+    public void setPlanToPlanService(PlanToPlanService planToPlanService) {
+        this.planToPlanService = planToPlanService;
+    }
+
+    /**
+     * Returns the plan to plan persistence.
+     *
+     * @return the plan to plan persistence
+     */
+    public PlanToPlanPersistence getPlanToPlanPersistence() {
+        return planToPlanPersistence;
+    }
+
+    /**
+     * Sets the plan to plan persistence.
+     *
+     * @param planToPlanPersistence the plan to plan persistence
+     */
+    public void setPlanToPlanPersistence(
+        PlanToPlanPersistence planToPlanPersistence) {
+        this.planToPlanPersistence = planToPlanPersistence;
     }
 
     /**

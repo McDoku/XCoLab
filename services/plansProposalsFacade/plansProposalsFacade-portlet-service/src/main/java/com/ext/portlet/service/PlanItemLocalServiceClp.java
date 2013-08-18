@@ -149,6 +149,7 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
     private MethodKey _setTagsOrderMethodKey139;
     private MethodKey _promotePlansMethodKey140;
     private MethodKey _promotePlansMethodKey141;
+    private MethodKey _updatePlanToPlanReferencesMethodKey142;
 
     public PlanItemLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
         _classLoaderProxy = classLoaderProxy;
@@ -661,6 +662,10 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
 
         _promotePlansMethodKey141 = new MethodKey(_classLoaderProxy.getClassName(),
                 "promotePlans", java.util.List.class, long.class);
+
+        _updatePlanToPlanReferencesMethodKey142 = new MethodKey(_classLoaderProxy.getClassName(),
+                "updatePlanToPlanReferences",
+                com.ext.portlet.model.PlanItem.class);
     }
 
     public com.ext.portlet.model.PlanItem addPlanItem(
@@ -4492,6 +4497,32 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
             com.liferay.portal.kernel.exception.SystemException {
         MethodHandler methodHandler = new MethodHandler(_promotePlansMethodKey141,
                 ClpSerializer.translateInput(plansToBeCopied), destPhasePk);
+
+        try {
+            _classLoaderProxy.invoke(methodHandler);
+        } catch (Throwable t) {
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+    }
+
+    public void updatePlanToPlanReferences(com.ext.portlet.model.PlanItem plan)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        MethodHandler methodHandler = new MethodHandler(_updatePlanToPlanReferencesMethodKey142,
+                ClpSerializer.translateInput(plan));
 
         try {
             _classLoaderProxy.invoke(methodHandler);

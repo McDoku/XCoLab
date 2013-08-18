@@ -218,9 +218,6 @@ public interface PlanItemLocalService extends PersistedModelLocalService {
     */
     public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-    /**
-    * Default forum category description.
-    */
     public com.ext.portlet.model.PlanItem createPlan(
         com.ext.portlet.model.ContestPhase phase, java.lang.Long authorId)
         throws com.liferay.portal.kernel.exception.PortalException,
@@ -852,6 +849,16 @@ public interface PlanItemLocalService extends PersistedModelLocalService {
     public void promotePlans(
         java.util.List<com.ext.portlet.model.PlanItem> plansToBeCopied,
         long destPhasePk)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * Updates plan to plan references for given plan
+    *
+    * @param plan plan for which references should be refreshed
+    * @throws PortalException
+    */
+    public void updatePlanToPlanReferences(com.ext.portlet.model.PlanItem plan)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 }

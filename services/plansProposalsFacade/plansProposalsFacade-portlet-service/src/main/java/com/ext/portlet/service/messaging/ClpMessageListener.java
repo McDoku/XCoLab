@@ -115,6 +115,8 @@ import com.ext.portlet.service.PlanTemplateLocalServiceUtil;
 import com.ext.portlet.service.PlanTemplateSectionLocalServiceUtil;
 import com.ext.portlet.service.PlanTemplateSectionServiceUtil;
 import com.ext.portlet.service.PlanTemplateServiceUtil;
+import com.ext.portlet.service.PlanToPlanLocalServiceUtil;
+import com.ext.portlet.service.PlanToPlanServiceUtil;
 import com.ext.portlet.service.PlanTypeAttributeLocalServiceUtil;
 import com.ext.portlet.service.PlanTypeAttributeServiceUtil;
 import com.ext.portlet.service.PlanTypeColumnLocalServiceUtil;
@@ -326,6 +328,9 @@ public class ClpMessageListener extends BaseMessageListener {
             PlanTemplateSectionLocalServiceUtil.clearService();
 
             PlanTemplateSectionServiceUtil.clearService();
+            PlanToPlanLocalServiceUtil.clearService();
+
+            PlanToPlanServiceUtil.clearService();
             PlanTypeLocalServiceUtil.clearService();
 
             PlanTypeServiceUtil.clearService();

@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -67,6 +69,7 @@ import com.ext.portlet.service.PlanPositionsLocalServiceUtil;
 import com.ext.portlet.service.PlanSectionLocalServiceUtil;
 import com.ext.portlet.service.PlanTeamHistoryLocalServiceUtil;
 import com.ext.portlet.service.PlanTemplateLocalServiceUtil;
+import com.ext.portlet.service.PlanToPlanLocalServiceUtil;
 import com.ext.portlet.service.PlanTypeLocalServiceUtil;
 import com.ext.portlet.service.PlanVoteLocalServiceUtil;
 import com.ext.portlet.service.base.PlanItemLocalServiceBaseImpl;
@@ -175,6 +178,12 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 	 * Default forum category description.
 	 */
 
+	/**
+	 * Pattern used to find plan references.
+	 */
+	private static final Pattern planReferencesPattern = Pattern.compile("/plans/contestId/(\\d+)/planId/(\\d+)");
+	
+	
 	public PlanItem createPlan(ContestPhase phase, Long authorId)
 			throws SystemException, PortalException {
 
@@ -1896,17 +1905,20 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 		content = contentDoc.select("body").first().html();
 
 		newVersion(pi, UpdateType.PLAN_SECTION_UPDATED, updateAuthorId);
-		PlanSection ps = PlanSectionLocalServiceUtil
+		
+		PlanSection oldSection = PlanSectionLocalServiceUtil.getCurrentForPlanSectionDef(pi, psd);
+		PlanSection newSection = PlanSectionLocalServiceUtil
 				.createNewVersionForPlanSectionDefinition(pi, psd, false);
-		ps.setUpdateAuthorId(updateAuthorId);
-		ps.setContent(content);
+		newSection.setUpdateAuthorId(updateAuthorId);
+		newSection.setContent(content);
 
 		for (Long planId : referencedPlans) {
-			PlanSectionLocalServiceUtil.addPlanReference(ps, planId);
+			PlanSectionLocalServiceUtil.addPlanReference(newSection, planId);
 		}
 
-		PlanSectionLocalServiceUtil.store(ps);
+		PlanSectionLocalServiceUtil.store(newSection);
 		reindex(pi);
+		updatePlanToPlanSectionReferences(pi, oldSection, newSection);
 
 	}
 
@@ -2127,6 +2139,95 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 		}
 
 	}
+	
+	/**
+	 * Updates plan to plan references for given plan
+	 * @param plan plan for which references should be refreshed
+	 * @throws PortalException 
+	 */
+	public void updatePlanToPlanReferences(PlanItem plan) throws SystemException, PortalException {
+	    PlanSection emptySection = PlanSectionLocalServiceUtil.createPlanSection(0);
+	    
+	    PlanToPlanLocalServiceUtil.removeReferences(plan.getPlanId());
+	    
+	    for (PlanSection section: getPlanSections(plan)) {
+	        updatePlanToPlanSectionReferences(plan, emptySection, section);
+	    }
+	    
+	}
+	
+	/**
+	 * Updates plan to plan mapping based on text from given section. 
+	 * @param plan plan in which sections changed
+	 * @param oldSection old section content 
+	 * @param newSection new section content
+	 * @throws SystemException
+	 */
+	private void updatePlanToPlanSectionReferences(PlanItem plan, PlanSection oldSection, PlanSection newSection) throws SystemException {
+	    // old references represent references that should be removed from PlanToPlan mapping
+	    Map<Long, Integer> oldReferences = findReferencedPlans(oldSection.getContent());
+	    // new  references represent references that should be added to PlanToPlan mapping
+	    Map<Long, Integer> newReferences = findReferencedPlans(newSection.getContent());
+	    
+	    // map that will store changes that should be done
+	    Map<Long, Integer> changedReferences = new HashMap<>();
+	    
+	    // find all changes that have happened
+	    for (Map.Entry<Long, Integer> oldReference: oldReferences.entrySet()) {
+	        Integer newReferenceCount = newReferences.get(oldReference.getKey());
+	        
+	        if (newReferenceCount == null) {
+	            // oldReference doesn't exist in new section content, so it should be removed from PlanToPlan mapping
+	            changedReferences.put(oldReference.getKey(), - oldReference.getValue());
+	            continue;
+	        }
+	        Integer referenceDiff = newReferenceCount - oldReference.getValue();
+	        // remove information about this reference from new references as it will be handled here
+	        newReferences.remove(oldReference.getKey());
+	        
+	        
+	        if (referenceDiff != 0) {
+	            // if number of references changed we need to update the PlanToPlan mapping accordingly
+	            changedReferences.put(oldReference.getKey(), referenceDiff);
+	        }
+	        
+	    }
+	    
+	    // for all references that didn't exist in oldReferences we need to add them
+        for (Map.Entry<Long, Integer> newReference: newReferences.entrySet()) {
+            changedReferences.put(newReference.getKey(), newReference.getValue());
+        }
+        
+        for (Map.Entry<Long, Integer> reference: changedReferences.entrySet()) {
+            PlanToPlanLocalServiceUtil.updateReference(plan.getPlanId(), reference.getKey(), reference.getValue());
+        }
+	    
+	}
+	
+	/**
+	 * Looks for plan urls in provided content and every detected url/link is stored in reference counter
+	 * map.  
+	 * @param content section/description content
+	 * @return map with referenced planIds as keys and reference count as value
+	 */
+	private Map<Long, Integer> findReferencedPlans(String content) {
+	    
+	    Map<Long, Integer> referenceCounter = new HashMap<>();
+	    if (StringUtils.isBlank(content)) return referenceCounter;
+	    
+	    Matcher matcher = planReferencesPattern.matcher(content);
+	    
+	    while (matcher.find()) {
+	        Long planId = Long.parseLong(matcher.group(2));
+	        
+	        Integer val = referenceCounter.get(planId);
+	        val = val == null ? 1 : val + 1;
+	        referenceCounter.put(planId, val);
+	    }
+	            
+	    return referenceCounter;
+	}
+	
 
 	private void reindex(PlanItem plan) {
 		Indexer indexer = IndexerRegistryUtil.getIndexer(PlanItem.class);

@@ -658,6 +658,11 @@
 		<field name="planSectionId" type="long" />
 		<field name="weight" type="int" />
 	</model>
+	<model name="com.ext.portlet.model.PlanToPlan">
+		<field name="fromPlanId" type="long" />
+		<field name="toPlanId" type="long" />
+		<field name="referenceCount" type="int" />
+	</model>
 	<model name="com.ext.portlet.model.PlanType">
 		<field name="planTypeId" type="long" />
 		<field name="name" type="String" />

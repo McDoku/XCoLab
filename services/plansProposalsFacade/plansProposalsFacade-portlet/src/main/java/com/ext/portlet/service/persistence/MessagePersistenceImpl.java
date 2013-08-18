@@ -61,6 +61,7 @@ import com.ext.portlet.service.persistence.PlanSectionPlanMapPersistence;
 import com.ext.portlet.service.persistence.PlanTeamHistoryPersistence;
 import com.ext.portlet.service.persistence.PlanTemplatePersistence;
 import com.ext.portlet.service.persistence.PlanTemplateSectionPersistence;
+import com.ext.portlet.service.persistence.PlanToPlanPersistence;
 import com.ext.portlet.service.persistence.PlanTypeAttributePersistence;
 import com.ext.portlet.service.persistence.PlanTypeColumnPersistence;
 import com.ext.portlet.service.persistence.PlanTypePersistence;
@@ -305,6 +306,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
     protected PlanTemplatePersistence planTemplatePersistence;
     @BeanReference(type = PlanTemplateSectionPersistence.class)
     protected PlanTemplateSectionPersistence planTemplateSectionPersistence;
+    @BeanReference(type = PlanToPlanPersistence.class)
+    protected PlanToPlanPersistence planToPlanPersistence;
     @BeanReference(type = PlanTypePersistence.class)
     protected PlanTypePersistence planTypePersistence;
     @BeanReference(type = PlanTypeAttributePersistence.class)
