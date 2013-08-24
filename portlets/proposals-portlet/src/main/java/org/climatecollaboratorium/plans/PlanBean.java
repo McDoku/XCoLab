@@ -6,8 +6,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.faces.event.ActionEvent;
 
@@ -73,6 +75,7 @@ public class PlanBean implements Serializable {
 	static {
 		tabNameIndexMap.put("admin", tabNameIndexMap.size());
 		tabNameIndexMap.put("description", tabNameIndexMap.size());
+		tabNameIndexMap.put("roflcat", tabNameIndexMap.size());
 		tabNameIndexMap.put("actionsimpacts", tabNameIndexMap.size());
 		tabNameIndexMap.put("sections", tabNameIndexMap.size());
 		tabNameIndexMap.put("comments", tabNameIndexMap.size());
@@ -450,10 +453,20 @@ public class PlanBean implements Serializable {
 		if (availableTabs == null) {
 			if (getPlan() == null)
 				return null;
+			
+			
 			availableTabs = new ArrayList<PlanTabWrapper>();
 
 			availableTabs
 					.add(new PlanTabWrapper(planItem, PlanTab.DESCRIPTION));
+			
+			Set<String> sectionTabs = new HashSet<String>(PlanItemLocalServiceUtil.getPlanSectionsTabs(planItem));
+			
+			if (sectionTabs.contains("ROFLCAT")) {
+				availableTabs.add(new PlanTabWrapper(planItem,
+						PlanTab.ROFLCAT));
+			}
+			
 			if (getPlan().getHasModel()) {
 				availableTabs.add(new PlanTabWrapper(planItem,
 						PlanTab.ACTIONSIMPACTS));
@@ -510,7 +523,7 @@ public class PlanBean implements Serializable {
 	public static enum PlanTab {
 		ADMIN("ADMINISTRATION", false, false), DESCRIPTION("DESCRIPTION", true,
 				true), ACTIONSIMPACTS("MODEL RESULTS", true, false), COMMENTS(
-				"COMMENTS", false, false), TEAM("CONTRIBUTORS", false, false);
+				"COMMENTS", false, false), TEAM("CONTRIBUTORS", false, false), ROFLCAT("ROFLCAT", true, false);
 
 		private final String displayName;
 		private final boolean editable;

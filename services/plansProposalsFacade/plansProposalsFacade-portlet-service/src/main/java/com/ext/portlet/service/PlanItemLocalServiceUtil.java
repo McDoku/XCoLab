@@ -510,6 +510,11 @@ public class PlanItemLocalServiceUtil {
         getService().setScenarioId(pi, scenarioId, authorId);
     }
 
+    public static void markModelRunDirty(com.ext.portlet.model.PlanItem pi)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getService().markModelRunDirty(pi);
+    }
+
     public static void setModelId(com.ext.portlet.model.PlanItem pi,
         java.lang.Long simulationId, java.lang.Long authorId)
         throws com.liferay.portal.kernel.exception.PortalException,
@@ -1105,6 +1110,20 @@ public class PlanItemLocalServiceUtil {
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         getService().updatePlanToPlanReferences(plan);
+    }
+
+    public static java.util.List<com.ext.portlet.model.PlanItem> getPlansReferencingPlan(
+        com.ext.portlet.model.PlanItem referencedPlan)
+        throws com.ext.portlet.NoSuchPlanItemException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().getPlansReferencingPlan(referencedPlan);
+    }
+
+    public static java.util.List<java.lang.String> getPlanSectionsTabs(
+        com.ext.portlet.model.PlanItem planItem)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().getPlanSectionsTabs(planItem);
     }
 
     public static void clearService() {

@@ -23,6 +23,7 @@ public class PlanSectionDefinitionClp extends BaseModelImpl<PlanSectionDefinitio
     private int _characterLimit;
     private long _focusAreaId;
     private boolean _locked;
+    private String _tab;
 
     public PlanSectionDefinitionClp() {
     }
@@ -127,6 +128,14 @@ public class PlanSectionDefinitionClp extends BaseModelImpl<PlanSectionDefinitio
         _locked = locked;
     }
 
+    public String getTab() {
+        return _tab;
+    }
+
+    public void setTab(String tab) {
+        _tab = tab;
+    }
+
     public void persist() throws SystemException {
         if (this.isNew()) {
             PlanSectionDefinitionLocalServiceUtil.addPlanSectionDefinition(this);
@@ -155,6 +164,7 @@ public class PlanSectionDefinitionClp extends BaseModelImpl<PlanSectionDefinitio
         clone.setCharacterLimit(getCharacterLimit());
         clone.setFocusAreaId(getFocusAreaId());
         clone.setLocked(getLocked());
+        clone.setTab(getTab());
 
         return clone;
     }
@@ -201,7 +211,7 @@ public class PlanSectionDefinitionClp extends BaseModelImpl<PlanSectionDefinitio
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(19);
+        StringBundler sb = new StringBundler(21);
 
         sb.append("{id=");
         sb.append(getId());
@@ -221,13 +231,15 @@ public class PlanSectionDefinitionClp extends BaseModelImpl<PlanSectionDefinitio
         sb.append(getFocusAreaId());
         sb.append(", locked=");
         sb.append(getLocked());
+        sb.append(", tab=");
+        sb.append(getTab());
         sb.append("}");
 
         return sb.toString();
     }
 
     public String toXmlString() {
-        StringBundler sb = new StringBundler(31);
+        StringBundler sb = new StringBundler(34);
 
         sb.append("<model><model-name>");
         sb.append("com.ext.portlet.model.PlanSectionDefinition");
@@ -268,6 +280,10 @@ public class PlanSectionDefinitionClp extends BaseModelImpl<PlanSectionDefinitio
         sb.append(
             "<column><column-name>locked</column-name><column-value><![CDATA[");
         sb.append(getLocked());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>tab</column-name><column-value><![CDATA[");
+        sb.append(getTab());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

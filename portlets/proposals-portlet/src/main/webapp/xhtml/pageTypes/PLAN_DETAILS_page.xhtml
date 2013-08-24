@@ -129,6 +129,13 @@
 		<f:subview rendered="#{proposal.currentTab == 'TEAM'}">
 			<ui:include src="./plan/tab_TEAM.xhtml" />
 		</f:subview>
+		
+		<f:subview rendered="#{proposal.currentTab == 'ROFLCAT' and not proposal.editing}">
+			<ui:include src="./plan/tab_ROFLCAT.xhtml" />
+		</f:subview>
+		<f:subview rendered="#{proposal.currentTab == 'ROFLCAT' and proposal.editing}">
+			<ui:include src="./plan/tab_ROFLCAT_edit.xhtml" />
+		</f:subview>
 
 
 	</div>

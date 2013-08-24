@@ -56,9 +56,10 @@ public class ActivitySubscriptionModelImpl extends BaseModelImpl<ActivitySubscri
             { "extraData", Types.VARCHAR },
             { "receiverId", Types.BIGINT },
             { "createDate", Types.TIMESTAMP },
-            { "modifiedDate", Types.TIMESTAMP }
+            { "modifiedDate", Types.TIMESTAMP },
+            { "automatic", Types.BOOLEAN }
         };
-    public static final String TABLE_SQL_CREATE = "create table xcolab_ActivitySubscription (pk LONG not null primary key,classNameId LONG,classPK LONG,type_ INTEGER,extraData TEXT null,receiverId LONG,createDate DATE null,modifiedDate DATE null)";
+    public static final String TABLE_SQL_CREATE = "create table xcolab_ActivitySubscription (pk LONG not null primary key,classNameId LONG,classPK LONG,type_ INTEGER,extraData TEXT null,receiverId LONG,createDate DATE null,modifiedDate DATE null,automatic BOOLEAN)";
     public static final String TABLE_SQL_DROP = "drop table xcolab_ActivitySubscription";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -100,6 +101,7 @@ public class ActivitySubscriptionModelImpl extends BaseModelImpl<ActivitySubscri
     private boolean _setOriginalReceiverId;
     private Date _createDate;
     private Date _modifiedDate;
+    private boolean _automatic;
     private transient ExpandoBridge _expandoBridge;
     private long _columnBitmask;
     private ActivitySubscription _escapedModelProxy;
@@ -125,6 +127,7 @@ public class ActivitySubscriptionModelImpl extends BaseModelImpl<ActivitySubscri
         model.setReceiverId(soapModel.getReceiverId());
         model.setCreateDate(soapModel.getCreateDate());
         model.setModifiedDate(soapModel.getModifiedDate());
+        model.setAutomatic(soapModel.getAutomatic());
 
         return model;
     }
@@ -312,6 +315,19 @@ public class ActivitySubscriptionModelImpl extends BaseModelImpl<ActivitySubscri
         _modifiedDate = modifiedDate;
     }
 
+    @JSON
+    public boolean getAutomatic() {
+        return _automatic;
+    }
+
+    public boolean isAutomatic() {
+        return _automatic;
+    }
+
+    public void setAutomatic(boolean automatic) {
+        _automatic = automatic;
+    }
+
     public long getColumnBitmask() {
         return _columnBitmask;
     }
@@ -354,6 +370,7 @@ public class ActivitySubscriptionModelImpl extends BaseModelImpl<ActivitySubscri
         activitySubscriptionImpl.setReceiverId(getReceiverId());
         activitySubscriptionImpl.setCreateDate(getCreateDate());
         activitySubscriptionImpl.setModifiedDate(getModifiedDate());
+        activitySubscriptionImpl.setAutomatic(getAutomatic());
 
         activitySubscriptionImpl.resetOriginalValues();
 
@@ -463,12 +480,14 @@ public class ActivitySubscriptionModelImpl extends BaseModelImpl<ActivitySubscri
             activitySubscriptionCacheModel.modifiedDate = Long.MIN_VALUE;
         }
 
+        activitySubscriptionCacheModel.automatic = getAutomatic();
+
         return activitySubscriptionCacheModel;
     }
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(17);
+        StringBundler sb = new StringBundler(19);
 
         sb.append("{pk=");
         sb.append(getPk());
@@ -486,13 +505,15 @@ public class ActivitySubscriptionModelImpl extends BaseModelImpl<ActivitySubscri
         sb.append(getCreateDate());
         sb.append(", modifiedDate=");
         sb.append(getModifiedDate());
+        sb.append(", automatic=");
+        sb.append(getAutomatic());
         sb.append("}");
 
         return sb.toString();
     }
 
     public String toXmlString() {
-        StringBundler sb = new StringBundler(28);
+        StringBundler sb = new StringBundler(31);
 
         sb.append("<model><model-name>");
         sb.append("com.ext.portlet.model.ActivitySubscription");
@@ -529,6 +550,10 @@ public class ActivitySubscriptionModelImpl extends BaseModelImpl<ActivitySubscri
         sb.append(
             "<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
         sb.append(getModifiedDate());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>automatic</column-name><column-value><![CDATA[");
+        sb.append(getAutomatic());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

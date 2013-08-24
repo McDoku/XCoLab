@@ -419,6 +419,9 @@ public interface PlanItemLocalService extends PersistedModelLocalService {
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
+    public void markModelRunDirty(com.ext.portlet.model.PlanItem pi)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
     public void setModelId(com.ext.portlet.model.PlanItem pi,
         java.lang.Long simulationId, java.lang.Long authorId)
         throws com.liferay.portal.kernel.exception.PortalException,
@@ -859,6 +862,18 @@ public interface PlanItemLocalService extends PersistedModelLocalService {
     * @throws PortalException
     */
     public void updatePlanToPlanReferences(com.ext.portlet.model.PlanItem plan)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<com.ext.portlet.model.PlanItem> getPlansReferencingPlan(
+        com.ext.portlet.model.PlanItem referencedPlan)
+        throws com.ext.portlet.NoSuchPlanItemException,
+            com.liferay.portal.kernel.exception.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<java.lang.String> getPlanSectionsTabs(
+        com.ext.portlet.model.PlanItem planItem)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 }

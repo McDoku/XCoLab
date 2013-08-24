@@ -20,6 +20,11 @@ public class PlanItemFinderUtil {
         getFinder().removePlanWithHistory(planId);
     }
 
+    public static java.util.List<java.lang.Long> getPlanIdsReferencingPlan(
+        long planId) {
+        return getFinder().getPlanIdsReferencingPlan(planId);
+    }
+
     public static int countVotesForPlanType(com.ext.portlet.model.PlanType type) {
         return getFinder().countVotesForPlanType(type);
     }

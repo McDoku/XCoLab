@@ -28,6 +28,8 @@
 		<column name="createDate" type="Date" />
 		<column name="modifiedDate" type="Date" />
 		
+		<column name="automatic" type="boolean" />
+		
 
 		<finder name="receiverId" return-type="Collection">
 			<finder-column name="receiverId" />

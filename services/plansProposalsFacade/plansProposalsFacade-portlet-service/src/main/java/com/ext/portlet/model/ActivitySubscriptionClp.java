@@ -26,6 +26,7 @@ public class ActivitySubscriptionClp extends BaseModelImpl<ActivitySubscription>
     private long _receiverId;
     private Date _createDate;
     private Date _modifiedDate;
+    private boolean _automatic;
 
     public ActivitySubscriptionClp() {
     }
@@ -126,6 +127,18 @@ public class ActivitySubscriptionClp extends BaseModelImpl<ActivitySubscription>
         _modifiedDate = modifiedDate;
     }
 
+    public boolean getAutomatic() {
+        return _automatic;
+    }
+
+    public boolean isAutomatic() {
+        return _automatic;
+    }
+
+    public void setAutomatic(boolean automatic) {
+        _automatic = automatic;
+    }
+
     public void persist() throws SystemException {
         if (this.isNew()) {
             ActivitySubscriptionLocalServiceUtil.addActivitySubscription(this);
@@ -153,6 +166,7 @@ public class ActivitySubscriptionClp extends BaseModelImpl<ActivitySubscription>
         clone.setReceiverId(getReceiverId());
         clone.setCreateDate(getCreateDate());
         clone.setModifiedDate(getModifiedDate());
+        clone.setAutomatic(getAutomatic());
 
         return clone;
     }
@@ -199,7 +213,7 @@ public class ActivitySubscriptionClp extends BaseModelImpl<ActivitySubscription>
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(17);
+        StringBundler sb = new StringBundler(19);
 
         sb.append("{pk=");
         sb.append(getPk());
@@ -217,13 +231,15 @@ public class ActivitySubscriptionClp extends BaseModelImpl<ActivitySubscription>
         sb.append(getCreateDate());
         sb.append(", modifiedDate=");
         sb.append(getModifiedDate());
+        sb.append(", automatic=");
+        sb.append(getAutomatic());
         sb.append("}");
 
         return sb.toString();
     }
 
     public String toXmlString() {
-        StringBundler sb = new StringBundler(28);
+        StringBundler sb = new StringBundler(31);
 
         sb.append("<model><model-name>");
         sb.append("com.ext.portlet.model.ActivitySubscription");
@@ -260,6 +276,10 @@ public class ActivitySubscriptionClp extends BaseModelImpl<ActivitySubscription>
         sb.append(
             "<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
         sb.append(getModifiedDate());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>automatic</column-name><column-value><![CDATA[");
+        sb.append(getAutomatic());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

@@ -22,6 +22,7 @@ public class PlanModelRunClp extends BaseModelImpl<PlanModelRun>
     private long _planVersion;
     private long _version;
     private Date _created;
+    private boolean _dirty;
     private long _updateAuthorId;
 
     public PlanModelRunClp() {
@@ -99,6 +100,18 @@ public class PlanModelRunClp extends BaseModelImpl<PlanModelRun>
         _created = created;
     }
 
+    public boolean getDirty() {
+        return _dirty;
+    }
+
+    public boolean isDirty() {
+        return _dirty;
+    }
+
+    public void setDirty(boolean dirty) {
+        _dirty = dirty;
+    }
+
     public long getUpdateAuthorId() {
         return _updateAuthorId;
     }
@@ -131,6 +144,7 @@ public class PlanModelRunClp extends BaseModelImpl<PlanModelRun>
         clone.setPlanVersion(getPlanVersion());
         clone.setVersion(getVersion());
         clone.setCreated(getCreated());
+        clone.setDirty(getDirty());
         clone.setUpdateAuthorId(getUpdateAuthorId());
 
         return clone;
@@ -186,7 +200,7 @@ public class PlanModelRunClp extends BaseModelImpl<PlanModelRun>
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(15);
+        StringBundler sb = new StringBundler(17);
 
         sb.append("{id=");
         sb.append(getId());
@@ -200,6 +214,8 @@ public class PlanModelRunClp extends BaseModelImpl<PlanModelRun>
         sb.append(getVersion());
         sb.append(", created=");
         sb.append(getCreated());
+        sb.append(", dirty=");
+        sb.append(getDirty());
         sb.append(", updateAuthorId=");
         sb.append(getUpdateAuthorId());
         sb.append("}");
@@ -208,7 +224,7 @@ public class PlanModelRunClp extends BaseModelImpl<PlanModelRun>
     }
 
     public String toXmlString() {
-        StringBundler sb = new StringBundler(25);
+        StringBundler sb = new StringBundler(28);
 
         sb.append("<model><model-name>");
         sb.append("com.ext.portlet.model.PlanModelRun");
@@ -237,6 +253,10 @@ public class PlanModelRunClp extends BaseModelImpl<PlanModelRun>
         sb.append(
             "<column><column-name>created</column-name><column-value><![CDATA[");
         sb.append(getCreated());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>dirty</column-name><column-value><![CDATA[");
+        sb.append(getDirty());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>updateAuthorId</column-name><column-value><![CDATA[");

@@ -49,11 +49,9 @@ import com.ext.portlet.model.PlanPositionClp;
 import com.ext.portlet.model.PlanPositionItemClp;
 import com.ext.portlet.model.PlanPositionsClp;
 import com.ext.portlet.model.PlanPropertyFilterClp;
-import com.ext.portlet.model.PlanRelatedClp;
 import com.ext.portlet.model.PlanSectionClp;
 import com.ext.portlet.model.PlanSectionDefinitionClp;
 import com.ext.portlet.model.PlanSectionDefinitionListItemClp;
-import com.ext.portlet.model.PlanSectionPlanMapClp;
 import com.ext.portlet.model.PlanTeamHistoryClp;
 import com.ext.portlet.model.PlanTemplateClp;
 import com.ext.portlet.model.PlanTemplateSectionClp;
@@ -350,10 +348,6 @@ public class ClpSerializer {
             return translateInputPlanPropertyFilter(oldModel);
         }
 
-        if (oldModelClassName.equals(PlanRelatedClp.class.getName())) {
-            return translateInputPlanRelated(oldModel);
-        }
-
         if (oldModelClassName.equals(PlanSectionClp.class.getName())) {
             return translateInputPlanSection(oldModel);
         }
@@ -365,10 +359,6 @@ public class ClpSerializer {
         if (oldModelClassName.equals(
                     PlanSectionDefinitionListItemClp.class.getName())) {
             return translateInputPlanSectionDefinitionListItem(oldModel);
-        }
-
-        if (oldModelClassName.equals(PlanSectionPlanMapClp.class.getName())) {
-            return translateInputPlanSectionPlanMap(oldModel);
         }
 
         if (oldModelClassName.equals(PlansFilterClp.class.getName())) {
@@ -502,6 +492,13 @@ public class ClpSerializer {
                 Date value7 = oldCplModel.getModifiedDate();
 
                 method7.invoke(newModel, value7);
+
+                Method method8 = newModelClass.getMethod("setAutomatic",
+                        new Class[] { Boolean.TYPE });
+
+                Boolean value8 = new Boolean(oldCplModel.getAutomatic());
+
+                method8.invoke(newModel, value8);
 
                 return newModel;
             } catch (Exception e) {
@@ -3706,12 +3703,19 @@ public class ClpSerializer {
 
                 method5.invoke(newModel, value5);
 
-                Method method6 = newModelClass.getMethod("setUpdateAuthorId",
-                        new Class[] { Long.TYPE });
+                Method method6 = newModelClass.getMethod("setDirty",
+                        new Class[] { Boolean.TYPE });
 
-                Long value6 = new Long(oldCplModel.getUpdateAuthorId());
+                Boolean value6 = new Boolean(oldCplModel.getDirty());
 
                 method6.invoke(newModel, value6);
+
+                Method method7 = newModelClass.getMethod("setUpdateAuthorId",
+                        new Class[] { Long.TYPE });
+
+                Long value7 = new Long(oldCplModel.getUpdateAuthorId());
+
+                method7.invoke(newModel, value7);
 
                 return newModel;
             } catch (Exception e) {
@@ -3958,47 +3962,6 @@ public class ClpSerializer {
         return oldModel;
     }
 
-    public static Object translateInputPlanRelated(BaseModel<?> oldModel) {
-        PlanRelatedClp oldCplModel = (PlanRelatedClp) oldModel;
-
-        Thread currentThread = Thread.currentThread();
-
-        ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-        try {
-            currentThread.setContextClassLoader(_classLoader);
-
-            try {
-                Class<?> newModelClass = Class.forName("com.ext.portlet.model.impl.PlanRelatedImpl",
-                        true, _classLoader);
-
-                Object newModel = newModelClass.newInstance();
-
-                Method method0 = newModelClass.getMethod("setSectionId",
-                        new Class[] { Long.TYPE });
-
-                Long value0 = new Long(oldCplModel.getSectionId());
-
-                method0.invoke(newModel, value0);
-
-                Method method1 = newModelClass.getMethod("setRelatedPlanId",
-                        new Class[] { Long.TYPE });
-
-                Long value1 = new Long(oldCplModel.getRelatedPlanId());
-
-                method1.invoke(newModel, value1);
-
-                return newModel;
-            } catch (Exception e) {
-                _log.error(e, e);
-            }
-        } finally {
-            currentThread.setContextClassLoader(contextClassLoader);
-        }
-
-        return oldModel;
-    }
-
     public static Object translateInputPlanSection(BaseModel<?> oldModel) {
         PlanSectionClp oldCplModel = (PlanSectionClp) oldModel;
 
@@ -4169,6 +4132,13 @@ public class ClpSerializer {
 
                 method8.invoke(newModel, value8);
 
+                Method method9 = newModelClass.getMethod("setTab",
+                        new Class[] { String.class });
+
+                String value9 = oldCplModel.getTab();
+
+                method9.invoke(newModel, value9);
+
                 return newModel;
             } catch (Exception e) {
                 _log.error(e, e);
@@ -4231,47 +4201,6 @@ public class ClpSerializer {
                 String value4 = oldCplModel.getData();
 
                 method4.invoke(newModel, value4);
-
-                return newModel;
-            } catch (Exception e) {
-                _log.error(e, e);
-            }
-        } finally {
-            currentThread.setContextClassLoader(contextClassLoader);
-        }
-
-        return oldModel;
-    }
-
-    public static Object translateInputPlanSectionPlanMap(BaseModel<?> oldModel) {
-        PlanSectionPlanMapClp oldCplModel = (PlanSectionPlanMapClp) oldModel;
-
-        Thread currentThread = Thread.currentThread();
-
-        ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-        try {
-            currentThread.setContextClassLoader(_classLoader);
-
-            try {
-                Class<?> newModelClass = Class.forName("com.ext.portlet.model.impl.PlanSectionPlanMapImpl",
-                        true, _classLoader);
-
-                Object newModel = newModelClass.newInstance();
-
-                Method method0 = newModelClass.getMethod("setSectionId",
-                        new Class[] { Long.TYPE });
-
-                Long value0 = new Long(oldCplModel.getSectionId());
-
-                method0.invoke(newModel, value0);
-
-                Method method1 = newModelClass.getMethod("setRelatedPlanId",
-                        new Class[] { Long.TYPE });
-
-                Long value1 = new Long(oldCplModel.getRelatedPlanId());
-
-                method1.invoke(newModel, value1);
 
                 return newModel;
             } catch (Exception e) {
@@ -5285,11 +5214,6 @@ public class ClpSerializer {
         }
 
         if (oldModelClassName.equals(
-                    "com.ext.portlet.model.impl.PlanRelatedImpl")) {
-            return translateOutputPlanRelated(oldModel);
-        }
-
-        if (oldModelClassName.equals(
                     "com.ext.portlet.model.impl.PlanSectionImpl")) {
             return translateOutputPlanSection(oldModel);
         }
@@ -5302,11 +5226,6 @@ public class ClpSerializer {
         if (oldModelClassName.equals(
                     "com.ext.portlet.model.impl.PlanSectionDefinitionListItemImpl")) {
             return translateOutputPlanSectionDefinitionListItem(oldModel);
-        }
-
-        if (oldModelClassName.equals(
-                    "com.ext.portlet.model.impl.PlanSectionPlanMapImpl")) {
-            return translateOutputPlanSectionPlanMap(oldModel);
         }
 
         if (oldModelClassName.equals(
@@ -5450,6 +5369,13 @@ public class ClpSerializer {
                 Date value7 = (Date) method7.invoke(oldModel, (Object[]) null);
 
                 newModel.setModifiedDate(value7);
+
+                Method method8 = oldModelClass.getMethod("getAutomatic");
+
+                Boolean value8 = (Boolean) method8.invoke(oldModel,
+                        (Object[]) null);
+
+                newModel.setAutomatic(value8);
 
                 return newModel;
             } catch (Exception e) {
@@ -8398,11 +8324,18 @@ public class ClpSerializer {
 
                 newModel.setCreated(value5);
 
-                Method method6 = oldModelClass.getMethod("getUpdateAuthorId");
+                Method method6 = oldModelClass.getMethod("getDirty");
 
-                Long value6 = (Long) method6.invoke(oldModel, (Object[]) null);
+                Boolean value6 = (Boolean) method6.invoke(oldModel,
+                        (Object[]) null);
 
-                newModel.setUpdateAuthorId(value6);
+                newModel.setDirty(value6);
+
+                Method method7 = oldModelClass.getMethod("getUpdateAuthorId");
+
+                Long value7 = (Long) method7.invoke(oldModel, (Object[]) null);
+
+                newModel.setUpdateAuthorId(value7);
 
                 return newModel;
             } catch (Exception e) {
@@ -8625,42 +8558,6 @@ public class ClpSerializer {
         return oldModel;
     }
 
-    public static Object translateOutputPlanRelated(BaseModel<?> oldModel) {
-        Thread currentThread = Thread.currentThread();
-
-        ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-        try {
-            currentThread.setContextClassLoader(_classLoader);
-
-            try {
-                PlanRelatedClp newModel = new PlanRelatedClp();
-
-                Class<?> oldModelClass = oldModel.getClass();
-
-                Method method0 = oldModelClass.getMethod("getSectionId");
-
-                Long value0 = (Long) method0.invoke(oldModel, (Object[]) null);
-
-                newModel.setSectionId(value0);
-
-                Method method1 = oldModelClass.getMethod("getRelatedPlanId");
-
-                Long value1 = (Long) method1.invoke(oldModel, (Object[]) null);
-
-                newModel.setRelatedPlanId(value1);
-
-                return newModel;
-            } catch (Exception e) {
-                _log.error(e, e);
-            }
-        } finally {
-            currentThread.setContextClassLoader(contextClassLoader);
-        }
-
-        return oldModel;
-    }
-
     public static Object translateOutputPlanSection(BaseModel<?> oldModel) {
         Thread currentThread = Thread.currentThread();
 
@@ -8816,6 +8713,13 @@ public class ClpSerializer {
 
                 newModel.setLocked(value8);
 
+                Method method9 = oldModelClass.getMethod("getTab");
+
+                String value9 = (String) method9.invoke(oldModel,
+                        (Object[]) null);
+
+                newModel.setTab(value9);
+
                 return newModel;
             } catch (Exception e) {
                 _log.error(e, e);
@@ -8873,43 +8777,6 @@ public class ClpSerializer {
                         (Object[]) null);
 
                 newModel.setData(value4);
-
-                return newModel;
-            } catch (Exception e) {
-                _log.error(e, e);
-            }
-        } finally {
-            currentThread.setContextClassLoader(contextClassLoader);
-        }
-
-        return oldModel;
-    }
-
-    public static Object translateOutputPlanSectionPlanMap(
-        BaseModel<?> oldModel) {
-        Thread currentThread = Thread.currentThread();
-
-        ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-        try {
-            currentThread.setContextClassLoader(_classLoader);
-
-            try {
-                PlanSectionPlanMapClp newModel = new PlanSectionPlanMapClp();
-
-                Class<?> oldModelClass = oldModel.getClass();
-
-                Method method0 = oldModelClass.getMethod("getSectionId");
-
-                Long value0 = (Long) method0.invoke(oldModel, (Object[]) null);
-
-                newModel.setSectionId(value0);
-
-                Method method1 = oldModelClass.getMethod("getRelatedPlanId");
-
-                Long value1 = (Long) method1.invoke(oldModel, (Object[]) null);
-
-                newModel.setRelatedPlanId(value1);
 
                 return newModel;
             } catch (Exception e) {

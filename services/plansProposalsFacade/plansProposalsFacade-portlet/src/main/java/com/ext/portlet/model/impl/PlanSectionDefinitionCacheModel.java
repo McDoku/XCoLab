@@ -26,10 +26,11 @@ public class PlanSectionDefinitionCacheModel implements CacheModel<PlanSectionDe
     public int characterLimit;
     public long focusAreaId;
     public boolean locked;
+    public String tab;
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(19);
+        StringBundler sb = new StringBundler(21);
 
         sb.append("{id=");
         sb.append(id);
@@ -49,6 +50,8 @@ public class PlanSectionDefinitionCacheModel implements CacheModel<PlanSectionDe
         sb.append(focusAreaId);
         sb.append(", locked=");
         sb.append(locked);
+        sb.append(", tab=");
+        sb.append(tab);
         sb.append("}");
 
         return sb.toString();
@@ -92,6 +95,12 @@ public class PlanSectionDefinitionCacheModel implements CacheModel<PlanSectionDe
         planSectionDefinitionImpl.setCharacterLimit(characterLimit);
         planSectionDefinitionImpl.setFocusAreaId(focusAreaId);
         planSectionDefinitionImpl.setLocked(locked);
+
+        if (tab == null) {
+            planSectionDefinitionImpl.setTab(StringPool.BLANK);
+        } else {
+            planSectionDefinitionImpl.setTab(tab);
+        }
 
         planSectionDefinitionImpl.resetOriginalValues();
 

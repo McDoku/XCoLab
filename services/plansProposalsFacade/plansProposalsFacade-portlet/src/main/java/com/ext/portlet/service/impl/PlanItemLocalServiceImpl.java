@@ -1927,9 +1927,6 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 		newSection.setUpdateAuthorId(updateAuthorId);
 		newSection.setContent(content);
 
-		for (Long planId : referencedPlans) {
-			PlanSectionLocalServiceUtil.addPlanReference(newSection, planId);
-		}
 
 		PlanSectionLocalServiceUtil.store(newSection);
 		reindex(pi);
@@ -2265,6 +2262,14 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 		}
 		
 		return plans;
+	}
+	
+	public List<String> getPlanSectionsTabs(PlanItem planItem) throws PortalException, SystemException {
+		List<String> ret = new ArrayList<>();
+		for (PlanSectionDefinition psd: PlanTemplateLocalServiceUtil.getSections(getPlanTemplate(planItem))) {
+			ret.add(psd.getTab());
+		}
 		
+		return ret;
 	}
 }

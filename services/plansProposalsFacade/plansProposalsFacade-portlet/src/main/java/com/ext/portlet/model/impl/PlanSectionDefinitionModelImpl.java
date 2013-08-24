@@ -55,9 +55,10 @@ public class PlanSectionDefinitionModelImpl extends BaseModelImpl<PlanSectionDef
             { "helpText", Types.CLOB },
             { "characterLimit", Types.INTEGER },
             { "focusAreaId", Types.BIGINT },
-            { "locked", Types.BOOLEAN }
+            { "locked", Types.BOOLEAN },
+            { "tab", Types.VARCHAR }
         };
-    public static final String TABLE_SQL_CREATE = "create table xcolab_PlanSectionDefinition (id_ LONG not null primary key,type_ VARCHAR(75) null,adminTitle VARCHAR(1024) null,title VARCHAR(1024) null,defaultText TEXT null,helpText TEXT null,characterLimit INTEGER,focusAreaId LONG,locked BOOLEAN)";
+    public static final String TABLE_SQL_CREATE = "create table xcolab_PlanSectionDefinition (id_ LONG not null primary key,type_ VARCHAR(75) null,adminTitle VARCHAR(1024) null,title VARCHAR(1024) null,defaultText TEXT null,helpText TEXT null,characterLimit INTEGER,focusAreaId LONG,locked BOOLEAN,tab VARCHAR(75) null)";
     public static final String TABLE_SQL_DROP = "drop table xcolab_PlanSectionDefinition";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -84,6 +85,7 @@ public class PlanSectionDefinitionModelImpl extends BaseModelImpl<PlanSectionDef
     private int _characterLimit;
     private long _focusAreaId;
     private boolean _locked;
+    private String _tab;
     private transient ExpandoBridge _expandoBridge;
     private PlanSectionDefinition _escapedModelProxy;
 
@@ -109,6 +111,7 @@ public class PlanSectionDefinitionModelImpl extends BaseModelImpl<PlanSectionDef
         model.setCharacterLimit(soapModel.getCharacterLimit());
         model.setFocusAreaId(soapModel.getFocusAreaId());
         model.setLocked(soapModel.getLocked());
+        model.setTab(soapModel.getTab());
 
         return model;
     }
@@ -259,6 +262,19 @@ public class PlanSectionDefinitionModelImpl extends BaseModelImpl<PlanSectionDef
         _locked = locked;
     }
 
+    @JSON
+    public String getTab() {
+        if (_tab == null) {
+            return StringPool.BLANK;
+        } else {
+            return _tab;
+        }
+    }
+
+    public void setTab(String tab) {
+        _tab = tab;
+    }
+
     @Override
     public PlanSectionDefinition toEscapedModel() {
         if (_escapedModelProxy == null) {
@@ -298,6 +314,7 @@ public class PlanSectionDefinitionModelImpl extends BaseModelImpl<PlanSectionDef
         planSectionDefinitionImpl.setCharacterLimit(getCharacterLimit());
         planSectionDefinitionImpl.setFocusAreaId(getFocusAreaId());
         planSectionDefinitionImpl.setLocked(getLocked());
+        planSectionDefinitionImpl.setTab(getTab());
 
         planSectionDefinitionImpl.resetOriginalValues();
 
@@ -400,12 +417,20 @@ public class PlanSectionDefinitionModelImpl extends BaseModelImpl<PlanSectionDef
 
         planSectionDefinitionCacheModel.locked = getLocked();
 
+        planSectionDefinitionCacheModel.tab = getTab();
+
+        String tab = planSectionDefinitionCacheModel.tab;
+
+        if ((tab != null) && (tab.length() == 0)) {
+            planSectionDefinitionCacheModel.tab = null;
+        }
+
         return planSectionDefinitionCacheModel;
     }
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(19);
+        StringBundler sb = new StringBundler(21);
 
         sb.append("{id=");
         sb.append(getId());
@@ -425,13 +450,15 @@ public class PlanSectionDefinitionModelImpl extends BaseModelImpl<PlanSectionDef
         sb.append(getFocusAreaId());
         sb.append(", locked=");
         sb.append(getLocked());
+        sb.append(", tab=");
+        sb.append(getTab());
         sb.append("}");
 
         return sb.toString();
     }
 
     public String toXmlString() {
-        StringBundler sb = new StringBundler(31);
+        StringBundler sb = new StringBundler(34);
 
         sb.append("<model><model-name>");
         sb.append("com.ext.portlet.model.PlanSectionDefinition");
@@ -472,6 +499,10 @@ public class PlanSectionDefinitionModelImpl extends BaseModelImpl<PlanSectionDef
         sb.append(
             "<column><column-name>locked</column-name><column-value><![CDATA[");
         sb.append(getLocked());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>tab</column-name><column-value><![CDATA[");
+        sb.append(getTab());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

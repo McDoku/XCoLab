@@ -442,6 +442,7 @@
         <column name="characterLimit" type="int" />
         <column name="focusAreaId" type="long" />
         <column name="locked" type="boolean" />
+        <column name="tab" type="String" />
     </entity>
     
     <entity name="PlanSectionDefinitionListItem" local-service="true">

@@ -99,15 +99,11 @@ import com.ext.portlet.service.PlanPositionsLocalServiceUtil;
 import com.ext.portlet.service.PlanPositionsServiceUtil;
 import com.ext.portlet.service.PlanPropertyFilterLocalServiceUtil;
 import com.ext.portlet.service.PlanPropertyFilterServiceUtil;
-import com.ext.portlet.service.PlanRelatedLocalServiceUtil;
-import com.ext.portlet.service.PlanRelatedServiceUtil;
 import com.ext.portlet.service.PlanSectionDefinitionListItemLocalServiceUtil;
 import com.ext.portlet.service.PlanSectionDefinitionListItemServiceUtil;
 import com.ext.portlet.service.PlanSectionDefinitionLocalServiceUtil;
 import com.ext.portlet.service.PlanSectionDefinitionServiceUtil;
 import com.ext.portlet.service.PlanSectionLocalServiceUtil;
-import com.ext.portlet.service.PlanSectionPlanMapLocalServiceUtil;
-import com.ext.portlet.service.PlanSectionPlanMapServiceUtil;
 import com.ext.portlet.service.PlanSectionServiceUtil;
 import com.ext.portlet.service.PlanTeamHistoryLocalServiceUtil;
 import com.ext.portlet.service.PlanTeamHistoryServiceUtil;
@@ -295,9 +291,6 @@ public class ClpMessageListener extends BaseMessageListener {
             PlanPropertyFilterLocalServiceUtil.clearService();
 
             PlanPropertyFilterServiceUtil.clearService();
-            PlanRelatedLocalServiceUtil.clearService();
-
-            PlanRelatedServiceUtil.clearService();
             PlanSectionLocalServiceUtil.clearService();
 
             PlanSectionServiceUtil.clearService();
@@ -307,9 +300,6 @@ public class ClpMessageListener extends BaseMessageListener {
             PlanSectionDefinitionListItemLocalServiceUtil.clearService();
 
             PlanSectionDefinitionListItemServiceUtil.clearService();
-            PlanSectionPlanMapLocalServiceUtil.clearService();
-
-            PlanSectionPlanMapServiceUtil.clearService();
             PlansFilterLocalServiceUtil.clearService();
 
             PlansFilterServiceUtil.clearService();

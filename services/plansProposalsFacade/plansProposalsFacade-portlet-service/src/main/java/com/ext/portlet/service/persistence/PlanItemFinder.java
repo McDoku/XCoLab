@@ -8,6 +8,8 @@ public interface PlanItemFinder {
 
     public void removePlanWithHistory(long planId);
 
+    public java.util.List<java.lang.Long> getPlanIdsReferencingPlan(long planId);
+
     public int countVotesForPlanType(com.ext.portlet.model.PlanType type);
 
     public int countFilteredPlans(

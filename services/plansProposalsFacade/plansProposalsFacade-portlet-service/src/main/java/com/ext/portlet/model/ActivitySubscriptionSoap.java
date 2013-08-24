@@ -22,6 +22,7 @@ public class ActivitySubscriptionSoap implements Serializable {
     private long _receiverId;
     private Date _createDate;
     private Date _modifiedDate;
+    private boolean _automatic;
 
     public ActivitySubscriptionSoap() {
     }
@@ -38,6 +39,7 @@ public class ActivitySubscriptionSoap implements Serializable {
         soapModel.setReceiverId(model.getReceiverId());
         soapModel.setCreateDate(model.getCreateDate());
         soapModel.setModifiedDate(model.getModifiedDate());
+        soapModel.setAutomatic(model.getAutomatic());
 
         return soapModel;
     }
@@ -151,5 +153,17 @@ public class ActivitySubscriptionSoap implements Serializable {
 
     public void setModifiedDate(Date modifiedDate) {
         _modifiedDate = modifiedDate;
+    }
+
+    public boolean getAutomatic() {
+        return _automatic;
+    }
+
+    public boolean isAutomatic() {
+        return _automatic;
+    }
+
+    public void setAutomatic(boolean automatic) {
+        _automatic = automatic;
     }
 }

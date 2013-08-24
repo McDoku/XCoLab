@@ -217,6 +217,24 @@ public class PlanSectionDefinitionWrapper implements PlanSectionDefinition,
         _planSectionDefinition.setLocked(locked);
     }
 
+    /**
+    * Returns the tab of this plan section definition.
+    *
+    * @return the tab of this plan section definition
+    */
+    public java.lang.String getTab() {
+        return _planSectionDefinition.getTab();
+    }
+
+    /**
+    * Sets the tab of this plan section definition.
+    *
+    * @param tab the tab of this plan section definition
+    */
+    public void setTab(java.lang.String tab) {
+        _planSectionDefinition.setTab(tab);
+    }
+
     public boolean isNew() {
         return _planSectionDefinition.isNew();
     }

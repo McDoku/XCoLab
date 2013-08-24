@@ -199,6 +199,33 @@ public class ActivitySubscriptionWrapper implements ActivitySubscription,
         _activitySubscription.setModifiedDate(modifiedDate);
     }
 
+    /**
+    * Returns the automatic of this activity subscription.
+    *
+    * @return the automatic of this activity subscription
+    */
+    public boolean getAutomatic() {
+        return _activitySubscription.getAutomatic();
+    }
+
+    /**
+    * Returns <code>true</code> if this activity subscription is automatic.
+    *
+    * @return <code>true</code> if this activity subscription is automatic; <code>false</code> otherwise
+    */
+    public boolean isAutomatic() {
+        return _activitySubscription.isAutomatic();
+    }
+
+    /**
+    * Sets whether this activity subscription is automatic.
+    *
+    * @param automatic the automatic of this activity subscription
+    */
+    public void setAutomatic(boolean automatic) {
+        _activitySubscription.setAutomatic(automatic);
+    }
+
     public boolean isNew() {
         return _activitySubscription.isNew();
     }

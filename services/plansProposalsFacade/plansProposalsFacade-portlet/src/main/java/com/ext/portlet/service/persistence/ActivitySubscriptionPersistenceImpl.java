@@ -861,6 +861,7 @@ public class ActivitySubscriptionPersistenceImpl extends BasePersistenceImpl<Act
         activitySubscriptionImpl.setReceiverId(activitySubscription.getReceiverId());
         activitySubscriptionImpl.setCreateDate(activitySubscription.getCreateDate());
         activitySubscriptionImpl.setModifiedDate(activitySubscription.getModifiedDate());
+        activitySubscriptionImpl.setAutomatic(activitySubscription.isAutomatic());
 
         return activitySubscriptionImpl;
     }

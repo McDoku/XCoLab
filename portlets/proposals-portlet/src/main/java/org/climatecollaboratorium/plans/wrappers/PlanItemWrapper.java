@@ -17,10 +17,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
+import org.apache.commons.lang.StringUtils;
 import org.climatecollaboratorium.events.EventBus;
 import org.climatecollaboratorium.plans.Helper;
 import org.climatecollaboratorium.plans.NavigationBean;
 import org.climatecollaboratorium.plans.PlanBean;
+import org.climatecollaboratorium.plans.PlanBean.PlanTab;
 import org.climatecollaboratorium.plans.PlanHistoryItem;
 import org.climatecollaboratorium.plans.PlanHistoryWrapper;
 import org.climatecollaboratorium.plans.PlansPermissionsBean;
@@ -33,16 +35,15 @@ import org.icefaces.ace.component.fileentry.FileEntryResults;
 
 import com.ext.portlet.NoSuchPlanPositionsException;
 import com.ext.portlet.PlanStatus;
-import com.ext.portlet.model.Contest;
 import com.ext.portlet.model.ContestPhase;
 import com.ext.portlet.model.DiscussionCategoryGroup;
 import com.ext.portlet.model.PlanAttribute;
 import com.ext.portlet.model.PlanDescription;
 import com.ext.portlet.model.PlanFan;
 import com.ext.portlet.model.PlanItem;
-import com.ext.portlet.model.PlanMeta;
 import com.ext.portlet.model.PlanModelRun;
 import com.ext.portlet.model.PlanSection;
+import com.ext.portlet.model.PlanSectionDefinition;
 import com.ext.portlet.model.PlanType;
 import com.ext.portlet.plans.PlanConstants;
 import com.ext.portlet.service.ActivitySubscriptionLocalServiceUtil;
@@ -52,6 +53,7 @@ import com.ext.portlet.service.DiscussionCategoryGroupLocalServiceUtil;
 import com.ext.portlet.service.PlanAttributeLocalServiceUtil;
 import com.ext.portlet.service.PlanItemGroupLocalServiceUtil;
 import com.ext.portlet.service.PlanItemLocalServiceUtil;
+import com.ext.portlet.service.PlanSectionDefinitionLocalServiceUtil;
 import com.ext.portlet.service.PlanTypeLocalServiceUtil;
 import com.ext.portlet.service.PlanVoteLocalServiceUtil;
 import com.ext.utils.userInput.UserInputException;
@@ -913,10 +915,15 @@ public class PlanItemWrapper implements Serializable {
     }
 
     public List<PlanSectionWrapper> getSections() throws PortalException, SystemException {
+    	PlanTab currentTab = planBean.getCurrentTab();
         if (sections == null && PlanItemLocalServiceUtil.getPlanSections(wrapped) != null) {
             sections = new ArrayList<PlanSectionWrapper>();
             for (PlanSection ps : PlanItemLocalServiceUtil.getPlanSections(wrapped)) {
-                sections.add(new PlanSectionWrapper(ps, this, false));
+            	PlanSectionDefinition psd = PlanSectionDefinitionLocalServiceUtil.getPlanSectionDefinition(ps.getPlanSectionDefinitionId());
+            	
+            	if ((StringUtils.isBlank(psd.getTab()) && currentTab == PlanTab.DESCRIPTION) || psd.getTab().toUpperCase().equals(currentTab.name())) {
+            		sections.add(new PlanSectionWrapper(ps, this, false));
+            	}
             }
             sections.get(sections.size() - 1).setLast(true);
         }

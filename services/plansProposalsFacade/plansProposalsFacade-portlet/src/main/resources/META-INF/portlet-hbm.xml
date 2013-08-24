@@ -77,6 +77,7 @@
 		<property name="receiverId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="automatic" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 	<class name="com.ext.portlet.model.impl.BalloonStatsEntryImpl" table="xcolab_BalloonStatsEntry">
 		<cache usage="read-write" />
@@ -651,6 +652,7 @@
 		<property name="characterLimit" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="focusAreaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="locked" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="tab" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.ext.portlet.model.impl.PlanSectionDefinitionListItemImpl" table="xcolab_PlanSectionDefinitionListItem">
 		<cache usage="read-write" />

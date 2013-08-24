@@ -27,10 +27,11 @@ public class ActivitySubscriptionCacheModel implements CacheModel<ActivitySubscr
     public long receiverId;
     public long createDate;
     public long modifiedDate;
+    public boolean automatic;
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(17);
+        StringBundler sb = new StringBundler(19);
 
         sb.append("{pk=");
         sb.append(pk);
@@ -48,6 +49,8 @@ public class ActivitySubscriptionCacheModel implements CacheModel<ActivitySubscr
         sb.append(createDate);
         sb.append(", modifiedDate=");
         sb.append(modifiedDate);
+        sb.append(", automatic=");
+        sb.append(automatic);
         sb.append("}");
 
         return sb.toString();
@@ -80,6 +83,8 @@ public class ActivitySubscriptionCacheModel implements CacheModel<ActivitySubscr
         } else {
             activitySubscriptionImpl.setModifiedDate(new Date(modifiedDate));
         }
+
+        activitySubscriptionImpl.setAutomatic(automatic);
 
         activitySubscriptionImpl.resetOriginalValues();
 

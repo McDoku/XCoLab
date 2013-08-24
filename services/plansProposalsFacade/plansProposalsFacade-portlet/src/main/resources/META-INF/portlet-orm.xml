@@ -23,6 +23,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="automatic" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>
@@ -768,6 +769,7 @@
 			<basic name="characterLimit" />
 			<basic name="focusAreaId" />
 			<basic name="locked" />
+			<basic name="tab" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>

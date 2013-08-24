@@ -154,6 +154,33 @@ public class PlanModelRunWrapper implements PlanModelRun,
     }
 
     /**
+    * Returns the dirty of this plan model run.
+    *
+    * @return the dirty of this plan model run
+    */
+    public boolean getDirty() {
+        return _planModelRun.getDirty();
+    }
+
+    /**
+    * Returns <code>true</code> if this plan model run is dirty.
+    *
+    * @return <code>true</code> if this plan model run is dirty; <code>false</code> otherwise
+    */
+    public boolean isDirty() {
+        return _planModelRun.isDirty();
+    }
+
+    /**
+    * Sets whether this plan model run is dirty.
+    *
+    * @param dirty the dirty of this plan model run
+    */
+    public void setDirty(boolean dirty) {
+        _planModelRun.setDirty(dirty);
+    }
+
+    /**
     * Returns the update author ID of this plan model run.
     *
     * @return the update author ID of this plan model run

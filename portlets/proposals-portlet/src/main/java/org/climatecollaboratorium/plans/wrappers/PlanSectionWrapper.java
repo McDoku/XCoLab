@@ -47,10 +47,6 @@ public class PlanSectionWrapper implements Serializable {
     public PlanSectionWrapper(PlanSection section, PlanItemWrapper planItemWrapper, boolean last) throws NoSuchPlanItemException, SystemException {
         this.section = section;
         piw = planItemWrapper;
-        referencedPlans = new ArrayList<Long>();
-        for (PlanItem plan: PlanSectionLocalServiceUtil.getReferencedPlans(section)) {
-            referencedPlans.add(plan.getId());
-        }
         oryginalContent = section.getContent();
         oryginalReferencedId = section.getReferencedId();
         

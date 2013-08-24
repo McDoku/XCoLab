@@ -12,6 +12,7 @@
 		<field name="receiverId" type="long" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
+		<field name="automatic" type="boolean" />
 	</model>
 	<model name="com.ext.portlet.model.BalloonStatsEntry">
 		<field name="id" type="long" />
@@ -588,6 +589,7 @@
 		<field name="characterLimit" type="int" />
 		<field name="focusAreaId" type="long" />
 		<field name="locked" type="boolean" />
+		<field name="tab" type="String" />
 	</model>
 	<model name="com.ext.portlet.model.PlanSectionDefinitionListItem">
 		<field name="id" type="long" />

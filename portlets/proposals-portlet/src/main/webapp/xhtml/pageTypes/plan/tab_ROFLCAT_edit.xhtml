@@ -1,0 +1,33 @@
+<f:view xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:collab="http://climatecollaboratorium.org/facelets"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:addthis="http://www.addthis.com/help/api-spec">
+
+  <ice:form>
+  
+    <div class="prop-left" id="addpropform">
+	<img src="http://www.roflcat.com/images/cats/I_SEEZ_YOU.jpg" />
+	
+        <ice:panelGroup rendered="#{proposal.plan.hasSections}">
+            <ice:panelSeries var="section" value="#{proposal.plan.sections}">
+                <f:subview rendered="#{section.type == 'TEXT'}">
+                	<ui:include src="./sections/edit_section_TEXT.xhtml" />
+                </f:subview>
+                <f:subview rendered="#{section.type == 'PROPOSAL_REFERENCE'}">
+                	<ui:include src="./sections/edit_section_PROPOSAL_REFERENCE.xhtml" />
+                </f:subview>
+            </ice:panelSeries>
+        </ice:panelGroup>
+        
+	</div>
+        
+	<ui:include src="sections/common_section_edit_scripts.xhtml" />
+   
+    
+    <ui:include src="./widget_PROPOSAL_SUMMARY.xhtml" />
+    
+    <ui:include src="sections/common_sections_popups_buttons.xhtml" />
+  </ice:form>
+</f:view>

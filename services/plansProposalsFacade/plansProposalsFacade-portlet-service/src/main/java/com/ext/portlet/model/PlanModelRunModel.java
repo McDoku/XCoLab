@@ -129,6 +129,27 @@ public interface PlanModelRunModel extends BaseModel<PlanModelRun> {
     public void setCreated(Date created);
 
     /**
+     * Returns the dirty of this plan model run.
+     *
+     * @return the dirty of this plan model run
+     */
+    public boolean getDirty();
+
+    /**
+     * Returns <code>true</code> if this plan model run is dirty.
+     *
+     * @return <code>true</code> if this plan model run is dirty; <code>false</code> otherwise
+     */
+    public boolean isDirty();
+
+    /**
+     * Sets whether this plan model run is dirty.
+     *
+     * @param dirty the dirty of this plan model run
+     */
+    public void setDirty(boolean dirty);
+
+    /**
      * Returns the update author ID of this plan model run.
      *
      * @return the update author ID of this plan model run

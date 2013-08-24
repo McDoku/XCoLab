@@ -1,0 +1,90 @@
+<f:view 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:collab="http://climatecollaboratorium.org/facelets"
+    xmlns:ice="http://www.icesoft.com/icefaces/component"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:addthis="http://www.addthis.com/help/api-spec" >
+    <script>
+        window.showAcceptTosPopup = function() {
+            jQuery("#acceptTosPopup").fadeIn("fast");
+            
+        }
+        
+        window.closeAcceptTosPopup = function() {
+            jQuery("#acceptTosPopup").fadeOut("fast");
+            
+        }
+        
+        window.tosAcceptedSave = function() {
+            jQuery("#forceSaveButton a").click();
+            jQuery("#acceptTosPopup").fadeOut("fast");
+            
+        }
+    </script>
+    
+    
+<div id="acceptTosPopup" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 100; display: none; ">
+<div class="popup-wrap p1" id="acceptTosPopup">
+ <div class="popup">
+  <h4>By saving your proposal you are entering the Climate CoLab contest and agree to the&#160;<a href="/web/guest/resources/-/wiki/Main/Terms+of+use" target="_blank">Terms of Use</a>&#160;and Contest Rules.</h4>
+  <h5>CONTEST RULES:</h5>
+  <div class="terms">
+    <ice:outputText value="#{preferences.defaultDescription}" escape="false" />
+  </div>
+  <div class="btns">
+   <div class="blue-button"><a href="javascript:;" onclick="tosAcceptedSave();" class="cp1-1">ACCEPT</a></div> <div class="gray-button"><a href="javascript:;" class="cp1-2" onclick="closeAcceptTosPopup();">DO NOT Accept</a></div>
+  </div>
+ </div>
+</div>
+</div>
+
+<div id="invalidFieldsPopupContainer" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 100; display: none; ">
+<div class="popup-wrap p1" id="invalidFieldsPopup">
+ <div class="popup">
+  <h4>The following sections have too many characters:</h4>
+  <ul id="invalidFieldsList">
+  </ul>
+  <div class="btns">
+   <div class="blue-button"><a href="javascript:;" onclick="jQuery('#invalidFieldsPopupContainer').fadeOut('fast')" class="cp1-1">CLOSE</a></div>
+  </div>
+ </div>
+</div>
+</div>
+    
+    <div class="admin-overlay-wrap">
+        <div class="admin-overlay">
+            <div class="inner">
+                <div class="admin-left">
+                    <p>
+                        <f:subview rendered="#{proposal.plan.version le 1}">
+                            You are currently editing a new proposal
+                        </f:subview>
+                        <f:subview rendered="#{proposal.plan.version gt 1}">
+                            You are editing a proposal
+                        </f:subview>
+                    <br />
+                    "#{proposal.plan.name}"</p>
+                    <div class="blue-button"><ice:commandLink value="SAVE changes" actionListener="#{proposal.plan.saveContent}" onclick="if (!validatePlanEditForm()) return false; if (#{proposal.plan.version} &lt;= 1) {window.showAcceptTosPopup(); return false; }" /></div> 
+                    <div class="gray-button"><ice:commandLink value="DISCARD changes" actionListener="#{proposal.toggleEditing}" /></div>
+                </div>
+                <div class="admin-right">
+                    <p>&#160;</p>
+                </div>
+            </div>
+        </div>
+</div>
+    <div id="forceSaveButton" style="display: none;">
+        <ice:commandLink value="SAVE changes" actionListener="#{proposal.plan.saveContent}" style="display: none;" />
+    </div>
+    
+        <ice:panelGroup styleClass="hidden ">
+            <script type="text/javascript">
+                Collab.nav.addEditorDirtyValidationCallback(checkIfPlanDescriptionDirty);
+                initiailzeEditTrigger(#{permissions.loggedIn}, #{permissions.canEdit}, #{permissions.planEditable},true);
+            </script>
+        </ice:panelGroup>
+        
+    
+</f:view>

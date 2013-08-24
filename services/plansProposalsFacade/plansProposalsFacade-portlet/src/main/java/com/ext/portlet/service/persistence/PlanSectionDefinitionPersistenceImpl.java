@@ -509,6 +509,7 @@ public class PlanSectionDefinitionPersistenceImpl extends BasePersistenceImpl<Pl
         planSectionDefinitionImpl.setCharacterLimit(planSectionDefinition.getCharacterLimit());
         planSectionDefinitionImpl.setFocusAreaId(planSectionDefinition.getFocusAreaId());
         planSectionDefinitionImpl.setLocked(planSectionDefinition.isLocked());
+        planSectionDefinitionImpl.setTab(planSectionDefinition.getTab());
 
         return planSectionDefinitionImpl;
     }

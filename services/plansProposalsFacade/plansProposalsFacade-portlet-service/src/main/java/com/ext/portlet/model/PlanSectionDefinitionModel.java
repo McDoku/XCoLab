@@ -181,6 +181,21 @@ public interface PlanSectionDefinitionModel extends BaseModel<PlanSectionDefinit
      */
     public void setLocked(boolean locked);
 
+    /**
+     * Returns the tab of this plan section definition.
+     *
+     * @return the tab of this plan section definition
+     */
+    @AutoEscape
+    public String getTab();
+
+    /**
+     * Sets the tab of this plan section definition.
+     *
+     * @param tab the tab of this plan section definition
+     */
+    public void setTab(String tab);
+
     public boolean isNew();
 
     public void setNew(boolean n);

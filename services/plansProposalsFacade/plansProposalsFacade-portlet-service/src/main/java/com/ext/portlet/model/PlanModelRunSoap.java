@@ -20,6 +20,7 @@ public class PlanModelRunSoap implements Serializable {
     private long _planVersion;
     private long _version;
     private Date _created;
+    private boolean _dirty;
     private long _updateAuthorId;
 
     public PlanModelRunSoap() {
@@ -34,6 +35,7 @@ public class PlanModelRunSoap implements Serializable {
         soapModel.setPlanVersion(model.getPlanVersion());
         soapModel.setVersion(model.getVersion());
         soapModel.setCreated(model.getCreated());
+        soapModel.setDirty(model.getDirty());
         soapModel.setUpdateAuthorId(model.getUpdateAuthorId());
 
         return soapModel;
@@ -129,6 +131,18 @@ public class PlanModelRunSoap implements Serializable {
 
     public void setCreated(Date created) {
         _created = created;
+    }
+
+    public boolean getDirty() {
+        return _dirty;
+    }
+
+    public boolean isDirty() {
+        return _dirty;
+    }
+
+    public void setDirty(boolean dirty) {
+        _dirty = dirty;
     }
 
     public long getUpdateAuthorId() {

@@ -1,0 +1,231 @@
+<f:view 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:collab="http://climatecollaboratorium.org/facelets"
+    xmlns:ice="http://www.icesoft.com/icefaces/component"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:addthis="http://www.addthis.com/help/api-spec" >
+   
+        
+        <script>
+        try {
+            jQuery("#addpropform .helpTrigger").click(function() {
+                var trigger = jQuery(this);
+                trigger.parent().parent().find(".addprophelp").slideToggle("fast");
+            });
+            
+            window.validatePlanEditForm = function() {
+                for (var ckInstanceId in CKEDITOR.instances) {
+                    if (document.getElementById(ckInstanceId)) {
+                    	var ckInstance = CKEDITOR.instances[ckInstanceId];
+                        ckInstance.element['$'].value = ckInstance.getData();
+                    }
+                }
+                var invalidFieldsList = jQuery("#invalidFieldsList");
+                invalidFieldsList.html("");
+                
+                var isValid = true;
+                jQuery("input[type='text'].invalid, textarea.invalid").each(function() {
+                    var x = jQuery(this).parents(".addpropbox");
+                    invalidFieldsList.append("&lt;li&gt;" + jQuery(this).parents(".addpropbox").find("strong").text() + "&lt;/li&gt;");
+                    
+                    isValid = false;   
+                });
+                if (!isValid) {
+                    jQuery("#invalidFieldsPopupContainer").show();
+                }
+                for (var ckInstanceId in CKEDITOR.instances) {
+                    if (document.getElementById(ckInstanceId)) {
+                    	// remove all instances
+                    	//ckInstance.destroy();
+                    }
+                }
+                //delete CKEDITOR;
+                
+                return isValid;
+            };
+            
+            function countCharacters(input, editor) {
+                /*var tmp = input;
+                if (typeof(input) != 'string') {
+                    tmp = input.val();
+                }
+                tmp = tmp.replace(/&lt;[^&gt;]*&gt;/g, "");
+                */
+                if (editor) {
+                	if (editor == null || editor.document == null) return 0;
+                    if (editor.document['$'].body.textContent) {
+                        return editor.document['$'].body.textContent.length;
+                        
+                    }
+                    if (editor.document['$'].body.innerText) {
+                        return editor.document['$'].body.innerText.length;
+                    }
+                }
+                return input.val().replace(/&lt;[^&gt;]*&gt;/g, "").replace(/\s+/g, " ").length;
+                
+            }
+            
+            function shouldAllowMoreCharacters(input) {
+                if (typeof(input.attr('validateLength')) == 'undefined' || typeof(input.attr('maxCharacters')) == 'undefined' || input.attr('maxCharacters') + 0 &lt;= 0) {
+                    return true;
+                }
+                return input.attr('maxCharacters') > input.val().length;
+            }
+            
+            function updateCharacterCounter(input, editor) {
+            
+                
+                
+                var elem = input.get(0);
+                var max = input.attr('maxCharacters');
+                if (elem &amp;&amp; elem.limitCharacterCounter) {
+                    var count = countCharacters(input, editor);
+                    if (count > 1 * max) {
+                        elem.limitCharacterCounter.parent().addClass('overflow');
+                        input.addClass('invalid');
+                    }
+                    else {
+                        elem.limitCharacterCounter.parent().removeClass('overflow');
+                        input.removeClass('invalid');
+                    }
+                    elem.limitCharacterCounter.text(count);
+                }
+            }
+            
+            
+            jQuery("input[type='text'], textarea").each(function() {
+                if (jQuery(this).hasClass('rteInitialized')) {
+                    return;
+                }
+                
+                
+                var tmp = this;
+                var thiz = jQuery(this);
+                
+                var limitCharactersMax = thiz.parent().find(".limit_charactersMax");
+                var limitCharacterCount = thiz.parent().find(".limit_characterCount");
+                
+                
+                
+                if (limitCharactersMax.length > 0) {
+                    thiz.attr({maxCharacters: limitCharactersMax.text(), validateLength: true});
+                    this.limitCharacterCounter = limitCharacterCount;
+                    updateCharacterCounter(thiz);
+                }
+                else {
+                    thiz.attr({validateLength: false});
+                }
+                
+                eventsToBind = {
+                            keypress: function(event) {
+                                if (! shouldAllowMoreCharacters(thiz)) {
+                                    //event.preventDefault();
+                                }
+                                if (thiz.attr('validateLength') &amp;&amp; tmp.limitCharacterCounter) {
+                                    updateCharacterCounter(thiz);
+                                }
+                            },
+                            keyup: function(event) {
+                                if (thiz.attr('validateLength') &amp;&amp; tmp.limitCharacterCounter) {
+                                    updateCharacterCounter(thiz);
+                                }
+                            }
+                        };
+                if (thiz.hasClass("rte")) {
+                    /*
+                    thiz.wysiwyg({
+                        css: '/climatecolab-theme/css/style.css', 
+                        events: eventsToBind,
+                        rmUnusedControls: true,
+                        width: "440px",
+                        dialog:"jqueryui",
+                        initialContent: "",
+                        brIE: false,
+                        controls: {
+                            bold: { visible : true }, italic: {visible: true}, underline: {visible: true}, insertOrderedList: {visible: true}, insertUnorderedList: {visible: true},
+                            insertImage: {visible: true}, createLink: {visible: true}
+                        },
+                        plugins: {
+                            rmFormat: { rmMsWordMarkup: true, rules: {heading: true, table: true }}
+                        }
+                    });*/
+                    
+                    //jQuery(this).parent().mouseenter(function() { jQuery(this).addClass("mousein"); }).mouseleave( function() { jQuery(this).removeClass("mousein"); } );
+
+                    var refreshEditor = false;
+                    var maxSteps = 10;
+                    while (thiz.attr("id") in CKEDITOR.instances &amp;&amp; maxSteps > 0) {
+                    	maxSteps --;
+                    	try {
+                			CKEDITOR.remove(CKEDITOR.instances[thiz.attr("id")]);
+                    		refreshEditor = true;
+                    	}
+                    	catch (e) {
+                    		if (console) {
+                    			console.warn("exception thrown when removing a CKEDITOR instance", e);
+                    		}
+                    	}
+                    }
+                    
+                    var editor = CKEDITOR.replace(thiz.attr("id"));
+                    
+                    thiz.get(0)["ckeditor"] = editor;
+                    editor.updatedCharCount = false;
+                   
+                    function updateEditorCharCount() {
+                        try{
+                        	if (editor == null) return;
+                        	
+                            if (editor &amp;&amp;  editor.document &amp;&amp; editor.document['$'] &amp;&amp; (editor.checkDirty() || !editor.updatedCharCount)) {
+                                /*editor.element['$'].value = editor.getData();
+                                */
+                            
+                                updateCharacterCounter(thiz, editor);
+                                editor.updatedCharCount = true;
+                                editor.resetDirty();
+                            }
+                        
+                            setTimeout(updateEditorCharCount, 1000);
+                        }
+                        catch (e) {
+                            if (typeof(console) != 'undefined' &amp;&amp; typeof(console.log) != 'undefined') {
+                                console.log(e);
+                            }
+                        }
+                    }
+                    
+                    if (! jQuery.browser.ie || jQuery.browser.version.number >= 9) {
+                    
+                        updateEditorCharCount();
+                    }
+                    
+                    editor.on("blur", function() {
+                        updateCharacterCounter(thiz, editor);
+                    });
+                    // initiate char counters
+                    setTimeout(function() { updateCharacterCounter(thiz, editor); }, 2000);
+                            
+                }
+                else {
+                    thiz.bind(eventsToBind);
+                }
+                
+ 
+                jQuery(this).addClass('rteInitialized');
+                
+                
+                
+            });
+            
+            }
+            catch(e) {
+            	console.log(e);
+            }
+        </script>
+        
+        
+     
+    
+</f:view>

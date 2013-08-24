@@ -6,7 +6,8 @@ create table xcolab_ActivitySubscription (
 	extraData TEXT null,
 	receiverId LONG,
 	createDate DATE null,
-	modifiedDate DATE null
+	modifiedDate DATE null,
+	automatic BOOLEAN
 );
 
 create table xcolab_BalloonStatsEntry (
@@ -494,7 +495,8 @@ create table xcolab_PlanSectionDefinition (
 	helpText TEXT null,
 	characterLimit INTEGER,
 	focusAreaId LONG,
-	locked BOOLEAN
+	locked BOOLEAN,
+	tab VARCHAR(75) null
 );
 
 create table xcolab_PlanSectionDefinitionListItem (

@@ -57,9 +57,12 @@
            
            <ice:outputLabel value="Title" />
            <ice:inputText value="#{planSectionDefinitionsAdmin.edited.definition.title}" styleClass="inputWide"  />
-           
+            
            <ice:outputLabel value="Help text" />
            <ice:inputTextarea value="#{planSectionDefinitionsAdmin.edited.definition.helpText}" styleClass="defaultText" />
+           
+           <ice:outputLabel value="Tab (leave empty for description)" />
+           <ice:inputText value="#{planSectionDefinitionsAdmin.edited.definition.tab}" styleClass="inputWide" />
            
            <ice:outputLabel value="Section type" />
            <ice:selectOneMenu value="#{planSectionDefinitionsAdmin.edited.type}" partialSubmit="true" >

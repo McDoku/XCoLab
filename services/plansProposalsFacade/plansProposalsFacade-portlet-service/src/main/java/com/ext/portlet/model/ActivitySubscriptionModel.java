@@ -167,6 +167,27 @@ public interface ActivitySubscriptionModel extends AttachedModel,
      */
     public void setModifiedDate(Date modifiedDate);
 
+    /**
+     * Returns the automatic of this activity subscription.
+     *
+     * @return the automatic of this activity subscription
+     */
+    public boolean getAutomatic();
+
+    /**
+     * Returns <code>true</code> if this activity subscription is automatic.
+     *
+     * @return <code>true</code> if this activity subscription is automatic; <code>false</code> otherwise
+     */
+    public boolean isAutomatic();
+
+    /**
+     * Sets whether this activity subscription is automatic.
+     *
+     * @param automatic the automatic of this activity subscription
+     */
+    public void setAutomatic(boolean automatic);
+
     public boolean isNew();
 
     public void setNew(boolean n);
