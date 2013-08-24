@@ -1873,14 +1873,27 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
             Long referenceId, List<Long> referencedPlans, Long updateAuthorId)
             throws SystemException, PortalException {
 
+		PlanSection oldSection = PlanSectionLocalServiceUtil.getCurrentForPlanSectionDef(pi, psd);
         newVersion(pi, UpdateType.PLAN_SECTION_UPDATED, updateAuthorId);
         PlanSection ps = PlanSectionLocalServiceUtil
                 .createNewVersionForPlanSectionDefinition(pi, psd, false);
         ps.setUpdateAuthorId(updateAuthorId);
         ps.setReferencedId(referenceId);
 
-        for (Long planId : referencedPlans) {
-            PlanSectionLocalServiceUtil.addPlanReference(ps, planId);
+        if (oldSection.getReferencedId() != ps.getReferencedId()) {
+        	// unsubscribe all automatic subscriptions from referenced proposal
+        	if (oldSection.getReferencedId() > 0) {
+                ActivitySubscriptionLocalServiceUtil.deleteSubscription(updateAuthorId, PlanItem.class, pi.getPlanId(), 0, "", true);
+                ActivitySubscriptionLocalServiceUtil.deleteSubscription(updateAuthorId, DiscussionCategoryGroup.class, PlanItemLocalServiceUtil.getCategoryGroupId(pi),
+                        0, "", true);
+        	}
+        	if (ps.getReferencedId() > 0) {
+
+                ActivitySubscriptionLocalServiceUtil.addSubscription(PlanItem.class, pi.getPlanId(), 0, "",
+                        updateAuthorId, true);
+                ActivitySubscriptionLocalServiceUtil.addSubscription(DiscussionCategoryGroup.class, PlanItemLocalServiceUtil.getCategoryGroupId(pi),
+                        0, "", updateAuthorId, true);
+        	}
         }
 
         PlanSectionLocalServiceUtil.store(ps);
@@ -2266,8 +2279,11 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 	
 	public List<String> getPlanSectionsTabs(PlanItem planItem) throws PortalException, SystemException {
 		List<String> ret = new ArrayList<>();
-		for (PlanSectionDefinition psd: PlanTemplateLocalServiceUtil.getSections(getPlanTemplate(planItem))) {
-			ret.add(psd.getTab());
+		PlanTemplate template = getPlanTemplate(planItem);
+		if (template != null) {
+			for (PlanSectionDefinition psd: PlanTemplateLocalServiceUtil.getSections(template)) {
+				ret.add(psd.getTab());
+			}
 		}
 		
 		return ret;

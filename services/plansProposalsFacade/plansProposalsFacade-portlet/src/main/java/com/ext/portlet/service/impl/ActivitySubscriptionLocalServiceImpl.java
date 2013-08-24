@@ -91,25 +91,53 @@ public class ActivitySubscriptionLocalServiceImpl
     }
     
     public void deleteSubscription(Long userId, Long classNameId, Long classPK, Integer type, String extraData) throws SystemException {
+    	deleteSubscription(userId, classNameId, classPK, type, extraData, false);
+    }
+    
+    public void deleteSubscription(Long userId, Long classNameId, Long classPK, Integer type, String extraData, boolean automaticOnly) throws SystemException {
         List<ActivitySubscription> subscriptions = 
             ActivitySubscriptionUtil.findByClassNameIdClassPKTypeExtraDataReceiverId(classNameId, classPK, type, extraData, userId);
         for (ActivitySubscription subscription: subscriptions) {
+        	if (automaticOnly) {
+        		// remove only automatic subscriptions, if auto set to true, just ignore this subscription
+        		if (!subscription.getAutomatic()) continue;
+        	}
             delete(subscription);
         }
-        
     }
     
     public void deleteSubscription(Long userId, Class clasz, Long classPK, Integer type, String extraData) throws SystemException {
         deleteSubscription(userId, PortalUtil.getClassNameId(clasz), classPK, type, extraData);
     }
+    
+    public void deleteSubscription(Long userId, Class clasz, Long classPK, Integer type, String extraData, boolean automaticOnly) throws SystemException {
+        deleteSubscription(userId, PortalUtil.getClassNameId(clasz), classPK, type, extraData, automaticOnly);
+    }
+    
 
     public void addSubscription(Long classNameId, Long classPK, Integer type, String extraData, Long userId)
             throws PortalException, SystemException {
 
+    	addSubscription(classNameId, classPK, type, extraData, userId, false);
+    }    
+    
+    public void addSubscription(Long classNameId, Long classPK, Integer type, String extraData, Long userId, boolean auto)
+            throws PortalException, SystemException {
+    	
+    	List<ActivitySubscription> subscriptions = 
+    			ActivitySubscriptionUtil.findByClassNameIdClassPKTypeExtraDataReceiverId(classNameId, classPK, type, extraData, userId);
+
         if (ActivitySubscriptionUtil.findByClassNameIdClassPKTypeExtraDataReceiverId(classNameId, classPK, type,
                 extraData, userId).size() > 0) {
-            // subscription exists, do nothing
-            return;
+        	if (auto == false) {
+        		// if existing subscription was automatic then change it to normal
+        		for (ActivitySubscription subscription: subscriptions) {
+        			subscription.setAutomatic(false);
+        			
+        			store(subscription);
+        		}
+        	}
+        	return;
         }
 
         Long pk = CounterLocalServiceUtil.increment(ActivitySubscription.class.getName());
@@ -123,6 +151,7 @@ public class ActivitySubscriptionLocalServiceImpl
 
         subscription.setModifiedDate(new Date());
         subscription.setCreateDate(new Date());
+        subscription.setAutomatic(auto);
 
         store(subscription);
     }
@@ -131,6 +160,12 @@ public class ActivitySubscriptionLocalServiceImpl
             throws PortalException, SystemException {
         Long classNameId = ClassNameLocalServiceUtil.getClassNameId(clasz);
         addSubscription(classNameId, classPK, type, extraData, userId);
+    }
+    
+    public void addSubscription(Class clasz, Long classPK, Integer type, String extraData, Long userId, boolean auto)
+            throws PortalException, SystemException {
+        Long classNameId = ClassNameLocalServiceUtil.getClassNameId(clasz);
+        addSubscription(classNameId, classPK, type, extraData, userId, auto);
     }
 
 
