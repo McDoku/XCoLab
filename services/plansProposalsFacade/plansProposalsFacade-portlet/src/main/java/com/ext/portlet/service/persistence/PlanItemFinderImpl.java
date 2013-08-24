@@ -107,6 +107,11 @@ public class PlanItemFinderImpl extends BasePersistenceImpl implements PlanItemF
      * Name of custom SQL statement that is responsible for retrieval of latest plan version for given id;
      */
     public static final String GET_LATEST_VERSION_OF_PLAN = PlanItemFinderImpl.class.getName() + ".getLatestPlanVersion";
+    
+    /**
+    * Name of custom SQL statement that is responsible for retrieval of latest plan version for given id;
+    */
+    public static final String GET_PLANIDS_REFERENCING_PLAN = PlanItemFinderImpl.class.getName() + ".getPlanIdsReferencingPlan";
 
     /**
      * Position of published parameter in custom queries.
@@ -429,6 +434,16 @@ public class PlanItemFinderImpl extends BasePersistenceImpl implements PlanItemF
         query.setLong(0, planId);
         query.executeUpdate();
      }
+    
+    public List<Long> getPlanIdsReferencingPlan(long planId) {
+    	Session session = openSession();
+    	String sql = CustomSQLUtil.get(GET_PLANIDS_REFERENCING_PLAN);
+    	SQLQuery query = session.createSQLQuery(sql);
+    	
+    	query.setLong(0, planId);
+    	
+    	return query.list();
+    }
     
     
 

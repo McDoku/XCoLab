@@ -53,9 +53,10 @@ public class PlanModelRunModelImpl extends BaseModelImpl<PlanModelRun>
             { "planVersion", Types.BIGINT },
             { "version", Types.BIGINT },
             { "created", Types.TIMESTAMP },
+            { "dirty", Types.BOOLEAN },
             { "updateAuthorId", Types.BIGINT }
         };
-    public static final String TABLE_SQL_CREATE = "create table xcolab_PlanModelRun (id_ LONG not null primary key,planId LONG,scenarioId LONG,planVersion LONG,version LONG,created DATE null,updateAuthorId LONG)";
+    public static final String TABLE_SQL_CREATE = "create table xcolab_PlanModelRun (id_ LONG not null primary key,planId LONG,scenarioId LONG,planVersion LONG,version LONG,created DATE null,dirty BOOLEAN,updateAuthorId LONG)";
     public static final String TABLE_SQL_DROP = "drop table xcolab_PlanModelRun";
     public static final String ORDER_BY_JPQL = " ORDER BY planModelRun.id DESC";
     public static final String ORDER_BY_SQL = " ORDER BY xcolab_PlanModelRun.id_ DESC";
@@ -89,6 +90,7 @@ public class PlanModelRunModelImpl extends BaseModelImpl<PlanModelRun>
     private boolean _setOriginalPlanVersion;
     private long _version;
     private Date _created;
+    private boolean _dirty;
     private long _updateAuthorId;
     private transient ExpandoBridge _expandoBridge;
     private long _columnBitmask;
@@ -112,6 +114,7 @@ public class PlanModelRunModelImpl extends BaseModelImpl<PlanModelRun>
         model.setPlanVersion(soapModel.getPlanVersion());
         model.setVersion(soapModel.getVersion());
         model.setCreated(soapModel.getCreated());
+        model.setDirty(soapModel.getDirty());
         model.setUpdateAuthorId(soapModel.getUpdateAuthorId());
 
         return model;
@@ -238,6 +241,19 @@ public class PlanModelRunModelImpl extends BaseModelImpl<PlanModelRun>
     }
 
     @JSON
+    public boolean getDirty() {
+        return _dirty;
+    }
+
+    public boolean isDirty() {
+        return _dirty;
+    }
+
+    public void setDirty(boolean dirty) {
+        _dirty = dirty;
+    }
+
+    @JSON
     public long getUpdateAuthorId() {
         return _updateAuthorId;
     }
@@ -286,6 +302,7 @@ public class PlanModelRunModelImpl extends BaseModelImpl<PlanModelRun>
         planModelRunImpl.setPlanVersion(getPlanVersion());
         planModelRunImpl.setVersion(getVersion());
         planModelRunImpl.setCreated(getCreated());
+        planModelRunImpl.setDirty(getDirty());
         planModelRunImpl.setUpdateAuthorId(getUpdateAuthorId());
 
         planModelRunImpl.resetOriginalValues();
@@ -378,6 +395,8 @@ public class PlanModelRunModelImpl extends BaseModelImpl<PlanModelRun>
             planModelRunCacheModel.created = Long.MIN_VALUE;
         }
 
+        planModelRunCacheModel.dirty = getDirty();
+
         planModelRunCacheModel.updateAuthorId = getUpdateAuthorId();
 
         return planModelRunCacheModel;
@@ -385,7 +404,7 @@ public class PlanModelRunModelImpl extends BaseModelImpl<PlanModelRun>
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(15);
+        StringBundler sb = new StringBundler(17);
 
         sb.append("{id=");
         sb.append(getId());
@@ -399,6 +418,8 @@ public class PlanModelRunModelImpl extends BaseModelImpl<PlanModelRun>
         sb.append(getVersion());
         sb.append(", created=");
         sb.append(getCreated());
+        sb.append(", dirty=");
+        sb.append(getDirty());
         sb.append(", updateAuthorId=");
         sb.append(getUpdateAuthorId());
         sb.append("}");
@@ -407,7 +428,7 @@ public class PlanModelRunModelImpl extends BaseModelImpl<PlanModelRun>
     }
 
     public String toXmlString() {
-        StringBundler sb = new StringBundler(25);
+        StringBundler sb = new StringBundler(28);
 
         sb.append("<model><model-name>");
         sb.append("com.ext.portlet.model.PlanModelRun");
@@ -436,6 +457,10 @@ public class PlanModelRunModelImpl extends BaseModelImpl<PlanModelRun>
         sb.append(
             "<column><column-name>created</column-name><column-value><![CDATA[");
         sb.append(getCreated());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>dirty</column-name><column-value><![CDATA[");
+        sb.append(getDirty());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>updateAuthorId</column-name><column-value><![CDATA[");

@@ -1090,6 +1090,7 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 		PlanModelRun planModelRun = PlanModelRunLocalServiceUtil
 				.createNewVersionForPlan(pi);
 		planModelRun.setScenarioId(scenarioId);
+		
 		PlanModelRunLocalServiceUtil.store(planModelRun);
 
 		// update plan attributes to reflect values from new scenario
@@ -1100,8 +1101,22 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 			updateAttribute(pi, attribute);
 		}
 
+		// find plans that reference this plan and mark their plan model runs as dirty
+		for (PlanItem referencingPlan: getPlansReferencingPlan(pi)) {
+			markModelRunDirty(referencingPlan);
+		}
+		
+
 		reindex(pi);
 		// joinIfNotAMember(authorId);
+	}
+	
+	public void markModelRunDirty(PlanItem pi) throws SystemException {
+		PlanModelRun pmr = PlanModelRunLocalServiceUtil.getCurrentForPlan(pi);
+		pmr.setDirty(true);
+		
+		PlanModelRunLocalServiceUtil.store(pmr);
+		
 	}
 
 	public void setModelId(PlanItem pi, Long simulationId, Long authorId)
@@ -2237,5 +2252,19 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 		} catch (SearchException e) {
 			_log.error("Can't reindex plan " + plan.getPlanId(), e);
 		}
+	}
+	
+	public List<PlanItem> getPlansReferencingPlan(PlanItem referencedPlan) throws NoSuchPlanItemException, SystemException {
+		
+		List<Long> planIds = planItemFinder.getPlanIdsReferencingPlan(referencedPlan.getPlanId());
+		List<PlanItem> plans = new ArrayList<>();
+		if (planIds != null) { 
+			for (Long planId: planIds) {
+				plans.add(getPlan(planId));
+			}
+		}
+		
+		return plans;
+		
 	}
 }

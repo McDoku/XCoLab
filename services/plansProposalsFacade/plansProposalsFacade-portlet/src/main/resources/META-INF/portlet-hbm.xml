@@ -51,11 +51,9 @@
 	<import class="com.ext.portlet.model.PlanPositionItem" />
 	<import class="com.ext.portlet.model.PlanPositions" />
 	<import class="com.ext.portlet.model.PlanPropertyFilter" />
-	<import class="com.ext.portlet.model.PlanRelated" />
 	<import class="com.ext.portlet.model.PlanSection" />
 	<import class="com.ext.portlet.model.PlanSectionDefinition" />
 	<import class="com.ext.portlet.model.PlanSectionDefinitionListItem" />
-	<import class="com.ext.portlet.model.PlanSectionPlanMap" />
 	<import class="com.ext.portlet.model.PlansFilter" />
 	<import class="com.ext.portlet.model.PlansFilterPosition" />
 	<import class="com.ext.portlet.model.PlansUserSettings" />
@@ -585,6 +583,7 @@
 		<property name="planVersion" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="created" type="org.hibernate.type.TimestampType" />
+		<property name="dirty" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="updateAuthorId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.ext.portlet.model.impl.PlanPositionImpl" table="xcolab_PlanPosition">
@@ -625,13 +624,6 @@
 		<property name="planUserSettingsId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="value" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="com.ext.portlet.model.impl.PlanRelatedImpl" table="xcolab_PlanRelated">
-		<cache usage="read-write" />
-		<composite-id name="primaryKey" class="com.ext.portlet.service.persistence.PlanRelatedPK">
-			<key-property name="sectionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-			<key-property name="relatedPlanId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		</composite-id>
-	</class>
 	<class name="com.ext.portlet.model.impl.PlanSectionImpl" table="xcolab_PlanSection">
 		<cache usage="read-write" />
 		<id name="id" column="id_" type="long">
@@ -669,13 +661,6 @@
 		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
 		<property name="referencedId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="data" type="com.liferay.portal.dao.orm.hibernate.StringType" column="data_" />
-	</class>
-	<class name="com.ext.portlet.model.impl.PlanSectionPlanMapImpl" table="xcolab_PlanSectionPlanMap">
-		<cache usage="read-write" />
-		<composite-id name="primaryKey" class="com.ext.portlet.service.persistence.PlanSectionPlanMapPK">
-			<key-property name="sectionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-			<key-property name="relatedPlanId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		</composite-id>
 	</class>
 	<class name="com.ext.portlet.model.impl.PlansFilterImpl" table="xcolab_PlansFilter">
 		<cache usage="read-write" />

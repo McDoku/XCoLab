@@ -331,6 +331,7 @@
         <column name="planVersion" type="long" />
         <column name="version" type="long" />
         <column name="created" type="Date" /> 
+        <column name="dirty" type="boolean" />
         <column name="updateAuthorId" type="long" />
         
         <order by="desc">
@@ -516,28 +517,6 @@
     	
     </entity>
     
-    
-    <entity name="PlanSectionPlanMap" local-service="true">
-        <column name="sectionId" type="long" primary="true" />
-        <column name="relatedPlanId" type="long" primary="true" />
-        
-        <finder name="PlanId" return-type="Collection">
-            <finder-column name="relatedPlanId" />
-        </finder>
-        
-        <finder name="SectionId" return-type="Collection">
-            <finder-column name="sectionId" />
-        </finder>
-    </entity>
-    
-    <entity name="PlanRelated" local-service="true">
-        <column name="sectionId" type="long" primary="true" />
-        <column name="relatedPlanId" type="long" primary="true" />
-        
-        <finder name="PlanId" return-type="Collection">
-            <finder-column name="relatedPlanId" />
-        </finder>
-    </entity>
     
     <entity name="PlanTemplate" local-service="true">
         <column name="id" type="long" primary="true" />

@@ -456,15 +456,6 @@
 		<property name="service" ref="com.ext.portlet.service.PlanPropertyFilterService" />
 	</bean>
 	<bean id="com.ext.portlet.service.persistence.PlanPropertyFilterPersistence" class="com.ext.portlet.service.persistence.PlanPropertyFilterPersistenceImpl" parent="basePersistence" />
-	<bean id="com.ext.portlet.service.PlanRelatedLocalService" class="com.ext.portlet.service.impl.PlanRelatedLocalServiceImpl" />
-	<bean id="com.ext.portlet.service.PlanRelatedLocalServiceUtil" class="com.ext.portlet.service.PlanRelatedLocalServiceUtil">
-		<property name="service" ref="com.ext.portlet.service.PlanRelatedLocalService" />
-	</bean>
-	<bean id="com.ext.portlet.service.PlanRelatedService" class="com.ext.portlet.service.impl.PlanRelatedServiceImpl" />
-	<bean id="com.ext.portlet.service.PlanRelatedServiceUtil" class="com.ext.portlet.service.PlanRelatedServiceUtil">
-		<property name="service" ref="com.ext.portlet.service.PlanRelatedService" />
-	</bean>
-	<bean id="com.ext.portlet.service.persistence.PlanRelatedPersistence" class="com.ext.portlet.service.persistence.PlanRelatedPersistenceImpl" parent="basePersistence" />
 	<bean id="com.ext.portlet.service.PlanSectionLocalService" class="com.ext.portlet.service.impl.PlanSectionLocalServiceImpl" />
 	<bean id="com.ext.portlet.service.PlanSectionLocalServiceUtil" class="com.ext.portlet.service.PlanSectionLocalServiceUtil">
 		<property name="service" ref="com.ext.portlet.service.PlanSectionLocalService" />
@@ -492,15 +483,6 @@
 		<property name="service" ref="com.ext.portlet.service.PlanSectionDefinitionListItemService" />
 	</bean>
 	<bean id="com.ext.portlet.service.persistence.PlanSectionDefinitionListItemPersistence" class="com.ext.portlet.service.persistence.PlanSectionDefinitionListItemPersistenceImpl" parent="basePersistence" />
-	<bean id="com.ext.portlet.service.PlanSectionPlanMapLocalService" class="com.ext.portlet.service.impl.PlanSectionPlanMapLocalServiceImpl" />
-	<bean id="com.ext.portlet.service.PlanSectionPlanMapLocalServiceUtil" class="com.ext.portlet.service.PlanSectionPlanMapLocalServiceUtil">
-		<property name="service" ref="com.ext.portlet.service.PlanSectionPlanMapLocalService" />
-	</bean>
-	<bean id="com.ext.portlet.service.PlanSectionPlanMapService" class="com.ext.portlet.service.impl.PlanSectionPlanMapServiceImpl" />
-	<bean id="com.ext.portlet.service.PlanSectionPlanMapServiceUtil" class="com.ext.portlet.service.PlanSectionPlanMapServiceUtil">
-		<property name="service" ref="com.ext.portlet.service.PlanSectionPlanMapService" />
-	</bean>
-	<bean id="com.ext.portlet.service.persistence.PlanSectionPlanMapPersistence" class="com.ext.portlet.service.persistence.PlanSectionPlanMapPersistenceImpl" parent="basePersistence" />
 	<bean id="com.ext.portlet.service.PlansFilterLocalService" class="com.ext.portlet.service.impl.PlansFilterLocalServiceImpl" />
 	<bean id="com.ext.portlet.service.PlansFilterLocalServiceUtil" class="com.ext.portlet.service.PlansFilterLocalServiceUtil">
 		<property name="service" ref="com.ext.portlet.service.PlansFilterLocalService" />

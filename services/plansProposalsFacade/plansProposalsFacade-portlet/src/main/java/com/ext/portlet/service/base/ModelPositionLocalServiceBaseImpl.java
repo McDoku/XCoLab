@@ -99,15 +99,11 @@ import com.ext.portlet.service.PlanPositionsLocalService;
 import com.ext.portlet.service.PlanPositionsService;
 import com.ext.portlet.service.PlanPropertyFilterLocalService;
 import com.ext.portlet.service.PlanPropertyFilterService;
-import com.ext.portlet.service.PlanRelatedLocalService;
-import com.ext.portlet.service.PlanRelatedService;
 import com.ext.portlet.service.PlanSectionDefinitionListItemLocalService;
 import com.ext.portlet.service.PlanSectionDefinitionListItemService;
 import com.ext.portlet.service.PlanSectionDefinitionLocalService;
 import com.ext.portlet.service.PlanSectionDefinitionService;
 import com.ext.portlet.service.PlanSectionLocalService;
-import com.ext.portlet.service.PlanSectionPlanMapLocalService;
-import com.ext.portlet.service.PlanSectionPlanMapService;
 import com.ext.portlet.service.PlanSectionService;
 import com.ext.portlet.service.PlanTeamHistoryLocalService;
 import com.ext.portlet.service.PlanTeamHistoryService;
@@ -181,11 +177,9 @@ import com.ext.portlet.service.persistence.PlanPositionItemPersistence;
 import com.ext.portlet.service.persistence.PlanPositionPersistence;
 import com.ext.portlet.service.persistence.PlanPositionsPersistence;
 import com.ext.portlet.service.persistence.PlanPropertyFilterPersistence;
-import com.ext.portlet.service.persistence.PlanRelatedPersistence;
 import com.ext.portlet.service.persistence.PlanSectionDefinitionListItemPersistence;
 import com.ext.portlet.service.persistence.PlanSectionDefinitionPersistence;
 import com.ext.portlet.service.persistence.PlanSectionPersistence;
-import com.ext.portlet.service.persistence.PlanSectionPlanMapPersistence;
 import com.ext.portlet.service.persistence.PlanTeamHistoryPersistence;
 import com.ext.portlet.service.persistence.PlanTemplatePersistence;
 import com.ext.portlet.service.persistence.PlanTemplateSectionPersistence;
@@ -539,12 +533,6 @@ public abstract class ModelPositionLocalServiceBaseImpl
     protected PlanPropertyFilterService planPropertyFilterService;
     @BeanReference(type = PlanPropertyFilterPersistence.class)
     protected PlanPropertyFilterPersistence planPropertyFilterPersistence;
-    @BeanReference(type = PlanRelatedLocalService.class)
-    protected PlanRelatedLocalService planRelatedLocalService;
-    @BeanReference(type = PlanRelatedService.class)
-    protected PlanRelatedService planRelatedService;
-    @BeanReference(type = PlanRelatedPersistence.class)
-    protected PlanRelatedPersistence planRelatedPersistence;
     @BeanReference(type = PlanSectionLocalService.class)
     protected PlanSectionLocalService planSectionLocalService;
     @BeanReference(type = PlanSectionService.class)
@@ -563,12 +551,6 @@ public abstract class ModelPositionLocalServiceBaseImpl
     protected PlanSectionDefinitionListItemService planSectionDefinitionListItemService;
     @BeanReference(type = PlanSectionDefinitionListItemPersistence.class)
     protected PlanSectionDefinitionListItemPersistence planSectionDefinitionListItemPersistence;
-    @BeanReference(type = PlanSectionPlanMapLocalService.class)
-    protected PlanSectionPlanMapLocalService planSectionPlanMapLocalService;
-    @BeanReference(type = PlanSectionPlanMapService.class)
-    protected PlanSectionPlanMapService planSectionPlanMapService;
-    @BeanReference(type = PlanSectionPlanMapPersistence.class)
-    protected PlanSectionPlanMapPersistence planSectionPlanMapPersistence;
     @BeanReference(type = PlansFilterLocalService.class)
     protected PlansFilterLocalService plansFilterLocalService;
     @BeanReference(type = PlansFilterService.class)
@@ -3690,62 +3672,6 @@ public abstract class ModelPositionLocalServiceBaseImpl
     }
 
     /**
-     * Returns the plan related local service.
-     *
-     * @return the plan related local service
-     */
-    public PlanRelatedLocalService getPlanRelatedLocalService() {
-        return planRelatedLocalService;
-    }
-
-    /**
-     * Sets the plan related local service.
-     *
-     * @param planRelatedLocalService the plan related local service
-     */
-    public void setPlanRelatedLocalService(
-        PlanRelatedLocalService planRelatedLocalService) {
-        this.planRelatedLocalService = planRelatedLocalService;
-    }
-
-    /**
-     * Returns the plan related remote service.
-     *
-     * @return the plan related remote service
-     */
-    public PlanRelatedService getPlanRelatedService() {
-        return planRelatedService;
-    }
-
-    /**
-     * Sets the plan related remote service.
-     *
-     * @param planRelatedService the plan related remote service
-     */
-    public void setPlanRelatedService(PlanRelatedService planRelatedService) {
-        this.planRelatedService = planRelatedService;
-    }
-
-    /**
-     * Returns the plan related persistence.
-     *
-     * @return the plan related persistence
-     */
-    public PlanRelatedPersistence getPlanRelatedPersistence() {
-        return planRelatedPersistence;
-    }
-
-    /**
-     * Sets the plan related persistence.
-     *
-     * @param planRelatedPersistence the plan related persistence
-     */
-    public void setPlanRelatedPersistence(
-        PlanRelatedPersistence planRelatedPersistence) {
-        this.planRelatedPersistence = planRelatedPersistence;
-    }
-
-    /**
      * Returns the plan section local service.
      *
      * @return the plan section local service
@@ -3913,63 +3839,6 @@ public abstract class ModelPositionLocalServiceBaseImpl
     public void setPlanSectionDefinitionListItemPersistence(
         PlanSectionDefinitionListItemPersistence planSectionDefinitionListItemPersistence) {
         this.planSectionDefinitionListItemPersistence = planSectionDefinitionListItemPersistence;
-    }
-
-    /**
-     * Returns the plan section plan map local service.
-     *
-     * @return the plan section plan map local service
-     */
-    public PlanSectionPlanMapLocalService getPlanSectionPlanMapLocalService() {
-        return planSectionPlanMapLocalService;
-    }
-
-    /**
-     * Sets the plan section plan map local service.
-     *
-     * @param planSectionPlanMapLocalService the plan section plan map local service
-     */
-    public void setPlanSectionPlanMapLocalService(
-        PlanSectionPlanMapLocalService planSectionPlanMapLocalService) {
-        this.planSectionPlanMapLocalService = planSectionPlanMapLocalService;
-    }
-
-    /**
-     * Returns the plan section plan map remote service.
-     *
-     * @return the plan section plan map remote service
-     */
-    public PlanSectionPlanMapService getPlanSectionPlanMapService() {
-        return planSectionPlanMapService;
-    }
-
-    /**
-     * Sets the plan section plan map remote service.
-     *
-     * @param planSectionPlanMapService the plan section plan map remote service
-     */
-    public void setPlanSectionPlanMapService(
-        PlanSectionPlanMapService planSectionPlanMapService) {
-        this.planSectionPlanMapService = planSectionPlanMapService;
-    }
-
-    /**
-     * Returns the plan section plan map persistence.
-     *
-     * @return the plan section plan map persistence
-     */
-    public PlanSectionPlanMapPersistence getPlanSectionPlanMapPersistence() {
-        return planSectionPlanMapPersistence;
-    }
-
-    /**
-     * Sets the plan section plan map persistence.
-     *
-     * @param planSectionPlanMapPersistence the plan section plan map persistence
-     */
-    public void setPlanSectionPlanMapPersistence(
-        PlanSectionPlanMapPersistence planSectionPlanMapPersistence) {
-        this.planSectionPlanMapPersistence = planSectionPlanMapPersistence;
     }
 
     /**

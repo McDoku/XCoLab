@@ -24,11 +24,12 @@ public class PlanModelRunCacheModel implements CacheModel<PlanModelRun>,
     public long planVersion;
     public long version;
     public long created;
+    public boolean dirty;
     public long updateAuthorId;
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(15);
+        StringBundler sb = new StringBundler(17);
 
         sb.append("{id=");
         sb.append(id);
@@ -42,6 +43,8 @@ public class PlanModelRunCacheModel implements CacheModel<PlanModelRun>,
         sb.append(version);
         sb.append(", created=");
         sb.append(created);
+        sb.append(", dirty=");
+        sb.append(dirty);
         sb.append(", updateAuthorId=");
         sb.append(updateAuthorId);
         sb.append("}");
@@ -64,6 +67,7 @@ public class PlanModelRunCacheModel implements CacheModel<PlanModelRun>,
             planModelRunImpl.setCreated(new Date(created));
         }
 
+        planModelRunImpl.setDirty(dirty);
         planModelRunImpl.setUpdateAuthorId(updateAuthorId);
 
         planModelRunImpl.resetOriginalValues();

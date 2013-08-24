@@ -145,4 +145,16 @@
             ORDER BY version DESC
         ]]>
     </sql>
+    
+	
+	<sql id="com.ext.portlet.service.persistence.PlanItemFinderImpl.getPlanIdsReferencingPlan">
+		<![CDATA[
+			SELECT * FROM 
+				(SELECT ps.* FROM xcolab_PlanSection ps, `xcolab_PlanSectionDefinition` psd 
+				 WHERE ps.planSectionDefinitionId = psd.id_ AND type_ = "PROPOSAL_REFERENCE"
+				 ORDER BY ps.planVersion) as sections 
+				 GROUP BY sections.planId 
+                                 HAVING referencedId = ?;
+		]]>
+	</sql>
 </custom-sql>

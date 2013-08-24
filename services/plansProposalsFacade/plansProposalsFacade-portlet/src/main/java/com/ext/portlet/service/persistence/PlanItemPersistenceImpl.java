@@ -53,11 +53,9 @@ import com.ext.portlet.service.persistence.PlanPositionItemPersistence;
 import com.ext.portlet.service.persistence.PlanPositionPersistence;
 import com.ext.portlet.service.persistence.PlanPositionsPersistence;
 import com.ext.portlet.service.persistence.PlanPropertyFilterPersistence;
-import com.ext.portlet.service.persistence.PlanRelatedPersistence;
 import com.ext.portlet.service.persistence.PlanSectionDefinitionListItemPersistence;
 import com.ext.portlet.service.persistence.PlanSectionDefinitionPersistence;
 import com.ext.portlet.service.persistence.PlanSectionPersistence;
-import com.ext.portlet.service.persistence.PlanSectionPlanMapPersistence;
 import com.ext.portlet.service.persistence.PlanTeamHistoryPersistence;
 import com.ext.portlet.service.persistence.PlanTemplatePersistence;
 import com.ext.portlet.service.persistence.PlanTemplateSectionPersistence;
@@ -294,16 +292,12 @@ public class PlanItemPersistenceImpl extends BasePersistenceImpl<PlanItem>
     protected PlanPositionsPersistence planPositionsPersistence;
     @BeanReference(type = PlanPropertyFilterPersistence.class)
     protected PlanPropertyFilterPersistence planPropertyFilterPersistence;
-    @BeanReference(type = PlanRelatedPersistence.class)
-    protected PlanRelatedPersistence planRelatedPersistence;
     @BeanReference(type = PlanSectionPersistence.class)
     protected PlanSectionPersistence planSectionPersistence;
     @BeanReference(type = PlanSectionDefinitionPersistence.class)
     protected PlanSectionDefinitionPersistence planSectionDefinitionPersistence;
     @BeanReference(type = PlanSectionDefinitionListItemPersistence.class)
     protected PlanSectionDefinitionListItemPersistence planSectionDefinitionListItemPersistence;
-    @BeanReference(type = PlanSectionPlanMapPersistence.class)
-    protected PlanSectionPlanMapPersistence planSectionPlanMapPersistence;
     @BeanReference(type = PlansFilterPersistence.class)
     protected PlansFilterPersistence plansFilterPersistence;
     @BeanReference(type = PlansFilterPositionPersistence.class)

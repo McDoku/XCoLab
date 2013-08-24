@@ -675,6 +675,7 @@
 			<basic name="created">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="dirty" />
 			<basic name="updateAuthorId" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -733,15 +734,6 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.ext.portlet.model.impl.PlanRelatedModelImpl">
-		<id-class class="com.ext.portlet.service.persistence.PlanRelatedPK" />
-		<attributes>
-			<id name="sectionId" />
-			<id name="relatedPlanId" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-		</attributes>
-	</mapped-superclass>
 	<mapped-superclass class="com.ext.portlet.model.impl.PlanSectionModelImpl">
 		<attributes>
 			<id name="id">
@@ -793,15 +785,6 @@
 			<basic name="data">
 				<column name="DATA_" />
 			</basic>
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-		</attributes>
-	</mapped-superclass>
-	<mapped-superclass class="com.ext.portlet.model.impl.PlanSectionPlanMapModelImpl">
-		<id-class class="com.ext.portlet.service.persistence.PlanSectionPlanMapPK" />
-		<attributes>
-			<id name="sectionId" />
-			<id name="relatedPlanId" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>
@@ -1154,10 +1137,6 @@
 		<table name="xcolab_PlanPropertyFilter" />
 		<attributes />
 	</entity>
-	<entity class="com.ext.portlet.model.impl.PlanRelatedImpl" name="PlanRelated">
-		<table name="xcolab_PlanRelated" />
-		<attributes />
-	</entity>
 	<entity class="com.ext.portlet.model.impl.PlanSectionImpl" name="PlanSection">
 		<table name="xcolab_PlanSection" />
 		<attributes />
@@ -1168,10 +1147,6 @@
 	</entity>
 	<entity class="com.ext.portlet.model.impl.PlanSectionDefinitionListItemImpl" name="PlanSectionDefinitionListItem">
 		<table name="xcolab_PlanSectionDefinitionListItem" />
-		<attributes />
-	</entity>
-	<entity class="com.ext.portlet.model.impl.PlanSectionPlanMapImpl" name="PlanSectionPlanMap">
-		<table name="xcolab_PlanSectionPlanMap" />
 		<attributes />
 	</entity>
 	<entity class="com.ext.portlet.model.impl.PlansFilterImpl" name="PlansFilter">

@@ -431,6 +431,7 @@ create table xcolab_PlanModelRun (
 	planVersion LONG,
 	version LONG,
 	created DATE null,
+	dirty BOOLEAN,
 	updateAuthorId LONG
 );
 
