@@ -35,6 +35,7 @@ import org.icefaces.ace.component.fileentry.FileEntryResults;
 
 import com.ext.portlet.NoSuchPlanPositionsException;
 import com.ext.portlet.PlanStatus;
+import com.ext.portlet.model.ActivitySubscription;
 import com.ext.portlet.model.ContestPhase;
 import com.ext.portlet.model.DiscussionCategoryGroup;
 import com.ext.portlet.model.PlanAttribute;
@@ -1191,6 +1192,20 @@ public class PlanItemWrapper implements Serializable {
     
     public void toggleHide(ActionEvent e) throws SystemException {
     	PlanItemLocalServiceUtil.toggleHidePlan(wrapped);
+    }
+    
+    public String getContestName() throws PortalException, SystemException {
+    	return PlanItemLocalServiceUtil.getContest(wrapped).getContestShortName();
+    }
+    
+    public Date getSubscribedDate() throws NumberFormatException, PortalException, SystemException {
+    	if (!Helper.isUserLoggedIn()) return null;
+    	List<ActivitySubscription> subscriptions = 
+    			ActivitySubscriptionLocalServiceUtil.getActivitySubscriptions(
+    						Helper.getLiferayUser().getUserId(), PlanItem.class, wrapped.getPlanId(), 0, ""
+    					);
+    	return subscriptions == null || subscriptions.isEmpty() ? null : subscriptions.get(0).getCreateDate();
+    	
     }
 
     public static class Tuple implements Serializable {
