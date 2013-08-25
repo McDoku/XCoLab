@@ -117,7 +117,20 @@
             </div>
         </ice:panelGroup>
     	</f:subview>
+    	
+    	<ice:panelGroup rendered="#{permissions.canAdminAll}">
+            <div class="addpropbox blue">
+                <strong>Hiding proposal</strong>
+                <div class="blue-button">
+               		<ice:commandLink actionListener="#{planBean.plan.toggleHide}">
+						<ice:outputText value="UNHIDE plan" rendered="#{planBean.plan.planHidden}" />
+						<ice:outputText value="HIDE plan" rendered="#{not planBean.plan.planHidden}" />
+                	</ice:commandLink>
+                </div>
+          </div>
+        </ice:panelGroup>
       </div>
+      
       
     
     

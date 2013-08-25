@@ -1183,7 +1183,15 @@ public class PlanItemWrapper implements Serializable {
         List<Long> plansInGroup = getPlansInGroup();
         return plansInGroup.get(plansInGroup.size() - 1);
     }
-
+    
+    public boolean isPlanHidden() throws SystemException {
+    	return PlanItemLocalServiceUtil.isPlanHidden(wrapped);
+    }
+    
+    
+    public void toggleHide(ActionEvent e) throws SystemException {
+    	PlanItemLocalServiceUtil.toggleHidePlan(wrapped);
+    }
 
     public static class Tuple implements Serializable {
         /**
