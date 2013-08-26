@@ -83,7 +83,7 @@ public class PlansPermissionsBean implements Serializable {
     }
 
     public boolean getCanAdminAll() {
-        boolean adminAll =  permissionChecker.hasPermission(groupId, portletId, primKey, PlansActions.CAN_ADMIN_ALL);
+        boolean adminAll =  permissionChecker.hasPermission(groupId, portletId, primKey, PlansActions.CAN_ADMIN_ALL) || permissionChecker.isOmniadmin();
         return adminAll;
     }
 

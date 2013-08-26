@@ -1410,3 +1410,100 @@ table.ribbonsAndPlanName td {
 table.jqplot-table-legend {
 	margin-top: 320px;
 }
+
+/** Proposals picker **/
+.availableProposalsTableContainer table.proposalsPickerTable thead tr {
+	position: relative;
+	display: block;
+}
+
+.availableProposalsTableContainer table.proposalsPickerTable tbody {
+	display: block;
+	height: 240px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: 100%;
+}
+
+.availableProposalsTableContainer table.proposalsPickerTable .iceDatTblActvSrtHdr tbody {
+	display: table;
+	height: auto;
+	overflow: hidden;
+	width: auto;
+}
+
+.availableProposalsTableContainer table.proposalsPickerTable .iceDatTblActvSrtHdr td {
+	padding: 0px;
+}
+
+.availableProposalsTableContainer .iceDatTblActvSrtHdr .iceCmdSrtHdrAsc {
+	background: url('/climatecolab-theme/images/sort-arrow-up.png')  no-repeat;
+	width: 10px;
+	height: 9px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+.availableProposalsTableContainer .iceDatTblActvSrtHdr .iceCmdSrtHdrDesc {
+	background: url('/climatecolab-theme/images/sort-arrow-down.png')  no-repeat;
+	width: 10px;
+	height: 9px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+.selectReferencedProposalPopup .popup-wrap {
+	top: 50px;
+	width: 700px;
+	
+}
+
+.selectReferencedProposalPopup .popup {
+	height: 400px;
+	
+}
+
+.availableProposalsTableContainer {
+	height: 280px;
+}
+
+.availableProposalsTableContainer table.proposalsPickerTable {
+	height: 280px;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	width: 640px;
+}
+
+.availableProposalsTableContainer table.proposalsPickerTable th {
+	background: #e0e0e0;
+	padding: 5px;
+}
+
+.availableProposalsTableContainer table.proposalsPickerTable td {
+	padding: 5px;
+}
+
+.availableProposalsTableContainer table.proposalsPickerTable tr.portlet-section-alternate {
+	background: #fafafa;
+}
+.availableProposalsTableContainer .contest {
+	width: 170px;
+}
+.availableProposalsTableContainer .proposal {
+	width: 300px;
+}
+
+.availableProposalsTableContainer .extra {
+	width: 120px;
+}
+
+.availableProposalsTableContainer .action {
+	width: 50px;
+}
+.availableProposalsTableContainer .prop-tabs {
+	position: relative;
+}
+.filterProposalsBox {
+	position: relative;
+	float: right;
+}

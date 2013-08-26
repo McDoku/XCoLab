@@ -876,4 +876,11 @@ public interface PlanItemLocalService extends PersistedModelLocalService {
         com.ext.portlet.model.PlanItem planItem)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
+
+    public void toggleHidePlan(com.ext.portlet.model.PlanItem plan)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public boolean isPlanHidden(com.ext.portlet.model.PlanItem plan)
+        throws com.liferay.portal.kernel.exception.SystemException;
 }

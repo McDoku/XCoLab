@@ -12,9 +12,83 @@
 		</label>
 		<div class="addprophelp">#{section.definition.helpText}</div>
 		<div class="addpropInputContainer">
-    		<ice:selectOneMenu value="#{section.referencedId}">
-    			<f:selectItems value="#{section.proposalsToChooseFrom}" />
-    		</ice:selectOneMenu>
+			
+			<collab:planLink planId="#{section.referencedPlan.planId}" contestId="#{section.referencedPlan.contestPK}" 
+					text="#{section.referencedPlan.name}" rendered="#{not empty section.referencedPlan}" />
+			<div class="blue-button">
+				<ice:commandLink actionListener="#{section.toggleChoosingProposal}" >
+					<ice:outputText value="Change" rendered="#{not empty section.referencedPlan}" />
+					<ice:outputText value="Select proposal" rendered="#{empty section.referencedPlan}" />
+				</ice:commandLink>
+			</div>
+			
 		</div>	
+		<ice:panelGroup style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 100; display: #{section.choosingProposal ? 'block' : 'none'};" styleClass="selectReferencedProposalPopup" >
+		<div class="popup-wrap p1">
+ 			<div class="popup">
+ 			
+  				<h4>Choose proposal:</h4>
+				<div class="prop-tabs" >
+						<ul style="float: left;">
+							<li class="#{section.proposalsFilterTab == 'MY_SUBSCRIPTIONS' ? 'c' : '' }">
+								<ice:commandLink actionListener="#{section.changeProposalsFilterTab}" value="My subscriptions">
+									<f:attribute name="tab" value="MY_SUBSCRIPTIONS" />
+								</ice:commandLink>
+							</li>
+							<li class="#{section.proposalsFilterTab == 'SUPPORTING' ? 'c' : '' }">
+								<ice:commandLink actionListener="#{section.changeProposalsFilterTab}" value="Supporting">
+									<f:attribute name="tab" value="SUPPORTING" />
+								</ice:commandLink>
+							</li>
+							<li class="#{section.proposalsFilterTab == 'ALL_PROPOSALS' ? 'c' : '' }">
+								<ice:commandLink actionListener="#{section.changeProposalsFilterTab}" value="All proposals">
+									<f:attribute name="tab" value="ALL_PROPOSALS" />
+								</ice:commandLink>
+							</li>
+						</ul>
+						<div class="filter">
+							<ice:inputText type="text" placeholder="Filter proposals" styleClass="filterProposalsBox" value="#{section.proposalsFilter}" partialSubmit="true" />
+						</div>
+				</div>
+				<div class="availableProposalsTableContainer">
+				<ice:dataTable value="#{section.proposalsInScope}" var="item" headerClasses="contest proposal extra action" columnClasses="contest proposal extra action"
+					styleClass="proposalsPickerTable"
+					sortColumn="#{section.proposalsFilterSortColumn}" sortAscending="#{section.proposalsFilterSortOrder}" >
+					<ice:column>
+						<f:facet name="header">
+							<ice:commandSortHeader columnName="CONTEST" arrow="true">
+ 		                		<ice:outputText  value="Contest"/>
+ 		                	</ice:commandSortHeader>
+						</f:facet>
+						#{item.contestName}
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:commandSortHeader columnName="PROPOSAL" arrow="true">
+ 		                		<ice:outputText  value="Proposal"/>
+ 		                	</ice:commandSortHeader>
+						</f:facet>
+						#{item.name}
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">Date subscribed</f:facet>	
+						#{item.subscribedDate}
+					</ice:column>
+					<ice:column>
+						<f:facet name="header"> <ice:outputText value=" " /> </f:facet>
+						<ice:commandLink value="Choose" onclick="jQuery(this).parents('.selectReferencedProposalPopup').fadeOut('fast');" actionListener="#{section.selectProposal}">
+							<f:attribute name="planId" value="#{item.planId}" />
+						</ice:commandLink>
+					</ice:column>
+				
+				</ice:dataTable>
+				</div>
+				
+  				<div class="btns">
+   					<div class="blue-button"><a href="javascript:;" onclick="jQuery(this).parents('.selectReferencedProposalPopup').fadeOut('fast')" class="cp1-1">CLOSE</a></div>
+  				</div>
+ 			</div>
+		</div>
+	</ice:panelGroup>
 	</ice:panelGroup>
 </f:view>

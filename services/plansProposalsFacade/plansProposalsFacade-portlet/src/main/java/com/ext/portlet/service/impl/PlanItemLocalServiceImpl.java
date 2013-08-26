@@ -2288,4 +2288,22 @@ public class PlanItemLocalServiceImpl extends PlanItemLocalServiceBaseImpl {
 		
 		return ret;
 	}
+	
+	public void toggleHidePlan(PlanItem plan) throws SystemException {
+		PlanAttribute attribute = getPlanAttribute(plan, Attribute.PLAN_HIDDEN.name());
+		if (attribute == null || attribute.getAttributeValue().equals(Boolean.FALSE.toString())) {
+			setAttribute(plan, Attribute.PLAN_HIDDEN.name(), Boolean.TRUE.toString());
+		}
+		else {
+			removeAttribute(plan, Attribute.PLAN_HIDDEN.name());
+		}
+	}
+	
+	public boolean isPlanHidden(PlanItem plan) throws SystemException {
+		PlanAttribute attribute = getPlanAttribute(plan, Attribute.PLAN_HIDDEN.name());
+		if (attribute == null || attribute.getAttributeValue().equals(Boolean.FALSE.toString())) {
+			return false;
+		}
+		return true;
+	}
 }

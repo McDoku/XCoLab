@@ -230,6 +230,13 @@ public interface ActivitySubscriptionLocalService
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<com.ext.portlet.model.ActivitySubscription> getActivitySubscriptions(
+        java.lang.Long userId, java.lang.Class clasz, java.lang.Long classPK,
+        java.lang.Integer type, java.lang.String extraData)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
+
     public java.util.List<com.ext.portlet.model.ActivitySubscription> findByUser(
         java.lang.Long userId)
         throws com.liferay.portal.kernel.exception.SystemException;
@@ -254,8 +261,19 @@ public interface ActivitySubscriptionLocalService
         throws com.liferay.portal.kernel.exception.SystemException;
 
     public void deleteSubscription(java.lang.Long userId,
+        java.lang.Long classNameId, java.lang.Long classPK,
+        java.lang.Integer type, java.lang.String extraData,
+        boolean automaticOnly)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    public void deleteSubscription(java.lang.Long userId,
         java.lang.Class clasz, java.lang.Long classPK, java.lang.Integer type,
         java.lang.String extraData)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    public void deleteSubscription(java.lang.Long userId,
+        java.lang.Class clasz, java.lang.Long classPK, java.lang.Integer type,
+        java.lang.String extraData, boolean automaticOnly)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     public void addSubscription(java.lang.Long classNameId,
@@ -264,9 +282,21 @@ public interface ActivitySubscriptionLocalService
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
+    public void addSubscription(java.lang.Long classNameId,
+        java.lang.Long classPK, java.lang.Integer type,
+        java.lang.String extraData, java.lang.Long userId, boolean auto)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
+
     public void addSubscription(java.lang.Class clasz, java.lang.Long classPK,
         java.lang.Integer type, java.lang.String extraData,
         java.lang.Long userId)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
+
+    public void addSubscription(java.lang.Class clasz, java.lang.Long classPK,
+        java.lang.Integer type, java.lang.String extraData,
+        java.lang.Long userId, boolean auto)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 

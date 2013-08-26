@@ -2,6 +2,8 @@ package org.climatecollaboratorium.plans.wrappers;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +48,9 @@ public class PlanSectionWrapper implements Serializable {
 	private String proposalsFilter;
 	private PlanSectionProposalFilterTabs proposalsFilterTab = PlanSectionProposalFilterTabs.MY_SUBSCRIPTIONS;
 	private String proposalsFilterSortColumn = "PROPOSALS";
-	private String proposalsFilterSortOrder = "ASC";
+	private boolean proposalsFilterSortOrder = true;
+	private boolean choosingProposal = false;
+	private PlanItemWrapper referencedPlan;
 
 	public PlanSectionWrapper(PlanSection section,
 			PlanItemWrapper planItemWrapper, boolean last)
@@ -169,18 +173,17 @@ public class PlanSectionWrapper implements Serializable {
 		return PlanSectionDefinitionType.valueOf(definition.getType());
 	}
 
-	private PlanItemWrapper plan;
 
 	public PlanItemWrapper getReferencedPlan() throws NoSuchPlanItemException,
 			SystemException {
 		if (section.getReferencedId() <= 0) {
 			return null;
 		}
-		if (plan == null) {
-			plan = new PlanItemWrapper(PlanItemLocalServiceUtil.getPlan(section
+		if (referencedPlan == null) {
+			referencedPlan = new PlanItemWrapper(PlanItemLocalServiceUtil.getPlan(section
 					.getReferencedId()));
 		}
-		return plan;
+		return referencedPlan;
 	}
 
 	public List<SelectItem> getProposalsToChooseFrom()
@@ -208,17 +211,43 @@ public class PlanSectionWrapper implements Serializable {
 	public List<PlanItemWrapper> getProposalsInScope()
 			throws NoSuchContestPhaseException, PortalException,
 			SystemException {
-		
+
+		List<PlanItemWrapper> ret = null;//new ArrayList<PlanItemWrapper>();
 		if (StringUtils.isBlank(proposalsFilter)) {
-			return getProposalsInScopeForTab();
+			ret = getProposalsInScopeForTab();
+		}
+		else {
+			ret = new ArrayList<PlanItemWrapper>();
+			String filter = proposalsFilter.toLowerCase(); 
+			for (PlanItemWrapper plan: getProposalsInScopeForTab()) {
+				if (plan.getName().toLowerCase().contains(filter)) {
+					ret.add(plan);
+				}
+			}
 		}
 		
-		String filter = proposalsFilter.toLowerCase(); 
-		List<PlanItemWrapper> ret = new ArrayList<PlanItemWrapper>();
-		for (PlanItemWrapper plan: getProposalsInScopeForTab()) {
-			if (plan.getName().toLowerCase().contains(filter)) {
-				ret.add(plan);
-			}
+		if (StringUtils.isNotBlank(proposalsFilterSortColumn)) {
+			// apply sort
+			Collections.sort(ret, new Comparator<PlanItemWrapper>() {
+
+				@Override
+				public int compare(PlanItemWrapper o1, PlanItemWrapper o2) {
+					int val = (int) (o1.getPlanId() - o2.getPlanId());
+					try {
+						if (proposalsFilterSortColumn.equals("CONTEST")) {
+							val = o1.getContestName().compareTo(o2.getContestName());
+						}
+						else if (proposalsFilterSortColumn.equals("PROPOSAL")) {
+							val = o1.getName().compareTo(o2.getName());
+						}
+					}
+					catch (Exception e) {
+						// ignore
+					}
+					
+					return proposalsFilterSortOrder ? val : - val;
+				}
+			});
 		}
 		return ret;
 	}
@@ -304,11 +333,11 @@ public class PlanSectionWrapper implements Serializable {
 		this.proposalsFilterSortColumn = proposalsFilterSortColumn;
 	}
 
-	public String getProposalsFilterSortOrder() {
+	public boolean getProposalsFilterSortOrder() {
 		return proposalsFilterSortOrder;
 	}
 
-	public void setProposalsFilterSortOrder(String proposalsFilterSortOrder) {
+	public void setProposalsFilterSortOrder(boolean proposalsFilterSortOrder) {
 		this.proposalsFilterSortOrder = proposalsFilterSortOrder;
 	}
 
@@ -321,7 +350,21 @@ public class PlanSectionWrapper implements Serializable {
 	
 	public void selectProposal(ActionEvent e) {
 		Long planId = (Long) e.getComponent().getAttributes().get("planId");
+		choosingProposal = false;
 		
 		section.setReferencedId(planId);
+		referencedPlan = null;
+	}
+
+	public boolean isChoosingProposal() {
+		return choosingProposal;
+	}
+
+	public void setChoosingProposal(boolean choosingProposal) {
+		this.choosingProposal = choosingProposal;
+	}
+	
+	public void toggleChoosingProposal(ActionEvent e) {
+		choosingProposal = !choosingProposal;
 	}
 }

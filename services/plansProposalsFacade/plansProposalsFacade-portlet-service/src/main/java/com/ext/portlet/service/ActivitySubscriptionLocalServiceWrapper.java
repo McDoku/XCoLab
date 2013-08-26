@@ -255,6 +255,15 @@ public class ActivitySubscriptionLocalServiceWrapper
             classPK, type, extraData);
     }
 
+    public java.util.List<com.ext.portlet.model.ActivitySubscription> getActivitySubscriptions(
+        java.lang.Long userId, java.lang.Class clasz, java.lang.Long classPK,
+        java.lang.Integer type, java.lang.String extraData)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _activitySubscriptionLocalService.getActivitySubscriptions(userId,
+            clasz, classPK, type, extraData);
+    }
+
     public java.util.List<com.ext.portlet.model.ActivitySubscription> findByUser(
         java.lang.Long userId)
         throws com.liferay.portal.kernel.exception.SystemException {
@@ -288,11 +297,28 @@ public class ActivitySubscriptionLocalServiceWrapper
     }
 
     public void deleteSubscription(java.lang.Long userId,
+        java.lang.Long classNameId, java.lang.Long classPK,
+        java.lang.Integer type, java.lang.String extraData,
+        boolean automaticOnly)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        _activitySubscriptionLocalService.deleteSubscription(userId,
+            classNameId, classPK, type, extraData, automaticOnly);
+    }
+
+    public void deleteSubscription(java.lang.Long userId,
         java.lang.Class clasz, java.lang.Long classPK, java.lang.Integer type,
         java.lang.String extraData)
         throws com.liferay.portal.kernel.exception.SystemException {
         _activitySubscriptionLocalService.deleteSubscription(userId, clasz,
             classPK, type, extraData);
+    }
+
+    public void deleteSubscription(java.lang.Long userId,
+        java.lang.Class clasz, java.lang.Long classPK, java.lang.Integer type,
+        java.lang.String extraData, boolean automaticOnly)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        _activitySubscriptionLocalService.deleteSubscription(userId, clasz,
+            classPK, type, extraData, automaticOnly);
     }
 
     public void addSubscription(java.lang.Long classNameId,
@@ -304,6 +330,15 @@ public class ActivitySubscriptionLocalServiceWrapper
             type, extraData, userId);
     }
 
+    public void addSubscription(java.lang.Long classNameId,
+        java.lang.Long classPK, java.lang.Integer type,
+        java.lang.String extraData, java.lang.Long userId, boolean auto)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        _activitySubscriptionLocalService.addSubscription(classNameId, classPK,
+            type, extraData, userId, auto);
+    }
+
     public void addSubscription(java.lang.Class clasz, java.lang.Long classPK,
         java.lang.Integer type, java.lang.String extraData,
         java.lang.Long userId)
@@ -311,6 +346,15 @@ public class ActivitySubscriptionLocalServiceWrapper
             com.liferay.portal.kernel.exception.SystemException {
         _activitySubscriptionLocalService.addSubscription(clasz, classPK, type,
             extraData, userId);
+    }
+
+    public void addSubscription(java.lang.Class clasz, java.lang.Long classPK,
+        java.lang.Integer type, java.lang.String extraData,
+        java.lang.Long userId, boolean auto)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        _activitySubscriptionLocalService.addSubscription(clasz, classPK, type,
+            extraData, userId, auto);
     }
 
     public java.util.List<com.liferay.portlet.social.model.SocialActivity> getActivities(

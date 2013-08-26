@@ -74,6 +74,12 @@ public class ActivitySubscriptionLocalServiceImpl
         return ActivitySubscriptionUtil.findByClassNameIdClassPKTypeExtraData(PortalUtil.getClassNameId(clasz), classPK, type, extraData);
     }
     
+    public List<ActivitySubscription>  getActivitySubscriptions(Long userId, Class clasz, Long classPK, Integer type, String extraData)
+            throws PortalException, SystemException {
+    	return ActivitySubscriptionUtil.findByClassNameIdClassPKTypeExtraDataReceiverId(PortalUtil.getClassNameId(clasz), classPK,
+                type, extraData, userId);
+    }
+    
     public List<ActivitySubscription> findByUser(Long userId) throws SystemException {
         return ActivitySubscriptionUtil.findByreceiverId(userId);
     }

@@ -180,7 +180,8 @@ public class PlanConstants {
         TEAM(String.class, "%s", attributeFunctionFactory.getAttributeValue("TEAM"), true, null, null),
         TAGS(String.class, "%s", attributeFunctionFactory.getAttributeValue("TAGS"), true, null, null),
         TAGS_ORDER(Integer.class, "%s", attributeFunctionFactory.getAttributeValue("TAGS_ORDER"), true, null, null),
-        TAGS_HOVER(String.class, "%s", attributeFunctionFactory.getAttributeValue("TAGS_HOVER"), true, null, null);
+        TAGS_HOVER(String.class, "%s", attributeFunctionFactory.getAttributeValue("TAGS_HOVER"), true, null, null),
+        PLAN_HIDDEN(Boolean.class, "%s", attributeFunctionFactory.getAttributeValue("PROPOSAL_HIDDEN"), true, null, null);
 		
 		private Class<?> clasz;
 		private String format;

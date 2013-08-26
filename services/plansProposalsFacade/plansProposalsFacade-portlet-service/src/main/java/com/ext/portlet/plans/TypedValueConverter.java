@@ -85,6 +85,14 @@ public class TypedValueConverter {
                 e.printStackTrace();
             }
         }
+        else if (clasz == Boolean.class) {
+        	if (value.trim().length() != 0) {
+                    convertedVal = Boolean.parseBoolean(value);
+        	}
+        	else {
+        		convertedVal = defaultVal != null ? Boolean.parseBoolean(defaultVal) : convertedVal;
+        	}
+        }
         return convertedVal;
     }
 

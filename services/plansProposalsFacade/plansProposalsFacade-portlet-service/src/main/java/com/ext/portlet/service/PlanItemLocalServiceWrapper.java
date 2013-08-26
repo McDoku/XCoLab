@@ -1100,6 +1100,16 @@ public class PlanItemLocalServiceWrapper implements PlanItemLocalService,
         return _planItemLocalService.getPlanSectionsTabs(planItem);
     }
 
+    public void toggleHidePlan(com.ext.portlet.model.PlanItem plan)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        _planItemLocalService.toggleHidePlan(plan);
+    }
+
+    public boolean isPlanHidden(com.ext.portlet.model.PlanItem plan)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _planItemLocalService.isPlanHidden(plan);
+    }
+
     /**
      * @deprecated Renamed to {@link #getWrappedService}
      */

@@ -153,6 +153,8 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
     private MethodKey _updatePlanToPlanReferencesMethodKey143;
     private MethodKey _getPlansReferencingPlanMethodKey144;
     private MethodKey _getPlanSectionsTabsMethodKey145;
+    private MethodKey _toggleHidePlanMethodKey146;
+    private MethodKey _isPlanHiddenMethodKey147;
 
     public PlanItemLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
         _classLoaderProxy = classLoaderProxy;
@@ -678,6 +680,12 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
 
         _getPlanSectionsTabsMethodKey145 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getPlanSectionsTabs", com.ext.portlet.model.PlanItem.class);
+
+        _toggleHidePlanMethodKey146 = new MethodKey(_classLoaderProxy.getClassName(),
+                "toggleHidePlan", com.ext.portlet.model.PlanItem.class);
+
+        _isPlanHiddenMethodKey147 = new MethodKey(_classLoaderProxy.getClassName(),
+                "isPlanHidden", com.ext.portlet.model.PlanItem.class);
     }
 
     public com.ext.portlet.model.PlanItem addPlanItem(
@@ -4637,6 +4645,52 @@ public class PlanItemLocalServiceClp implements PlanItemLocalService {
         }
 
         return (java.util.List<java.lang.String>) ClpSerializer.translateOutput(returnObj);
+    }
+
+    public void toggleHidePlan(com.ext.portlet.model.PlanItem plan)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        MethodHandler methodHandler = new MethodHandler(_toggleHidePlanMethodKey146,
+                ClpSerializer.translateInput(plan));
+
+        try {
+            _classLoaderProxy.invoke(methodHandler);
+        } catch (Throwable t) {
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+    }
+
+    public boolean isPlanHidden(com.ext.portlet.model.PlanItem plan)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        MethodHandler methodHandler = new MethodHandler(_isPlanHiddenMethodKey147,
+                ClpSerializer.translateInput(plan));
+
+        try {
+            returnObj = _classLoaderProxy.invoke(methodHandler);
+        } catch (Throwable t) {
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return ((Boolean) returnObj).booleanValue();
     }
 
     public ClassLoaderProxy getClassLoaderProxy() {

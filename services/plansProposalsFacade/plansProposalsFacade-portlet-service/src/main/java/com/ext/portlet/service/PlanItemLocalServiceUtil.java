@@ -1126,6 +1126,16 @@ public class PlanItemLocalServiceUtil {
         return getService().getPlanSectionsTabs(planItem);
     }
 
+    public static void toggleHidePlan(com.ext.portlet.model.PlanItem plan)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getService().toggleHidePlan(plan);
+    }
+
+    public static boolean isPlanHidden(com.ext.portlet.model.PlanItem plan)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().isPlanHidden(plan);
+    }
+
     public static void clearService() {
         _service = null;
     }

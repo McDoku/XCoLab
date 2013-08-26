@@ -26,19 +26,24 @@ public class ActivitySubscriptionLocalServiceClp
     private MethodKey _getBeanIdentifierMethodKey15;
     private MethodKey _setBeanIdentifierMethodKey16;
     private MethodKey _getActivitySubscriptionsMethodKey17;
-    private MethodKey _findByUserMethodKey18;
-    private MethodKey _isSubscribedMethodKey19;
+    private MethodKey _getActivitySubscriptionsMethodKey18;
+    private MethodKey _findByUserMethodKey19;
     private MethodKey _isSubscribedMethodKey20;
-    private MethodKey _deleteSubscriptionMethodKey21;
+    private MethodKey _isSubscribedMethodKey21;
     private MethodKey _deleteSubscriptionMethodKey22;
-    private MethodKey _addSubscriptionMethodKey23;
-    private MethodKey _addSubscriptionMethodKey24;
-    private MethodKey _getActivitiesMethodKey25;
-    private MethodKey _storeMethodKey26;
-    private MethodKey _getNameMethodKey27;
-    private MethodKey _getSubscriptionTypeMethodKey28;
-    private MethodKey _deleteMethodKey29;
-    private MethodKey _sendEmailNotificationsMethodKey30;
+    private MethodKey _deleteSubscriptionMethodKey23;
+    private MethodKey _deleteSubscriptionMethodKey24;
+    private MethodKey _deleteSubscriptionMethodKey25;
+    private MethodKey _addSubscriptionMethodKey26;
+    private MethodKey _addSubscriptionMethodKey27;
+    private MethodKey _addSubscriptionMethodKey28;
+    private MethodKey _addSubscriptionMethodKey29;
+    private MethodKey _getActivitiesMethodKey30;
+    private MethodKey _storeMethodKey31;
+    private MethodKey _getNameMethodKey32;
+    private MethodKey _getSubscriptionTypeMethodKey33;
+    private MethodKey _deleteMethodKey34;
+    private MethodKey _sendEmailNotificationsMethodKey35;
 
     public ActivitySubscriptionLocalServiceClp(
         ClassLoaderProxy classLoaderProxy) {
@@ -111,56 +116,81 @@ public class ActivitySubscriptionLocalServiceClp
                 java.lang.Long.class, java.lang.Integer.class,
                 java.lang.String.class);
 
-        _findByUserMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+        _getActivitySubscriptionsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+                "getActivitySubscriptions", java.lang.Long.class,
+                java.lang.Class.class, java.lang.Long.class,
+                java.lang.Integer.class, java.lang.String.class);
+
+        _findByUserMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
                 "findByUser", java.lang.Long.class);
 
-        _isSubscribedMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+        _isSubscribedMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
                 "isSubscribed", java.lang.Long.class, java.lang.Long.class,
                 java.lang.Long.class, java.lang.Integer.class,
                 java.lang.String.class);
 
-        _isSubscribedMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+        _isSubscribedMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
                 "isSubscribed", java.lang.Long.class, java.lang.Class.class,
                 java.lang.Long.class, java.lang.Integer.class,
                 java.lang.String.class);
 
-        _deleteSubscriptionMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+        _deleteSubscriptionMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
                 "deleteSubscription", java.lang.Long.class,
                 java.lang.Long.class, java.lang.Long.class,
                 java.lang.Integer.class, java.lang.String.class);
 
-        _deleteSubscriptionMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+        _deleteSubscriptionMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+                "deleteSubscription", java.lang.Long.class,
+                java.lang.Long.class, java.lang.Long.class,
+                java.lang.Integer.class, java.lang.String.class, boolean.class);
+
+        _deleteSubscriptionMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
                 "deleteSubscription", java.lang.Long.class,
                 java.lang.Class.class, java.lang.Long.class,
                 java.lang.Integer.class, java.lang.String.class);
 
-        _addSubscriptionMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+        _deleteSubscriptionMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+                "deleteSubscription", java.lang.Long.class,
+                java.lang.Class.class, java.lang.Long.class,
+                java.lang.Integer.class, java.lang.String.class, boolean.class);
+
+        _addSubscriptionMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
                 "addSubscription", java.lang.Long.class, java.lang.Long.class,
                 java.lang.Integer.class, java.lang.String.class,
                 java.lang.Long.class);
 
-        _addSubscriptionMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+        _addSubscriptionMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+                "addSubscription", java.lang.Long.class, java.lang.Long.class,
+                java.lang.Integer.class, java.lang.String.class,
+                java.lang.Long.class, boolean.class);
+
+        _addSubscriptionMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
                 "addSubscription", java.lang.Class.class, java.lang.Long.class,
                 java.lang.Integer.class, java.lang.String.class,
                 java.lang.Long.class);
 
-        _getActivitiesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+        _addSubscriptionMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
+                "addSubscription", java.lang.Class.class, java.lang.Long.class,
+                java.lang.Integer.class, java.lang.String.class,
+                java.lang.Long.class, boolean.class);
+
+        _getActivitiesMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getActivities", java.lang.Long.class, int.class, int.class);
 
-        _storeMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+        _storeMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
                 "store", com.ext.portlet.model.ActivitySubscription.class);
 
-        _getNameMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+        _getNameMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getName", com.ext.portlet.model.ActivitySubscription.class);
 
-        _getSubscriptionTypeMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+        _getSubscriptionTypeMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
                 "getSubscriptionType",
                 com.ext.portlet.model.ActivitySubscription.class);
 
-        _deleteMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
+        _deleteMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
                 "delete", com.ext.portlet.model.ActivitySubscription.class);
 
-        _sendEmailNotificationsMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
+        _sendEmailNotificationsMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
                 "sendEmailNotifications");
     }
 
@@ -629,12 +659,48 @@ public class ActivitySubscriptionLocalServiceClp
         return (java.util.List<com.ext.portlet.model.ActivitySubscription>) ClpSerializer.translateOutput(returnObj);
     }
 
+    public java.util.List<com.ext.portlet.model.ActivitySubscription> getActivitySubscriptions(
+        java.lang.Long userId, java.lang.Class clasz, java.lang.Long classPK,
+        java.lang.Integer type, java.lang.String extraData)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        MethodHandler methodHandler = new MethodHandler(_getActivitySubscriptionsMethodKey18,
+                ClpSerializer.translateInput(userId),
+                ClpSerializer.translateInput(clasz),
+                ClpSerializer.translateInput(classPK),
+                ClpSerializer.translateInput(type),
+                ClpSerializer.translateInput(extraData));
+
+        try {
+            returnObj = _classLoaderProxy.invoke(methodHandler);
+        } catch (Throwable t) {
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.util.List<com.ext.portlet.model.ActivitySubscription>) ClpSerializer.translateOutput(returnObj);
+    }
+
     public java.util.List<com.ext.portlet.model.ActivitySubscription> findByUser(
         java.lang.Long userId)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_findByUserMethodKey18,
+        MethodHandler methodHandler = new MethodHandler(_findByUserMethodKey19,
                 ClpSerializer.translateInput(userId));
 
         try {
@@ -662,7 +728,7 @@ public class ActivitySubscriptionLocalServiceClp
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_isSubscribedMethodKey19,
+        MethodHandler methodHandler = new MethodHandler(_isSubscribedMethodKey20,
                 ClpSerializer.translateInput(userId),
                 ClpSerializer.translateInput(classNameId),
                 ClpSerializer.translateInput(classPK),
@@ -698,7 +764,7 @@ public class ActivitySubscriptionLocalServiceClp
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_isSubscribedMethodKey20,
+        MethodHandler methodHandler = new MethodHandler(_isSubscribedMethodKey21,
                 ClpSerializer.translateInput(userId),
                 ClpSerializer.translateInput(clasz),
                 ClpSerializer.translateInput(classPK),
@@ -731,7 +797,7 @@ public class ActivitySubscriptionLocalServiceClp
         java.lang.Long classNameId, java.lang.Long classPK,
         java.lang.Integer type, java.lang.String extraData)
         throws com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_deleteSubscriptionMethodKey21,
+        MethodHandler methodHandler = new MethodHandler(_deleteSubscriptionMethodKey22,
                 ClpSerializer.translateInput(userId),
                 ClpSerializer.translateInput(classNameId),
                 ClpSerializer.translateInput(classPK),
@@ -755,10 +821,38 @@ public class ActivitySubscriptionLocalServiceClp
     }
 
     public void deleteSubscription(java.lang.Long userId,
+        java.lang.Long classNameId, java.lang.Long classPK,
+        java.lang.Integer type, java.lang.String extraData,
+        boolean automaticOnly)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        MethodHandler methodHandler = new MethodHandler(_deleteSubscriptionMethodKey23,
+                ClpSerializer.translateInput(userId),
+                ClpSerializer.translateInput(classNameId),
+                ClpSerializer.translateInput(classPK),
+                ClpSerializer.translateInput(type),
+                ClpSerializer.translateInput(extraData), automaticOnly);
+
+        try {
+            _classLoaderProxy.invoke(methodHandler);
+        } catch (Throwable t) {
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+    }
+
+    public void deleteSubscription(java.lang.Long userId,
         java.lang.Class clasz, java.lang.Long classPK, java.lang.Integer type,
         java.lang.String extraData)
         throws com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_deleteSubscriptionMethodKey22,
+        MethodHandler methodHandler = new MethodHandler(_deleteSubscriptionMethodKey24,
                 ClpSerializer.translateInput(userId),
                 ClpSerializer.translateInput(clasz),
                 ClpSerializer.translateInput(classPK),
@@ -781,13 +875,104 @@ public class ActivitySubscriptionLocalServiceClp
         }
     }
 
+    public void deleteSubscription(java.lang.Long userId,
+        java.lang.Class clasz, java.lang.Long classPK, java.lang.Integer type,
+        java.lang.String extraData, boolean automaticOnly)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        MethodHandler methodHandler = new MethodHandler(_deleteSubscriptionMethodKey25,
+                ClpSerializer.translateInput(userId),
+                ClpSerializer.translateInput(clasz),
+                ClpSerializer.translateInput(classPK),
+                ClpSerializer.translateInput(type),
+                ClpSerializer.translateInput(extraData), automaticOnly);
+
+        try {
+            _classLoaderProxy.invoke(methodHandler);
+        } catch (Throwable t) {
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+    }
+
     public void addSubscription(java.lang.Long classNameId,
         java.lang.Long classPK, java.lang.Integer type,
         java.lang.String extraData, java.lang.Long userId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_addSubscriptionMethodKey23,
+        MethodHandler methodHandler = new MethodHandler(_addSubscriptionMethodKey26,
                 ClpSerializer.translateInput(classNameId),
+                ClpSerializer.translateInput(classPK),
+                ClpSerializer.translateInput(type),
+                ClpSerializer.translateInput(extraData),
+                ClpSerializer.translateInput(userId));
+
+        try {
+            _classLoaderProxy.invoke(methodHandler);
+        } catch (Throwable t) {
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+    }
+
+    public void addSubscription(java.lang.Long classNameId,
+        java.lang.Long classPK, java.lang.Integer type,
+        java.lang.String extraData, java.lang.Long userId, boolean auto)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        MethodHandler methodHandler = new MethodHandler(_addSubscriptionMethodKey27,
+                ClpSerializer.translateInput(classNameId),
+                ClpSerializer.translateInput(classPK),
+                ClpSerializer.translateInput(type),
+                ClpSerializer.translateInput(extraData),
+                ClpSerializer.translateInput(userId), auto);
+
+        try {
+            _classLoaderProxy.invoke(methodHandler);
+        } catch (Throwable t) {
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+    }
+
+    public void addSubscription(java.lang.Class clasz, java.lang.Long classPK,
+        java.lang.Integer type, java.lang.String extraData,
+        java.lang.Long userId)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        MethodHandler methodHandler = new MethodHandler(_addSubscriptionMethodKey28,
+                ClpSerializer.translateInput(clasz),
                 ClpSerializer.translateInput(classPK),
                 ClpSerializer.translateInput(type),
                 ClpSerializer.translateInput(extraData),
@@ -815,15 +1000,15 @@ public class ActivitySubscriptionLocalServiceClp
 
     public void addSubscription(java.lang.Class clasz, java.lang.Long classPK,
         java.lang.Integer type, java.lang.String extraData,
-        java.lang.Long userId)
+        java.lang.Long userId, boolean auto)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_addSubscriptionMethodKey24,
+        MethodHandler methodHandler = new MethodHandler(_addSubscriptionMethodKey29,
                 ClpSerializer.translateInput(clasz),
                 ClpSerializer.translateInput(classPK),
                 ClpSerializer.translateInput(type),
                 ClpSerializer.translateInput(extraData),
-                ClpSerializer.translateInput(userId));
+                ClpSerializer.translateInput(userId), auto);
 
         try {
             _classLoaderProxy.invoke(methodHandler);
@@ -850,7 +1035,7 @@ public class ActivitySubscriptionLocalServiceClp
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getActivitiesMethodKey25,
+        MethodHandler methodHandler = new MethodHandler(_getActivitiesMethodKey30,
                 ClpSerializer.translateInput(userId), start, count);
 
         try {
@@ -874,7 +1059,7 @@ public class ActivitySubscriptionLocalServiceClp
     public void store(
         com.ext.portlet.model.ActivitySubscription activitySubscription)
         throws com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_storeMethodKey26,
+        MethodHandler methodHandler = new MethodHandler(_storeMethodKey31,
                 ClpSerializer.translateInput(activitySubscription));
 
         try {
@@ -897,7 +1082,7 @@ public class ActivitySubscriptionLocalServiceClp
         com.ext.portlet.model.ActivitySubscription activitySubscription) {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getNameMethodKey27,
+        MethodHandler methodHandler = new MethodHandler(_getNameMethodKey32,
                 ClpSerializer.translateInput(activitySubscription));
 
         try {
@@ -918,7 +1103,7 @@ public class ActivitySubscriptionLocalServiceClp
         com.ext.portlet.model.ActivitySubscription activitySubscription) {
         Object returnObj = null;
 
-        MethodHandler methodHandler = new MethodHandler(_getSubscriptionTypeMethodKey28,
+        MethodHandler methodHandler = new MethodHandler(_getSubscriptionTypeMethodKey33,
                 ClpSerializer.translateInput(activitySubscription));
 
         try {
@@ -938,7 +1123,7 @@ public class ActivitySubscriptionLocalServiceClp
     public void delete(
         com.ext.portlet.model.ActivitySubscription activitySubscription)
         throws com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_deleteMethodKey29,
+        MethodHandler methodHandler = new MethodHandler(_deleteMethodKey34,
                 ClpSerializer.translateInput(activitySubscription));
 
         try {
@@ -960,7 +1145,7 @@ public class ActivitySubscriptionLocalServiceClp
     public void sendEmailNotifications()
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        MethodHandler methodHandler = new MethodHandler(_sendEmailNotificationsMethodKey30);
+        MethodHandler methodHandler = new MethodHandler(_sendEmailNotificationsMethodKey35);
 
         try {
             _classLoaderProxy.invoke(methodHandler);
