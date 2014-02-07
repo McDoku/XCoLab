@@ -33,6 +33,35 @@ public class JudgingSystemActions {
         }
     }
 
+    public enum JudgingStatus {
+        NO_DECISION(0, "No decision"), DECIDED(1, "Decided"), EXECUTED(2, "Executed");
+
+
+        int attributeValue;
+        String description;
+
+        private JudgingStatus(int attributeValue, String description) {
+            this.attributeValue = attributeValue;
+            this.description = description;
+        }
+
+        public static JudgingStatus fromInt(Integer value) {
+            for(JudgingStatus a : values()) {
+                if(a.attributeValue == value) return a;
+            }
+
+            return NO_DECISION;
+        }
+
+        public int getAttributeValue(){
+            return this.attributeValue;
+        }
+
+        public String getDescription(){
+            return description;
+        }
+    }
+
     public enum FellowAction {
         NO_DECISION(0, "No decision"), INCOMPLETE(1, "Incomplete"), OFFTOPIC(2, "Off-topic"), PASSTOJUDGES(3, "Advance to judges");
 

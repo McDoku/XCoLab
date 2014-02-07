@@ -2,13 +2,11 @@ package org.xcolab.portlets.admintasks.migration.persistence;
 
 import java.util.List;
 
-import com.ext.portlet.ProposalContestPhaseAttributeKeys;
+import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.model.ContestPhaseRibbonType;
 import com.ext.portlet.model.Proposal;
-import com.ext.portlet.model.Proposal2Phase;
 import com.ext.portlet.model.ProposalVersion;
 import com.ext.portlet.service.ContestPhaseRibbonTypeLocalServiceUtil;
-import com.ext.portlet.service.Proposal2PhaseLocalServiceUtil;
 import com.ext.portlet.service.ProposalContestPhaseAttributeLocalServiceUtil;
 import com.ext.portlet.service.ProposalVersionLocalServiceUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;

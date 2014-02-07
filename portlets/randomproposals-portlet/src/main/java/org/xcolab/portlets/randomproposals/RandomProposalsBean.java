@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.ext.portlet.NoSuchProposalContestPhaseAttributeException;
-import com.ext.portlet.ProposalContestPhaseAttributeKeys;
+import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.model.ContestPhase;
 import com.ext.portlet.model.ContestPhaseRibbonType;
 import com.ext.portlet.model.Proposal;

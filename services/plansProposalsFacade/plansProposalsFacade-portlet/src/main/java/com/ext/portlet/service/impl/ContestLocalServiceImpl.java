@@ -14,7 +14,7 @@ import java.util.Set;
 import com.ext.portlet.NoSuchContestException;
 import com.ext.portlet.NoSuchContestPhaseException;
 import com.ext.portlet.NoSuchProposalContestPhaseAttributeException;
-import com.ext.portlet.ProposalContestPhaseAttributeKeys;
+import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.discussions.DiscussionActions;
 import com.ext.portlet.model.Contest;
 import com.ext.portlet.model.ContestDebate;

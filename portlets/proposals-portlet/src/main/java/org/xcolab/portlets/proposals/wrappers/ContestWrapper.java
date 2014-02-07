@@ -3,6 +3,7 @@ package org.xcolab.portlets.proposals.wrappers;
 import java.util.*;
 
 import com.ext.portlet.NoSuchContestPhaseException;
+import com.ext.portlet.contests.ContestTeamMemberRoles;
 import com.ext.portlet.model.*;
 import com.ext.portlet.service.*;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -404,7 +405,7 @@ public class ContestWrapper {
     public List<User> getContestJudges() throws PortalException, SystemException {
         List<User> judges = null;
         for (ContestTeamRoleWrapper c : getContestTeamMembersByRole()) {
-            if (c.getRoleName().equalsIgnoreCase("Judge")) {
+            if (c.getRoleName().equalsIgnoreCase(ContestTeamMemberRoles.JUDGE.getDisplayName())) {
                 judges = c.getUsers();
             }
         }
@@ -418,7 +419,7 @@ public class ContestWrapper {
     public List<User> getContestFellows() throws PortalException, SystemException {
         List<User> fellows = null;
         for (ContestTeamRoleWrapper c : getContestTeamMembersByRole()) {
-            if (c.getRoleName().equalsIgnoreCase("Fellow")) {
+            if (c.getRoleName().equalsIgnoreCase(ContestTeamMemberRoles.FELLOW.getDisplayName())) {
                 fellows = c.getUsers();
             }
         }

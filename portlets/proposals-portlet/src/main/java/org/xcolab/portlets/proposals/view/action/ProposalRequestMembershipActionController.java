@@ -1,20 +1,15 @@
 package org.xcolab.portlets.proposals.view.action;
 
-import javax.mail.internet.AddressException;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.validation.Valid;
 
-import com.ext.portlet.ProposalAttributeKeys;
+import com.ext.portlet.proposal.ProposalAttributeKeys;
 import com.ext.portlet.messaging.MessageUtil;
-import com.ext.portlet.service.Proposal2PhaseLocalServiceUtil;
 import com.ext.portlet.service.ProposalLocalServiceUtil;
 import com.liferay.portal.model.MembershipRequest;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.mail.MailEngineException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,9 +24,7 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import org.xcolab.portlets.proposals.utils.ProposalsContext;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("view")

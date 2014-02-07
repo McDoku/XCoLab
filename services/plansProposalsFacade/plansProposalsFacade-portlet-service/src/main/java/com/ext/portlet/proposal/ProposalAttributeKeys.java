@@ -1,4 +1,4 @@
-package com.ext.portlet;
+package com.ext.portlet.proposal;
 
 public class ProposalAttributeKeys {
     public static final String TEAM = "TEAM";

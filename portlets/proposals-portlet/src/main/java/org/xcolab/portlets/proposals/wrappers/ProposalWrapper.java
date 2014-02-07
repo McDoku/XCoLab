@@ -10,8 +10,8 @@ import com.ext.portlet.service.*;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.ext.portlet.ProposalAttributeKeys;
-import com.ext.portlet.ProposalContestPhaseAttributeKeys;
+import com.ext.portlet.proposal.ProposalAttributeKeys;
+import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;

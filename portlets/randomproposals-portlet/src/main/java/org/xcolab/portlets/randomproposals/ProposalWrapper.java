@@ -1,7 +1,7 @@
 package org.xcolab.portlets.randomproposals;
 
 
-import com.ext.portlet.ProposalAttributeKeys;
+import com.ext.portlet.proposal.ProposalAttributeKeys;
 import com.ext.portlet.model.Proposal;
 import com.ext.portlet.model.ProposalAttribute;
 import com.ext.portlet.service.Proposal2PhaseLocalServiceUtil;

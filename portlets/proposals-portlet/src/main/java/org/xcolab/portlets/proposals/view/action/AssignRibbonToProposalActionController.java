@@ -12,8 +12,7 @@ import org.xcolab.portlets.proposals.exceptions.ProposalsAuthorizationException;
 import org.xcolab.portlets.proposals.utils.ProposalsContext;
 
 import com.ext.portlet.NoSuchContestPhaseRibbonTypeException;
-import com.ext.portlet.ProposalContestPhaseAttributeKeys;
-import com.ext.portlet.model.ContestPhaseRibbonType;
+import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.service.ContestPhaseRibbonTypeLocalServiceUtil;
 import com.ext.portlet.service.ProposalContestPhaseAttributeLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;

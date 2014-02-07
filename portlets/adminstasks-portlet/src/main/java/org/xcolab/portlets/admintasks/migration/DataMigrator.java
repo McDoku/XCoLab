@@ -19,7 +19,7 @@ import org.xcolab.portlets.admintasks.migration.persistence.NewPersistenceCleane
 import org.xcolab.portlets.admintasks.migration.persistence.NewPersistenceQueries;
 import org.xcolab.portlets.admintasks.migration.persistence.OldPersistenceQueries;
 
-import com.ext.portlet.ProposalAttributeKeys;
+import com.ext.portlet.proposal.ProposalAttributeKeys;
 import com.ext.portlet.model.ContestPhaseRibbonType;
 import com.ext.portlet.model.Plan2Proposal;
 import com.ext.portlet.model.PlanAttribute;

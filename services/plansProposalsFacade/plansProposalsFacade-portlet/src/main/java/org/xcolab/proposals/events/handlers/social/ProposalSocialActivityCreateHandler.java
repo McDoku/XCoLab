@@ -2,7 +2,7 @@ package org.xcolab.proposals.events.handlers.social;
 
 import org.xcolab.proposals.events.ProposalAssociatedWithContestPhaseEvent;
 
-import com.ext.portlet.ProposalActivityKeys;
+import com.ext.portlet.proposal.ProposalActivityKeys;
 import com.ext.portlet.model.Proposal;
 import com.google.common.eventbus.Subscribe;
 import com.liferay.portal.kernel.exception.PortalException;

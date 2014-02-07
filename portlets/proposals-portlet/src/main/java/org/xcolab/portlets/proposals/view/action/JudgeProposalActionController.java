@@ -1,22 +1,16 @@
 package org.xcolab.portlets.proposals.view.action;
 
 
-import com.ext.portlet.JudgingSystemActions;
 import com.ext.portlet.NoSuchProposalContestPhaseAttributeException;
-import com.ext.portlet.ProposalContestPhaseAttributeKeys;
+import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.messaging.MessageUtil;
-import com.ext.portlet.model.DiscussionCategoryGroup;
 import com.ext.portlet.model.ProposalContestPhaseAttribute;
-import com.ext.portlet.service.ContestLocalServiceUtil;
 import com.ext.portlet.service.DiscussionCategoryGroupLocalServiceUtil;
 import com.ext.portlet.service.ProposalContestPhaseAttributeLocalServiceUtil;
-import com.ext.portlet.service.persistence.DiscussionMessageUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.persistence.GroupUtil;
-import com.liferay.util.mail.MailEngine;
 import com.liferay.util.mail.MailEngineException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +24,6 @@ import org.xcolab.portlets.proposals.utils.ProposalsContext;
 import org.xcolab.portlets.proposals.wrappers.*;
 
 import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.validation.Valid;
@@ -78,7 +71,7 @@ public class JudgeProposalActionController {
                         DiscussionCategoryGroupLocalServiceUtil.getDiscussionCategoryGroup(proposal.getDiscussionId()),
                         title, message, author);
 
-                //mark as finished
+                //mark as ready
                 persistAttribute(proposal.getProposalId(), contestPhaseId, ProposalContestPhaseAttributeKeys.JUDGING_STATUS, 0, 1, null);
             } catch (Throwable e) {
                 e.printStackTrace();

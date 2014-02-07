@@ -1,7 +1,7 @@
 package com.ext.portlet.Activity.nameGenerators;
 
 import com.ext.portlet.NoSuchProposalException;
-import com.ext.portlet.ProposalAttributeKeys;
+import com.ext.portlet.proposal.ProposalAttributeKeys;
 import com.ext.portlet.model.ActivitySubscription;
 import com.ext.portlet.model.Proposal;
 import com.ext.portlet.service.Proposal2PhaseLocalServiceUtil;

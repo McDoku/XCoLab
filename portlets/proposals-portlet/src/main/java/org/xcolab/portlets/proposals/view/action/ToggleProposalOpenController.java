@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.xcolab.portlets.proposals.exceptions.ProposalsAuthorizationException;
 import org.xcolab.portlets.proposals.utils.ProposalsContext;
 
-import com.ext.portlet.ProposalAttributeKeys;
+import com.ext.portlet.proposal.ProposalAttributeKeys;
 import com.ext.portlet.service.ProposalLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;

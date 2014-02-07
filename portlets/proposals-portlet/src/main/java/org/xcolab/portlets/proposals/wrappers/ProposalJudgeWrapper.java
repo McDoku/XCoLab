@@ -2,7 +2,7 @@ package org.xcolab.portlets.proposals.wrappers;
 
 import com.ext.portlet.JudgingSystemActions;
 import com.ext.portlet.NoSuchProposalContestPhaseAttributeException;
-import com.ext.portlet.ProposalContestPhaseAttributeKeys;
+import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.model.*;
 import com.ext.portlet.service.MessageRecipientStatusLocalServiceUtil;
 import com.ext.portlet.service.ProposalContestPhaseAttributeLocalServiceUtil;
@@ -11,7 +11,6 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
-import org.xcolab.portlets.proposals.utils.ProposalAttributeUtil;
 
 /**
  * Created by patrickhiesel on 19/12/13.
@@ -36,7 +35,6 @@ public class ProposalJudgeWrapper extends ProposalWrapper {
     }
 
     /**
-     *
      * @return 0=not responsible, 1=responsible but no action yet, 2=judging done
      * @throws SystemException
      * @throws PortalException

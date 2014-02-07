@@ -2,8 +2,7 @@ package org.xcolab.portlets.proposals.wrappers;
 
 import java.util.Date;
 
-import com.ext.portlet.NoSuchProposalContestPhaseAttributeException;
-import com.ext.portlet.ProposalContestPhaseAttributeKeys;
+import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.model.ProposalContestPhaseAttribute;
 import com.ext.portlet.service.ProposalContestPhaseAttributeLocalServiceUtil;
 import org.apache.commons.lang3.StringUtils;
