@@ -1,6 +1,7 @@
 package org.xcolab.portlets.proposals.view.action;
 
 
+import com.ext.portlet.JudgingSystemActions;
 import com.ext.portlet.NoSuchProposalContestPhaseAttributeException;
 import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.messaging.MessageUtil;
@@ -49,30 +50,11 @@ public class JudgeProposalActionController {
 
         if (message != null) {
             try {
-                //get sender fellow
-                User author = proposalsContext.getUser(request);
-                List<User> contestFellows = proposalsContext.getContestWrapped(request).getContestFellows();
-                if (!contestFellows.contains(author)) {
-                    contestFellows.get(0);
-                } //take first fellow of list to be the sender
-
-                //assemble recipients
-                List<Long> recipients = new LinkedList<>();
-                for (ProposalTeamMemberWrapper member : proposal.getMembers()) {
-                    recipients.add(member.getUserId() );
-                }
-
-                //send message
-                String title = "Judges comments for your proposal '" + proposal.getName() + "'";
-                MessageUtil.sendMessage(title, message, author.getUserId(),
-                        author.getUserId(), recipients, request);
-
-                DiscussionCategoryGroupLocalServiceUtil.addComment(
-                        DiscussionCategoryGroupLocalServiceUtil.getDiscussionCategoryGroup(proposal.getDiscussionId()),
-                        title, message, author);
+                //store message
+                persistAttribute(proposal.getProposalId(), contestPhaseId, ProposalContestPhaseAttributeKeys.JUDGING_FINAL_COMMENT, 0, 0, message);
 
                 //mark as ready
-                persistAttribute(proposal.getProposalId(), contestPhaseId, ProposalContestPhaseAttributeKeys.JUDGING_STATUS, 0, 1, null);
+                persistAttribute(proposal.getProposalId(), contestPhaseId, ProposalContestPhaseAttributeKeys.JUDGING_STATUS, 0, JudgingSystemActions.JudgingStatus.DECIDED.getAttributeValue(), null);
             } catch (Throwable e) {
                 e.printStackTrace();
             }

@@ -5,10 +5,12 @@ import com.ext.portlet.NoSuchContestPhaseException;
 import com.ext.portlet.contests.ContestStatus;
 import com.ext.portlet.contests.ContestTeamMemberRoles;
 import com.ext.portlet.model.*;
+import com.ext.portlet.model.impl.ProposalContestPhaseAttributeImpl;
 import com.ext.portlet.proposal.ProposalAttributeKeys;
 import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.service.*;
 import com.ext.portlet.service.base.ContestPhaseLocalServiceBaseImpl;
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -231,51 +233,62 @@ public class ContestPhaseLocalServiceImpl extends ContestPhaseLocalServiceBaseIm
         Proposal p = ProposalLocalServiceUtil.getProposal(proposalId);
         ContestPhase phase = ContestPhaseLocalServiceUtil.getContestPhase(sourcePhaseId);
 
+        //check if we're ready
+        ProposalContestPhaseAttribute currentStatusAttr = getAttribute(p.getProposalId(), phase.getContestPhasePK(), ProposalContestPhaseAttributeKeys.JUDGING_STATUS);
+        JudgingSystemActions.JudgingStatus currentStatus = JudgingSystemActions.JudgingStatus.NO_DECISION;
+        if (currentStatusAttr != null) {
+            currentStatus = JudgingSystemActions.JudgingStatus.fromInt(new Long(currentStatusAttr.getNumericValue()).intValue());
+        }
+        if(currentStatus != JudgingSystemActions.JudgingStatus.DECIDED) return;
+
+
+        //check if this proposal is to be promoted
         ProposalContestPhaseAttribute judgeAction = getAttribute(p.getProposalId(), phase.getContestPhasePK(), ProposalContestPhaseAttributeKeys.JUDGE_ACTION);
-
         Long judgeActionId = (judgeAction == null) ? JudgingSystemActions.JudgeAction.NO_DECISION.getAttributeValue() : judgeAction.getNumericValue();
-
         if (JudgingSystemActions.JudgeAction.fromInt(judgeActionId.intValue()) == JudgingSystemActions.JudgeAction.MOVE_ON) {
             ContestPhase nextPhase = getNextContestPhase(phase);
             promoteProposal(p.getProposalId(), nextPhase.getContestPhasePK());
         }
 
+        //get judging comment for this proposal
         String message = "";
         if (judgeActionId == JudgingSystemActions.JudgeAction.NO_DECISION.getAttributeValue()) {
             ProposalContestPhaseAttribute fellowAction = getAttribute(p.getProposalId(), phase.getContestPK(), ProposalContestPhaseAttributeKeys.FELLOW_ACTION);
             if (fellowAction == null || fellowAction.getNumericValue() == JudgingSystemActions.FellowAction.PASSTOJUDGES.getAttributeValue())
                 return; //abort, no decision yet
-            else {
-                ProposalContestPhaseAttribute fellowComment = getAttribute(proposalId, sourcePhaseId, ProposalContestPhaseAttributeKeys.FELLOW_COMMENT);
-                if (fellowComment != null) message = fellowComment.getStringValue();
-            }
-        } else {
-            ProposalContestPhaseAttribute judgeComment = getAttribute(proposalId, sourcePhaseId, ProposalContestPhaseAttributeKeys.JUDGE_COMMENT);
-            if (judgeComment != null) message = judgeComment.getStringValue();
         }
+        ProposalContestPhaseAttribute commentAttribute = getAttribute(proposalId, sourcePhaseId, ProposalContestPhaseAttributeKeys.JUDGING_FINAL_COMMENT);
+        if (commentAttribute != null) message = commentAttribute.getStringValue();
 
-        //send judging messages
+        /**
+         * send judging message
+         */
+        //assemble recipients
         Contest contest = contestLocalService.getContest(phase.getContestPK());
         List<ContestTeamMember> fellows = new LinkedList<>();
         for (ContestTeamMember member : ContestLocalServiceUtil.getTeamMembers(contest)) {
             if (member.getRole().equalsIgnoreCase(ContestTeamMemberRoles.FELLOW.getDisplayName())) fellows.add(member);
         }
-
         List<User> recipientUsers = ProposalLocalServiceUtil.getMembers(proposalId);
         List<Long> recipients = new LinkedList<>();
         for (User u : recipientUsers) recipients.add(u.getUserId());
 
-        //name is mandatory, no need for error treatment
+        //get proposal title (name is mandatory, no need for error treatment)
         String proposalName = ProposalLocalServiceUtil.getAttribute(proposalId, ProposalAttributeKeys.NAME, 0).getName();
         String title = "Judges comments for your proposal '" + proposalName + "'";
         long fromFellow = fellows.get(0).getId();
 
         //send message and comment
         com.ext.portlet.messaging.MessageUtil.sendMessage(title, message, fromFellow, fromFellow, recipients, null);
-
         DiscussionCategoryGroupLocalServiceUtil.addComment(DiscussionCategoryGroupLocalServiceUtil.getDiscussionCategoryGroup(p.getDiscussionId()), title, message, UserLocalServiceUtil.getUser(fromFellow));
 
-
+        //set status of this proposal as ALL DONE
+        ProposalContestPhaseAttribute newStatus = proposalContestPhaseAttributeLocalService.createProposalContestPhaseAttribute(CounterLocalServiceUtil.increment(ProposalContestPhaseAttribute.class.getName()));
+        newStatus.setName(ProposalContestPhaseAttributeKeys.JUDGING_STATUS);
+        newStatus.setProposalId(proposalId);
+        newStatus.setContestPhaseId(sourcePhaseId);
+        newStatus.setNumericValue(JudgingSystemActions.JudgingStatus.EXECUTED.getAttributeValue());
+        ProposalContestPhaseAttributeLocalServiceUtil.addProposalContestPhaseAttribute(newStatus);
     }
 
     /**
@@ -316,8 +329,8 @@ public class ContestPhaseLocalServiceImpl extends ContestPhaseLocalServiceBaseIm
                 for (Proposal p : ProposalLocalServiceUtil.getProposalsInContestPhase(phase.getContestPhasePK())) {
                     try {
                         performJudgeOperation(p.getProposalId(), phase.getContestPhasePK());
-                    } catch(Exception e){
-                        _log.error("couldnt perform judge operations on "+p.getProposalId(), e);
+                    } catch (Exception e) {
+                        _log.error("couldnt perform judge operations on " + p.getProposalId(), e);
                     }
                 }
                 phase.setContestPhaseAutopromote("PROMOTE_DONE");
