@@ -160,7 +160,7 @@
                     <portlet:param name="phaseId" value="${contestPhase.contestPhasePK }" />
                     <portlet:param name="sortAscending" value="${sortFilterPage.sortColumn == 'OVERALLSTATUS' ? not sortFilterPage.sortAscending : true }" />
                 </portlet:renderURL>
-                <a href="${sortURL }">E-Mails</a>
+                <a href="${sortURL }">Status</a>
                 <collab:sortArrow sortAscending="${sortFilterPage.sortAscending }" sortColumn="${sortFilterPage.sortColumn }" currentColumn="OVERALLSTATUS" />
 
                 <portlet:renderURL var="sortURL">
@@ -170,7 +170,7 @@
                     <portlet:param name="phaseId" value="${contestPhase.contestPhasePK }" />
                     <portlet:param name="sortAscending" value="${sortFilterPage.sortColumn == 'JUDGESTATUS' ? not sortFilterPage.sortAscending : true }" />
                 </portlet:renderURL>
-                <a href="${sortURL }">Judge</a>
+                <a href="${sortURL }" style="padding-left: 5px;">Judge</a>
                     <collab:sortArrow sortAscending="${sortFilterPage.sortAscending }" sortColumn="${sortFilterPage.sortColumn }" currentColumn="JUDGESTATUS" />
                 <c:if test="${proposalsPermissions.canFellowActions}">
                     <portlet:renderURL var="sortURL">

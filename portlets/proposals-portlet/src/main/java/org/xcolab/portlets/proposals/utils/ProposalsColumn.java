@@ -80,7 +80,7 @@ public enum ProposalsColumn {
 
         @Override
         public int compare(ProposalWrapper o1, ProposalWrapper o2) {
-            return (o1.getOverallStatus() - o2.getOverallStatus());
+            return (o1.getJudgingStatus().getAttributeValue() - o2.getJudgingStatus().getAttributeValue());
         }
     }),
     FELLOWSTATUS(new Comparator<ProposalWrapper>() {

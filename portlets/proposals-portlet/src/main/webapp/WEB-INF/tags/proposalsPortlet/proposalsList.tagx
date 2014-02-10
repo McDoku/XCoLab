@@ -42,7 +42,7 @@
             </div>
             </c:if>
             <div class="row1">
-                <div class="title-author" style="${proposalsPermissions.canJudgeActions ? (proposal.featured ? 'width:503px;' : 'width:532px;')  : ''}">
+                <div class="title-author" style="${proposalsPermissions.canJudgeActions ? (proposal.featured ? 'width:448px;' : 'width:480px;')  : ''}">
                     <h4>
                     	<collab:proposalLink proposalId="${proposal.proposalId}" contestId="${contest.contestPK}" text="${proposal.name}" phaseId="${viewContestPhaseId  }" escape="true" />
                         /&#160;
@@ -91,32 +91,35 @@
                     <div class="fellow-judge-action">
                         <span class="fieldWithTooltip">
                         <c:choose>
-                            <c:when test="${proposal.overallStatus == 0}">
+                            <c:when test="${proposal.judgingStatus.attributeValue == 0}">
+                                <!-- no decision -->
                                 <img src="/climatecolab-theme/images/icon_question-chk-qm.png"/>
                             </c:when>
-                            <c:when test="${proposal.overallStatus == 1}">
-                                <img src="/climatecolab-theme/images/icon_question-x.png"/>
+                            <c:when test="${proposal.judgingStatus.attributeValue == 1}">
+                                <!-- decision taken -->
+                                <img src="/climatecolab-theme/images/icon_question-chk.png"/>
                             </c:when>
                             <c:otherwise>
-                                <img src="/climatecolab-theme/images/icon_question-chk.png"/>
+                                <!-- decision executed -->
+                                <img src="/climatecolab-theme/images/icon_question-double.png"/>
                             </c:otherwise>
                         </c:choose>
                         </span>
                         <div class="tooltip">
                             <c:choose>
-                                <c:when test="${proposal.overallStatus == 0}">
+                                <c:when test="${proposal.judgingStatus.attributeValue  == 0}">
                                     No decision yet.
                                 </c:when>
-                                <c:when test="${proposal.overallStatus == 1}">
-                                    E-Mails have not been sent out yet.
+                                <c:when test="${proposal.judgingStatus.attributeValue  == 1}">
+                                    Decisions have been taken.
                                 </c:when>
                                 <c:otherwise>
-                                    E-Mails have been sent out.
+                                    Post-Judging Actions have been executed.
                                 </c:otherwise>
                             </c:choose>
                         </div>
 
-                        <span class="fieldWithTooltip">
+                        <span class="fieldWithTooltip" style="margin-left: 15px;">
                         <c:choose>
                             <c:when test="${proposal.judgeStatus == 0}">
                                 <img src="/climatecolab-theme/images/icon_question-chk-qm.png"/>
