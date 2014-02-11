@@ -32,17 +32,17 @@
             <portlet:param name="action_forwardToPage" value="proposalDetails_JUDGE"/>
             <portlet:param name="contestId" value="${contest.contestPK }"/>
             <portlet:param name="planId" value="${proposal.proposalId }"/>
-            <portlet:param name="action" value="sendComment"/>
+            <portlet:param name="action" value="finalizeJudgment"/>
         </portlet:actionURL>
 
         <div class="judging_left">
             <form:form id="fellowRatingForm" action="${saveJudgeRatingURL }" method="post"
                        commandName="judgeProposalBean">
                 <div class="addpropbox">
-                    <h3>Promotion</h3>
+                    <h3>Judge decision</h3>
                     <form:select path="judgeAction" items="${judgingOptions}" itemLabel="description"/>
 
-                    <c:if test="${!judgeProposalBean.judgingStatus}">
+                    <c:if test="${judgeProposalBean.judgingStatus.attributeValue == 0}">
                         <div class="blue-button" style="display:block; float:right; margin-top: 10px;">
                             <a href="javascript:;" class="requestMembershipSubmitButton"
                                onclick="jQuery(this).parents('form').submit();">Save</a>
@@ -55,13 +55,13 @@
                     <h3>Comment to send to author</h3>
                     <form:textarea id="judgeComment" cssClass="commentbox" path="judgeComment" style="width:100%;"/>
 
-                    <c:if test="${!judgeProposalBean.judgingStatus and judgeProposalBean.judgeAction.attributeValue ne 0}">
+                    <c:if test="${judgeProposalBean.judgingStatus.attributeValue == 0 and judgeProposalBean.judgeAction.attributeValue ne 0}">
                         <div class="blue-button" style="display:block; float:left;">
-                            <a class="requestMembershipSubmitButton" href="${sendEmailURL}">Send e-Mails</a>
+                            <a class="requestMembershipSubmitButton" href="${sendEmailURL}">Finalize Judging</a>
                         </div>
                     </c:if>
 
-                    <c:if test="${!judgeProposalBean.judgingStatus}">
+                    <c:if test="${judgeProposalBean.judgingStatus.attributeValue == 0}">
                     <div class="blue-button" style="display:block; float:right; margin-top: 10px;">
                         <a href="javascript:;" class="requestMembershipSubmitButton"
                            onclick="jQuery(this).parents('form').submit();">Save</a>
@@ -90,7 +90,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <c:if test="${!judgeProposalBean.judgingStatus}">
+                    <c:if test="${judgeProposalBean.judgingStatus.attributeValue == 0}">
                     <div class="blue-button" style="display:block; float:right; margin-top: 10px;">
                         <a href="javascript:;" class="requestMembershipSubmitButton"
                            onclick="jQuery(this).parents('form').submit();">Save</a>

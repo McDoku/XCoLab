@@ -108,19 +108,33 @@ public class ProposalsPermissions {
         return contestStatus.isCanCreate();
     }
 
-
-    
-    public boolean getCanAssignRibbon() {
-        if (user.isDefaultUser()) 
+    public boolean getCanRevertJudging() {
+        if (user.isDefaultUser())
             return false;
-        
-        if (getCanAdminAll()) 
+
+        if (getCanAdminAll())
             return true;
         return false;
     }
-    
-    
-    
+
+    public boolean getCanAssignRibbon() {
+        if (user.isDefaultUser())
+            return false;
+
+        if (getCanAdminAll())
+            return true;
+        return false;
+    }
+
+    public boolean getCanForceJudgingExecution() {
+        if (user.isDefaultUser())
+            return false;
+
+        if (getCanAdminAll())
+            return true;
+        return false;
+    }
+
     public boolean getCanSeeRequestMembershipButton() throws SystemException, PortalException {
         return user.isDefaultUser() || getCanRequestMembership();
     }

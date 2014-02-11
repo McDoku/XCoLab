@@ -384,6 +384,24 @@ public class ContestPhaseLocalServiceWrapper implements ContestPhaseLocalService
     }
 
     /**
+    * perform operation judges have decided on proposal (promote, dont promote) and send out comments.
+    *
+    * @param proposalId
+    * @param sourcePhaseId
+    * @throws SystemException
+    * @throws PortalException
+    */
+    @Override
+    public void performJudgeOperation(long proposalId, long sourcePhaseId)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException,
+            com.liferay.util.mail.MailEngineException,
+            javax.mail.internet.AddressException {
+        _contestPhaseLocalService.performJudgeOperation(proposalId,
+            sourcePhaseId);
+    }
+
+    /**
     * Method responsible for autopromotion of proposals between phases.
     *
     * @throws SystemException

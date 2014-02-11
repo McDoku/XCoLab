@@ -31,7 +31,14 @@
             <portlet:param name="action_forwardToPage" value="proposalDetails_FELLOW"/>
             <portlet:param name="contestId" value="${contest.contestPK }"/>
             <portlet:param name="planId" value="${proposal.proposalId }"/>
-            <portlet:param name="action" value="sendComment"/>
+            <portlet:param name="action" value="finalizeJudgment"/>
+        </portlet:actionURL>
+
+        <portlet:actionURL var="adminReleaseLock">
+            <portlet:param name="action_forwardToPage" value="proposalDetails_FELLOW"/>
+            <portlet:param name="contestId" value="${contest.contestPK }"/>
+            <portlet:param name="planId" value="${proposal.proposalId }"/>
+            <portlet:param name="action" value="adminReleaseLock"/>
         </portlet:actionURL>
 
         <div class="judging_left">
@@ -59,7 +66,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <h3>Advance Proposal</h3>
+                    <h3>Fellow decision</h3>
 
 
                     <form:select path="fellowAction" items="${judgingOptions}" itemLabel="description"/>
@@ -86,25 +93,39 @@
 
                     <c:if test="${judgeProposalBean.fellowAction.attributeValue ne 3}">
                     <h3>Comment to send to author</h3>
-                    <form:textarea id="fellowComment" cssClass="commentbox" path="fellowComment" style="width:100%;"/>
-                    </c:if>
+
+
 
                     <c:choose>
-                        <c:when test="${!judgeProposalBean.judgingStatus}">
+                        <c:when test="${judgeProposalBean.judgingStatus.attributeValue == 0}">
+                            <form:textarea id="fellowComment" cssClass="commentbox" path="fellowComment" style="width:100%;"/>
                             <div class="blue-button" style="display:block; float:right;">
                                 <a href="javascript:;" class="requestMembershipSubmitButton"
                                    onclick="jQuery(this).parents('form').submit();">Save</a>
                             </div>
                         </c:when>
-                        <c:otherwise>(No more changes possible)</c:otherwise>
+                        <c:otherwise>
+                            <pre>${proposal.finalJudgingComment}</pre>
+                        </c:otherwise>
                     </c:choose>
+
+                    </c:if>
 
                 </form:form>
             </div>
-            <c:if test="${judgeProposalBean.fellowAction.attributeValue ne 0 and judgeProposalBean.fellowAction.attributeValue ne 3 and !judgeProposalBean.judgingStatus}">
+            <c:if test="${judgeProposalBean.fellowAction.attributeValue ne 0 and judgeProposalBean.fellowAction.attributeValue ne 3 and proposal.judgingStatus.attributeValue == 0}">
                 <div class="addpropbox">
                     <div class="blue-button" style="display:block; float:right;">
-                        <a class="requestMembershipSubmitButton" href="${sendEmailURL}">Send e-Mails</a>
+                        <a class="requestMembershipSubmitButton" href="${sendEmailURL}">Finalize Judging</a>
+                    </div>
+                </div>
+            </c:if>
+
+            <c:if test="${proposalsPermissions.canRevertJudging and proposal.judgingStatus.attributeValue==1}">
+                <div class="addpropbox">
+                    (Visible to Admins only)
+                    <div class="blue-button" style="display:block; float:right;">
+                        <a class="requestMembershipSubmitButton" href="${adminReleaseLock}">Revert Judging to editable state</a>
                     </div>
                 </div>
             </c:if>

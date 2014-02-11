@@ -74,6 +74,8 @@ public class ContestPhaseLocalServiceClp implements ContestPhaseLocalService {
     private String[] _methodParameterTypes32;
     private String _methodName33;
     private String[] _methodParameterTypes33;
+    private String _methodName34;
+    private String[] _methodParameterTypes34;
 
     public ContestPhaseLocalServiceClp(
         InvokableLocalService invokableLocalService) {
@@ -245,9 +247,13 @@ public class ContestPhaseLocalServiceClp implements ContestPhaseLocalService {
 
         _methodParameterTypes32 = new String[] { "long", "long" };
 
-        _methodName33 = "autoPromoteProposals";
+        _methodName33 = "performJudgeOperation";
 
-        _methodParameterTypes33 = new String[] {  };
+        _methodParameterTypes33 = new String[] { "long", "long" };
+
+        _methodName34 = "autoPromoteProposals";
+
+        _methodParameterTypes34 = new String[] {  };
     }
 
     @Override
@@ -1191,12 +1197,50 @@ public class ContestPhaseLocalServiceClp implements ContestPhaseLocalService {
     }
 
     @Override
+    public void performJudgeOperation(long proposalId, long sourcePhaseId)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException,
+            com.liferay.util.mail.MailEngineException,
+            javax.mail.internet.AddressException {
+        try {
+            _invokableLocalService.invokeMethod(_methodName33,
+                _methodParameterTypes33,
+                new Object[] { proposalId, sourcePhaseId });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof com.liferay.util.mail.MailEngineException) {
+                throw (com.liferay.util.mail.MailEngineException) t;
+            }
+
+            if (t instanceof javax.mail.internet.AddressException) {
+                throw (javax.mail.internet.AddressException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+    }
+
+    @Override
     public void autoPromoteProposals()
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         try {
-            _invokableLocalService.invokeMethod(_methodName33,
-                _methodParameterTypes33, new Object[] {  });
+            _invokableLocalService.invokeMethod(_methodName34,
+                _methodParameterTypes34, new Object[] {  });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 

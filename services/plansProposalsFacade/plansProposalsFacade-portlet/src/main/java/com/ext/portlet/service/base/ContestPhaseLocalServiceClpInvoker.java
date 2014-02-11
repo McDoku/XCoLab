@@ -75,6 +75,8 @@ public class ContestPhaseLocalServiceClpInvoker {
     private String[] _methodParameterTypes503;
     private String _methodName504;
     private String[] _methodParameterTypes504;
+    private String _methodName505;
+    private String[] _methodParameterTypes505;
 
     public ContestPhaseLocalServiceClpInvoker() {
         _methodName0 = "addContestPhase";
@@ -243,9 +245,13 @@ public class ContestPhaseLocalServiceClpInvoker {
 
         _methodParameterTypes503 = new String[] { "long", "long" };
 
-        _methodName504 = "autoPromoteProposals";
+        _methodName504 = "performJudgeOperation";
 
-        _methodParameterTypes504 = new String[] {  };
+        _methodParameterTypes504 = new String[] { "long", "long" };
+
+        _methodName505 = "autoPromoteProposals";
+
+        _methodParameterTypes505 = new String[] {  };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -424,6 +430,14 @@ public class ContestPhaseLocalServiceClpInvoker {
 
         if (_methodName504.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes504, parameterTypes)) {
+            ContestPhaseLocalServiceUtil.performJudgeOperation(((Long) arguments[0]).longValue(),
+                ((Long) arguments[1]).longValue());
+
+            return null;
+        }
+
+        if (_methodName505.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes505, parameterTypes)) {
             ContestPhaseLocalServiceUtil.autoPromoteProposals();
 
             return null;

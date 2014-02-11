@@ -39,8 +39,8 @@ public class JudgeProposalActionController {
     @Autowired
     private ProposalsContext proposalsContext;
 
-    @RequestMapping(params = {"action=sendComment"})
-    public void sendComment(ActionRequest request, Model model, ActionResponse response) throws SystemException, PortalException {
+    @RequestMapping(params = {"action=finalizeJudgment"})
+    public void finalizeJudgment(ActionRequest request, Model model, ActionResponse response) throws SystemException, PortalException {
         ProposalWrapper proposal = new ProposalWrapper(proposalsContext.getProposal(request));
         long contestPhaseId = proposalsContext.getContestPhase(request).getContestPhasePK();
 
@@ -58,6 +58,16 @@ public class JudgeProposalActionController {
             } catch (Throwable e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    @RequestMapping(params = {"action=adminReleaseLock"})
+    public void adminReleaseLock(ActionRequest request, Model model, ActionResponse response) throws SystemException, PortalException {
+        ProposalWrapper proposal = new ProposalWrapper(proposalsContext.getProposal(request));
+        long contestPhaseId = proposalsContext.getContestPhase(request).getContestPhasePK();
+
+        if (proposal.getJudgingStatus() != JudgingSystemActions.JudgingStatus.EXECUTED) {
+            persistAttribute(proposal.getProposalId(), contestPhaseId, ProposalContestPhaseAttributeKeys.JUDGING_STATUS, 0, JudgingSystemActions.JudgingStatus.NO_DECISION.getAttributeValue(), null);
         }
     }
 

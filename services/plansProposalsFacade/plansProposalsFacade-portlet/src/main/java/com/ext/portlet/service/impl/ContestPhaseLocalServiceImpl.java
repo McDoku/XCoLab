@@ -4,11 +4,26 @@ import com.ext.portlet.JudgingSystemActions;
 import com.ext.portlet.NoSuchContestPhaseException;
 import com.ext.portlet.contests.ContestStatus;
 import com.ext.portlet.contests.ContestTeamMemberRoles;
-import com.ext.portlet.model.*;
-import com.ext.portlet.model.impl.ProposalContestPhaseAttributeImpl;
+import com.ext.portlet.model.Contest;
+import com.ext.portlet.model.ContestPhase;
+import com.ext.portlet.model.ContestPhaseColumn;
+import com.ext.portlet.model.ContestTeamMember;
+import com.ext.portlet.model.PlanItem;
+import com.ext.portlet.model.Proposal;
+import com.ext.portlet.model.Proposal2Phase;
+import com.ext.portlet.model.ProposalContestPhaseAttribute;
 import com.ext.portlet.proposal.ProposalAttributeKeys;
 import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
-import com.ext.portlet.service.*;
+import com.ext.portlet.service.ContestLocalServiceUtil;
+import com.ext.portlet.service.ContestPhaseColumnLocalServiceUtil;
+import com.ext.portlet.service.ContestPhaseLocalServiceUtil;
+import com.ext.portlet.service.ContestPhaseTypeLocalServiceUtil;
+import com.ext.portlet.service.DiscussionCategoryGroupLocalServiceUtil;
+import com.ext.portlet.service.PlanItemLocalServiceUtil;
+import com.ext.portlet.service.Proposal2PhaseLocalServiceUtil;
+import com.ext.portlet.service.ProposalContestPhaseAttributeLocalServiceUtil;
+import com.ext.portlet.service.ProposalLocalServiceUtil;
+import com.ext.portlet.service.ProposalVersionLocalServiceUtil;
 import com.ext.portlet.service.base.ContestPhaseLocalServiceBaseImpl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -21,7 +36,11 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.util.mail.MailEngineException;
 
 import javax.mail.internet.AddressException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The implementation of the contest phase local service.
@@ -95,7 +114,7 @@ public class ContestPhaseLocalServiceImpl extends ContestPhaseLocalServiceBaseIm
 
     public ContestPhase getNextContestPhase(ContestPhase contestPhase) throws SystemException, PortalException {
         boolean currentFound = false;
-        for (ContestPhase phase : ContestPhaseLocalServiceUtil.getPhasesForContest(getContest(contestPhase))) {
+        for (ContestPhase phase : getPhasesForContest(getContest(contestPhase))) {
             if (currentFound) {
                 return phase;
             }
@@ -239,7 +258,7 @@ public class ContestPhaseLocalServiceImpl extends ContestPhaseLocalServiceBaseIm
         if (currentStatusAttr != null) {
             currentStatus = JudgingSystemActions.JudgingStatus.fromInt(new Long(currentStatusAttr.getNumericValue()).intValue());
         }
-        if(currentStatus != JudgingSystemActions.JudgingStatus.DECIDED) return;
+        if (currentStatus != JudgingSystemActions.JudgingStatus.DECIDED) return;
 
 
         //check if this proposal is to be promoted
@@ -253,7 +272,7 @@ public class ContestPhaseLocalServiceImpl extends ContestPhaseLocalServiceBaseIm
         //get judging comment for this proposal
         String message = "";
         if (judgeActionId == JudgingSystemActions.JudgeAction.NO_DECISION.getAttributeValue()) {
-            ProposalContestPhaseAttribute fellowAction = getAttribute(p.getProposalId(), phase.getContestPK(), ProposalContestPhaseAttributeKeys.FELLOW_ACTION);
+            ProposalContestPhaseAttribute fellowAction = getAttribute(p.getProposalId(), sourcePhaseId, ProposalContestPhaseAttributeKeys.FELLOW_ACTION);
             if (fellowAction == null || fellowAction.getNumericValue() == JudgingSystemActions.FellowAction.PASSTOJUDGES.getAttributeValue())
                 return; //abort, no decision yet
         }
@@ -276,19 +295,15 @@ public class ContestPhaseLocalServiceImpl extends ContestPhaseLocalServiceBaseIm
         //get proposal title (name is mandatory, no need for error treatment)
         String proposalName = ProposalLocalServiceUtil.getAttribute(proposalId, ProposalAttributeKeys.NAME, 0).getName();
         String title = "Judges comments for your proposal '" + proposalName + "'";
-        long fromFellow = fellows.get(0).getId();
+        long fromFellow = fellows.get(0).getUserId();
 
         //send message and comment
         com.ext.portlet.messaging.MessageUtil.sendMessage(title, message, fromFellow, fromFellow, recipients, null);
         DiscussionCategoryGroupLocalServiceUtil.addComment(DiscussionCategoryGroupLocalServiceUtil.getDiscussionCategoryGroup(p.getDiscussionId()), title, message, UserLocalServiceUtil.getUser(fromFellow));
 
         //set status of this proposal as ALL DONE
-        ProposalContestPhaseAttribute newStatus = proposalContestPhaseAttributeLocalService.createProposalContestPhaseAttribute(CounterLocalServiceUtil.increment(ProposalContestPhaseAttribute.class.getName()));
-        newStatus.setName(ProposalContestPhaseAttributeKeys.JUDGING_STATUS);
-        newStatus.setProposalId(proposalId);
-        newStatus.setContestPhaseId(sourcePhaseId);
-        newStatus.setNumericValue(JudgingSystemActions.JudgingStatus.EXECUTED.getAttributeValue());
-        ProposalContestPhaseAttributeLocalServiceUtil.addProposalContestPhaseAttribute(newStatus);
+        currentStatusAttr.setNumericValue(JudgingSystemActions.JudgingStatus.EXECUTED.getAttributeValue());
+        ProposalContestPhaseAttributeLocalServiceUtil.updateProposalContestPhaseAttribute(currentStatusAttr);
     }
 
     /**

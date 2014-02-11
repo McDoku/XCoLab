@@ -50,7 +50,7 @@
         	<c:set var="addBlueClass" value='${not addBlueClass }' />
         </c:if>
         
-        <c:if test="${proposalsPermissions.canAssignRibbon }">
+        <c:if test="${proposalsPermissions.canAssignRibbon and proposal.judgingStatus.attributeValue == 1}">
         	<div class="addpropbox ${addBlueClass ? 'blue' : '' }">
             	<strong>Proposal ribbon in contest phase</strong>
             	<div><!--  -->
@@ -83,6 +83,26 @@
             	</div>
         	</div>
         	<c:set var="addBlueClass" value='${not addBlueClass }' />
+        </c:if>
+
+        <c:if test="${proposalsPermissions.canForceJudgingExecution  and proposal.judgingStatus.attributeValue == 1}">
+            <div class="addpropbox ${addBlueClass ? 'blue' : '' }">
+                <strong>Force execution of Judging Decision / Message sending</strong>
+                <div><!--  -->
+                    <portlet:actionURL var="judgingExecutionURL">
+                        <portlet:param name="action_forwardToPage" value="proposalDetails_ADMIN" />
+                        <portlet:param name="contestId" value="${contest.contestPK }" />
+                        <portlet:param name="planId" value="${proposal.proposalId }" />
+                        <portlet:param name="action" value="forceJudgingExecution" />
+                    </portlet:actionURL >
+                        <div class="blue-button" style="display:block;">
+                            <a href="${judgingExecutionURL}">
+                                Force Judging Execution
+                            </a>
+                        </div>
+                </div>
+            </div>
+            <c:set var="addBlueClass" value='${not addBlueClass }' />
         </c:if>
         
         <c:if test="${proposalsPermissions.canDelete and contestPhase.getProposalVisibility(proposal.proposalId) }">

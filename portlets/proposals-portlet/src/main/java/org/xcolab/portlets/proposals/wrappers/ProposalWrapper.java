@@ -218,6 +218,11 @@ public class ProposalWrapper {
     }
 
 
+    public String getFinalJudgingComment() throws SystemException, PortalException {
+        return getContestPhaseAttributeValueString(ProposalContestPhaseAttributeKeys.JUDGING_FINAL_COMMENT, 0, "");
+    }
+
+
     public List<Long> getSelectedJudges() {
         List<Long> selectedJudges = new ArrayList<Long>();
         String s;
