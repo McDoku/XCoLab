@@ -191,6 +191,9 @@
                     </div>
                 </form>
             </c:when>
+            <c:when test="${proposal.isJudgeAssignedAndIncomplete eq 1}">
+                You have already sent your comment.
+            </c:when>
         </c:choose>
     </c:if>
     </div>

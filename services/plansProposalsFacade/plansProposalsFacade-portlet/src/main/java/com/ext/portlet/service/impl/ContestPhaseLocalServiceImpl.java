@@ -293,7 +293,7 @@ public class ContestPhaseLocalServiceImpl extends ContestPhaseLocalServiceBaseIm
         for (User u : recipientUsers) recipients.add(u.getUserId());
 
         //get proposal title (name is mandatory, no need for error treatment)
-        String proposalName = ProposalLocalServiceUtil.getAttribute(proposalId, ProposalAttributeKeys.NAME, 0).getName();
+        String proposalName = ProposalLocalServiceUtil.getAttribute(proposalId, ProposalAttributeKeys.NAME, 0).getStringValue();
         String title = "Judges comments for your proposal '" + proposalName + "'";
         long fromFellow = fellows.get(0).getUserId();
 
@@ -340,7 +340,6 @@ public class ContestPhaseLocalServiceImpl extends ContestPhaseLocalServiceBaseIm
         for (ContestPhase phase : contestPhasePersistence.findByPhaseAutopromote("PROMOTE_JUDGED")) {
             if (phase.getPhaseEndDate() != null && phase.getPhaseEndDate().before(now) && !getPhaseActive(phase)) {
                 _log.info("promoting phase " + phase.getContestPhasePK() + " (judging)");
-                ContestPhase nextPhase = getNextContestPhase(phase);
                 for (Proposal p : ProposalLocalServiceUtil.getProposalsInContestPhase(phase.getContestPhasePK())) {
                     try {
                         performJudgeOperation(p.getProposalId(), phase.getContestPhasePK());
