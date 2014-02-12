@@ -1,12 +1,16 @@
 package org.xcolab.portlets.proposals.view.action;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
 import javax.validation.Valid;
 
+import com.ext.portlet.proposal.ProposalAttributeKeys;
+import com.ext.portlet.proposal.ProposalContestPhaseAttributeKeys;
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -27,8 +31,6 @@ import org.xcolab.portlets.proposals.wrappers.ProposalSectionWrapper;
 import org.xcolab.portlets.proposals.wrappers.ProposalWrapper;
 
 import com.ext.portlet.PlanSectionTypeKeys;
-import com.ext.portlet.ProposalAttributeKeys;
-import com.ext.portlet.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.model.ContestPhase;
 import com.ext.portlet.model.Proposal;
 import com.ext.portlet.model.Proposal2Phase;

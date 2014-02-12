@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.ext.portlet.JudgingSystemActions;
 import com.ext.portlet.NoSuchContestPhaseException;
-import com.ext.portlet.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.contests.ContestStatus;
 import com.ext.portlet.contests.ContestTeamMemberRoles;
 import com.ext.portlet.model.Contest;
