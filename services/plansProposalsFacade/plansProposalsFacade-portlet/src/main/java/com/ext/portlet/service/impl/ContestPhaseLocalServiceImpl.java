@@ -1,7 +1,14 @@
 package com.ext.portlet.service.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+
 import com.ext.portlet.JudgingSystemActions;
 import com.ext.portlet.NoSuchContestPhaseException;
+import com.ext.portlet.ProposalContestPhaseAttributeKeys;
 import com.ext.portlet.contests.ContestStatus;
 import com.ext.portlet.contests.ContestTeamMemberRoles;
 import com.ext.portlet.model.Contest;
@@ -152,7 +159,7 @@ public class ContestPhaseLocalServiceImpl extends ContestPhaseLocalServiceBaseIm
         return contestPhasePersistence.findByContestId(contestPK);
     }
 
-    public ContestPhase getActivePhaseForContest(Contest contest) throws NoSuchContestPhaseException, SystemException {
+    public ContestPhase getActivePhaseForContest(Contest contest) throws SystemException {
         Date now = new Date();
         try {
             return contestPhasePersistence.findByPhaseActiveOverride_Last(contest.getContestPK(), true,
@@ -179,7 +186,7 @@ public class ContestPhaseLocalServiceImpl extends ContestPhaseLocalServiceBaseIm
         }
         List<ContestPhase> phases = contestPhasePersistence.findByContestIdStartEnd(contest.getContestPK(), now, now);
         if (phases.isEmpty()) {
-            throw new NoSuchContestPhaseException("Can't find active contest phase for contest" + contest.getContestPK());
+        	throw new SystemException("Can't find active contest phase for contest" + contest.getContestPK());
         }
         return phases.get(0);
     }
@@ -306,6 +313,7 @@ public class ContestPhaseLocalServiceImpl extends ContestPhaseLocalServiceBaseIm
         ProposalContestPhaseAttributeLocalServiceUtil.updateProposalContestPhaseAttribute(currentStatusAttr);
     }
 
+    
     /**
      * Method responsible for autopromotion of proposals between phases.
      *

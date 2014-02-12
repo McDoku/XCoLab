@@ -29,6 +29,7 @@ public class ProposalWrapper {
     private final ContestPhase contestPhase;
     private final Proposal2Phase proposal2Phase;
     private ContestPhaseRibbonType contestPhaseRibbonType;
+    private ProposalWrapper baseProposal;
 
     private List<ProposalTeamMemberWrapper> members;
     private List<ProposalSectionWrapper> sections;
@@ -86,8 +87,8 @@ public class ProposalWrapper {
     public void setAuthorId(long authorId) {
         proposal.setAuthorId(authorId);
     }
-
-
+    
+    
     public boolean getVisible() {
         return proposal.getVisible();
     }
@@ -216,6 +217,7 @@ public class ProposalWrapper {
     public String getFellowComment() throws SystemException, PortalException {
         return getContestPhaseAttributeValueString(ProposalContestPhaseAttributeKeys.FELLOW_COMMENT, 0, "");
     }
+    
 
 
     public String getFinalJudgingComment() throws SystemException, PortalException {
@@ -235,6 +237,7 @@ public class ProposalWrapper {
         for (String element : s.split(";")) selectedJudges.add(Long.parseLong(element));
         return selectedJudges;
     }
+
 
 
     public String getTeam() throws PortalException, SystemException {
@@ -465,4 +468,28 @@ public class ProposalWrapper {
     public void setContestPhaseAttributes(List<ProposalContestPhaseAttribute> contestPhaseAttributes) {
         this.contestPhaseAttributes = contestPhaseAttributes;
     }
+	public void setContestPhaseAttributes(List<ProposalContestPhaseAttribute> contestPhaseAttributes) {
+		this.contestPhaseAttributes = contestPhaseAttributes;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+	
+	public ProposalWrapper getBaseProposal() throws PortalException, SystemException {
+		if (baseProposal == null) {
+			long baseProposalId = proposalAttributeUtil.getAttributeValueLong(ProposalAttributeKeys.BASE_PROPOSAL_ID, 0);
+			long baseProposalContestId = proposalAttributeUtil.getAttributeValueLong(ProposalAttributeKeys.BASE_PROPOSAL_CONTEST_ID, 0);
+			if (baseProposalId > 0 && baseProposalContestId > 0) {
+				Proposal p = ProposalLocalServiceUtil.getProposal(baseProposalId);
+				Contest c = ContestLocalServiceUtil.getContest(baseProposalContestId);
+				baseProposal = new ProposalWrapper(p, p.getCurrentVersion(), c, null, null);
+			}
+		}
+		return baseProposal;
+	}
+
+	public long getContestPK() {
+		return contest.getContestPK();
+	}
 }

@@ -226,4 +226,38 @@ div.sponsorLogo img {
 .judging_left { float:left; width:474px; margin-top:50px;}
 .judging_right { float:left; width:454px; margin:50px 0 0 56px;}
 
-.fellow-judge-action {float:left; width:135px; padding-top:4px; text-align: center; margin-left: 12px;}
+.fellow-judge-action {float:left; width:135px; padding-top:4px; text-align: center; margin-left: 12px;}/*
+#copyProposalPopupContent {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	
+}*/
+
+#copyProposalPopupContent tr:nth-child(even) {
+	background-color: #f3f8fa;
+}
+#copyProposalPopupContent td {
+	padding: 5px;
+
+}
+
+#copyProposalPopupContent td .sectionContent {
+	display: none;
+}
+
+#copyProposalPopupContent td .hideContent {
+	display: none;
+}
+
+#copyProposalPopupContent .sectionPresent {
+	font-size: 0.8em;
+	color: #FF4444;
+}
+
+.addpropbox.empty .copyFromBaseProposalTriggerContainer {
+	display: block;
+}
+
+.addpropbox.notempty .copyFromBaseProposalTriggerContainer {
+	display: none;
+}.fellow-judge-action {float:left; width:135px; padding-top:4px; text-align: center; margin-left: 12px;}
